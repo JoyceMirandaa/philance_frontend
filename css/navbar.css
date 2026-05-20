@@ -1,0 +1,13 @@
+body {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid #41983D; 
+}
