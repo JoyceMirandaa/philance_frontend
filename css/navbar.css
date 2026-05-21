@@ -2,6 +2,7 @@ body {
     margin:0;
     padding:0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
 nav{
@@ -10,4 +11,46 @@ nav{
     flex-direction: row;
     background-color: rgb(255, 255, 255);
     border-bottom: 1px solid #41983D; 
+}
+
+.button-login{
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #5C8454ff;
+    border-radius: 30px;
+    padding: 10px;
+    width: 100px;
+    margin-right: 20px;
+}
+
+.button-cadastro{
+    background-color: #5C8454ff;
+    border: 2px solid;
+    border-color: #5C8454ff;
+    border-radius: 30px;
+    padding: 10px;
+    width: 110px;
+}
+
+.titulo-login{
+    color: #5C8454ff;
+    text-decoration: none;
+
+}
+
+.titulo-cadastro{
+    color:#ffffff;
+    text-decoration: none;
+
+}
+
+ul{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+img{
+    height: 80px; 
+    width: auto;
 }

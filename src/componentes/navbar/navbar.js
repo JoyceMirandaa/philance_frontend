@@ -33,10 +33,10 @@ function carregarNavbarHome(){
     const html = `
         <nav class="navbar nav-home">
             <div class="logo"><img src="/assets/imagens/PhilanceHome.png"> </div>
-            <ul class "nav-links>
-                <button><a href="/scr/pages/cadastro/freelancer/freelancerCadastro.html">Cadastro</a></button>
-                <button><a href="/scr/pages/cadastro/freelancer/freelancerCadastro.html">Login</a></button>
-            </nav>
+            <ul class "nav-links">
+                <button class="button-cadastro"><a class="titulo-cadastro" href="/src/pages/cadastro/freelancer/freelancerCadastro.html">Cadastrar</a></button>
+                <button class="button-login"><a class="titulo-login" href="/scr/pages/cadastro/freelancer/freelancerCadastro.html">Entrar</a></button>
+            </ul>
 
         </nav>
     `;
