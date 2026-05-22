@@ -2,4 +2,20 @@ body {
     margin:0;
     padding:0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.descricao-site{
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(to right, #4ab64f, #0d4d05);
+}
+
+.descricao{
+    display: flex;
+    flex-direction: column;
+}
+
+.imagem-site{
+    background-color: aliceblue;
 }
