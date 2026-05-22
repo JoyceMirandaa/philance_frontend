@@ -1,3 +1,5 @@
+
+
 body {
     margin:0;
     padding:0;
@@ -8,14 +10,63 @@ body {
 .descricao-site{
     display: flex;
     justify-content: space-between;
-    background-image: linear-gradient(to right, #4ab64f, #0d4d05);
+    background-image: linear-gradient(to right, #3ea543, #0d4d05);
+    height: 400px;
+}
+.title-descricao{
+    font-family: 'Anta', sans-serif;
+    font-size: 35px;
+    text-align: center;
+}
+
+.texto-descricao{
+    font-size: 20px;
+    text-align: center;
+    margin-top: -20px;
+    margin-left: 60px;
+    margin-left: 60px;
 }
 
 .descricao{
     display: flex;
     flex-direction: column;
+    margin: 70px;
 }
 
 .imagem-site{
-    background-color: aliceblue;
+    width: 990px;
+    background-color: #ffff;
+    margin-right: 60px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 60px;
+}
+
+.img-garcom{
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    height: 300px;
+    margin-left: 45px;
+    margin-top: -10px;
+
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.img-branco{
+    width: 590px;
+    height: 10px;
+    background-color: #ffff;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img{
+    height: 60px;
 }
