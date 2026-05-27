@@ -34,10 +34,9 @@ function carregarNavbarHome(){
         <nav class="navbar nav-home">
             <div class="logo"><img src="/assets/imagens/PhilanceHome.png"> </div>
             <ul class "nav-links">
-                <button class="button-cadastro"><a class="titulo-cadastro" href="/src/pages/cadastro/freelancer/freelancerCadastro.html">Cadastrar</a></button>
-                <button class="button-login"><a class="titulo-login" href="/scr/pages/cadastro/freelancer/freelancerCadastro.html">Entrar</a></button>
+                <button class="button-login" onclick="abrirModal('/empresaLogin.html')">Entrar</button>
+                <button  class="button-cadastro" onclick="abrirModal('/src/pages/cadastro/empresa/empresaCadastro.html')">Cadastre-se</button>
             </ul>
-
         </nav>
     `;
     const container = document.getElementById('space-navbar');

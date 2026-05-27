@@ -6,12 +6,16 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/cadastroLogin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
 </head>
 <body>
+
+    <dialog id="modal-container"></dialog>
+
     <div id="space-navbar"></div>
     <container class="descricao-site">
         <div class="descricao">
@@ -34,10 +38,36 @@
     <container>
         <div class="circulo"></div>
     </container>
-
 </body>
 </html>
+
 <script src="/src/componentes/navbar/navbar.js"></script>
 <script>
     carregarNavbarHome();
+</script>
+<script>
+        const modal = document.querySelector('dialog');
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.close();
+            }
+        });
+        async function carregarConteudoModal(arquivoHtml) {
+            const modal = document.getElementById('modal-container');
+            try {
+                const resposta = await fetch(arquivoHtml);
+                if (!resposta.ok) throw new Error('Erro ao carregar o arquivo');
+                const html = await resposta.text();
+                modal.innerHTML = html;
+            } catch (erro) {
+                console.error(erro);
+                modal.innerHTML = '<p>Erro ao carregar a tela. Tente novamente.</p>';
+            }
+        }
+
+        async function abrirModal(arquivoInicial) {
+            const modal = document.getElementById('modal-container');
+            await carregarConteudoModal(arquivoInicial);
+            modal.showModal();
+        }
 </script>
