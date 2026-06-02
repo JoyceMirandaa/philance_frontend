@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/cadastroLogin.css">
+</head>
+<body>
+    <div class="modal-conteudo">
+       <div class="button-conteiner">
+            <button class="button-empresa">Sou empresa</button>
+            <button class="button-empresa">Sou freelancer</button>
+       </div>
+        <h2>Cadastre-se</h2>
+        <p>Preencha as informações para criar a sua conta</p>
+        <label>Nome:</label>
+        <input id="username" type="text" required>
+        
+        <label>Data de Nascimento:</label>
+        <input type="date" required>
+
+        <label>Senha:</label>
+        <input id="password" type="password" required>
+
+        <label>Confirmar Senha:</label>
+        <input type="password" required>
+
+        <label>E-mail:</label>
+        <input id="email" type="email" required>
+
+        <label>CPF:</label>
+        <input id="document" type="text" required>
+        
+        <button id="btnlogin" type="submit">login</button>
+
+        <script src="/src/pages/login/empresa/empresaLogin.js"></script>
+    </div>
+</body>
+</html>

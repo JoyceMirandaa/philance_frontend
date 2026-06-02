@@ -1,10 +1,17 @@
+console.log("Arquivo empresaCadastro.js carregado isoladamente de sua pasta!");
 
-console.log("Arquivo empresaCadastro.js carregado!");
+// Adicione a palavra 'export' na frente da função
+export function inicializarEventosDoCadastro() {
+    const btnCadastrar = document.getElementById("btnCadastrar");
+    if (btnCadastrar) {
+        btnCadastrar.addEventListener("click", enviarDadosParaOBackend);
+        console.log("Botão de cadastro ativado via Módulo!");
+    }
+}
 
 function enviarDadosParaOBackend(event) {
-
-    event.preventDefault();
-    // 1. Pega os valores que foram digitados na tela do HTML
+    if (event) event.preventDefault();
+    
     const dadosFormulario = {
         username: document.getElementById('username').value,
         password: document.getElementById('password').value,
@@ -12,32 +19,18 @@ function enviarDadosParaOBackend(event) {
         document: document.getElementById('document').value,
     };
 
-    // 2. Faz o envio exato para o Spring Boot rodando no seu IntelliJ
     fetch('http://localhost:8080/register-user', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dadosFormulario) // Transforma os dados em JSON
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dadosFormulario)
     })
     .then(resposta => {
         if (resposta.ok) {
-            alert('Sucesso! O Spring Boot salvou no MySQL.');
-            // Limpa os campos da tela
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('document').value = '';
+            alert('Sucesso! Salvo no MySQL.');
+            document.getElementById("modal-container").close();
         } else {
-            alert('Erro ao enviar dados para o servidor.');
+            alert('Erro no servidor.');
         }
     })
-    .catch(erro => {
-        console.error('Erro de conexão:', erro);
-        alert('Não foi possível conectar ao Spring Boot. O IntelliJ está rodando?');
-    });
-
-    console.log("Função enviarDadosParaOBackend() finalizada.")
+    .catch(erro => console.error('Erro:', erro));
 }
-
-document.getElementById("btnCadastrar").addEventListener("click", enviarDadosParaOBackend);
