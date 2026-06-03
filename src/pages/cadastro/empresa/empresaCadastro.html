@@ -9,8 +9,8 @@
 <body>
     <div class="modal-conteudo">
        <div class="button-conteiner">
-            <button class="button-empresa">Sou empresa</button>
-            <button class="button-empresa">Sou freelancer</button>
+            <button class="tab-btn active"  onclick="enviarDadosParaOBackend(E)">Sou empresa</button>
+            <button class="tab-btn" onclick="enviarDadosParaOBackend(F)">Sou freelancer</button>
        </div>
         <h2>Cadastre-se</h2>
         <p>Preencha as informações para criar a sua conta</p>
@@ -32,7 +32,7 @@
         <label>CPF:</label>
         <input id="document" type="text" required>
         
-        <button id="btnCadastrar" onclick="buscarServicosDoBanco()" type="submit">Cadastrar</button>
+        <button id="btnCadastrar" type="submit">Cadastrar</button>
 
         <script src="/src/pages/cadastro/empresa/empresaCadastro.js"></script>
     </div>

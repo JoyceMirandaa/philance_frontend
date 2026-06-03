@@ -67,7 +67,7 @@
         }
     }
 
-   async function abrirModal(arquivoInicial) {
+    async function abrirModal(arquivoInicial) {
         const modalContainer = document.getElementById('modal-container');
         
         // 1. Busca o HTML do cadastro via Ajax e coloca no modal
@@ -79,9 +79,11 @@
         try {
             // 3. O JavaScript vai até a pasta e importa a função de lá de dentro dinamicamente!
             const moduloCadastro = await import('/src/pages/cadastro/empresa/empresaCadastro.js');
+            const moduloLogin = await import('/src/pages/login/empresa/empresaLogin.js');
             
             // 4. Executa a função importada diretamente do módulo
             moduloCadastro.inicializarEventosDoCadastro();
+            moduloLogin.inicializarEventosDoLogin();
             
         } catch (erro) {
             console.error("Não foi possível importar o arquivo JS das pastas:", erro);

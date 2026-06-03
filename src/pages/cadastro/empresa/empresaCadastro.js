@@ -9,7 +9,7 @@ export function inicializarEventosDoCadastro() {
     }
 }
 
-function enviarDadosParaOBackend(event) {
+function enviarDadosParaOBackend(event, type) {
     if (event) event.preventDefault();
     
     const dadosFormulario = {
@@ -17,6 +17,7 @@ function enviarDadosParaOBackend(event) {
         password: document.getElementById('password').value,
         email: document.getElementById('email').value,
         document: document.getElementById('document').value,
+        type: type
     };
 
     fetch('http://localhost:8080/register-user', {
@@ -28,6 +29,8 @@ function enviarDadosParaOBackend(event) {
         if (resposta.ok) {
             alert('Sucesso! Salvo no MySQL.');
             document.getElementById("modal-container").close();
+            window.location.href = '/src/pages/Home/empresa/home.html';
+            alert('Sucesso', type)
         } else {
             alert('Erro no servidor.');
         }
