@@ -6,7 +6,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/cadastroLogin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -17,6 +16,7 @@
     <dialog id="modal-container"></dialog>
 
     <div id="space-navbar"></div>
+    
     <container class="descricao-site">
         <div class="descricao">
             <div class="logo">
@@ -78,8 +78,8 @@
         
         try {
             // 3. O JavaScript vai até a pasta e importa a função de lá de dentro dinamicamente!
-            const moduloCadastro = await import('/src/pages/cadastro/empresa/empresaCadastro.js');
-            const moduloLogin = await import('/src/pages/login/empresa/empresaLogin.js');
+            const moduloCadastro = await import('/src/pages/cadastro/cadastroE&F.js');
+            const moduloLogin = await import('/src/pages/login/loginE&F.js');
             
             // 4. Executa a função importada diretamente do módulo
             moduloCadastro.inicializarEventosDoCadastro();
@@ -89,8 +89,6 @@
             console.error("Não foi possível importar o arquivo JS das pastas:", erro);
         }
     }
-
-
 
 
 </script>
