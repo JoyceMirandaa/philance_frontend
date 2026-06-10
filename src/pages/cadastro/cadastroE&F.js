@@ -9,7 +9,7 @@ export function inicializarEventosDoCadastro() {
     }
 }
 
-let tipoUsuarioAtual = 'F';
+const tipoUsuarioAtual = 'F';
 
 const botoesSwitch = document.querySelectorAll('.switch-btn');
 const secaoFreelancer = document.getElementById('campos-freelancer');
@@ -35,14 +35,50 @@ botoesSwitch.forEach(botao => {
     });
 });
 
-function enviarDadosParaOBackend(event) {
+async function passwordHash(senha) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(senha);
+
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+
+    return hashHex
+}
+
+
+async function enviarDadosParaOBackend(event) {
     if (event) event.preventDefault();
+
+    const cpfInput = document.getElementById("cpf");
+    const cnpjInput = document.getElementById("cnpj");
+    const usernameInput = document.getElementById('username');
+    const emailInput = document.getElementById('email');
+    const senhaInput = document.getElementById('password');
+
+    if (!usernameInput || !emailInput || !senhaInput) {
+        console.error("Campos obrigatórios (username, email ou password) não foram encontrados no HTML.");
+        return;
+    }
+
+    // Leitura segura do documento (CPF ou CNPJ)
+    let documentoValue = "";
+    if (cpfInput) {
+        documentoValue = cpfInput.value;
+    } else if (cnpjInput) {
+        documentoValue = cnpjInput.value;
+    }
+
+    // Gera o hash da senha de forma assíncrona e segura
+    const senhaDigitada = senhaInput.value;
+    const passwordHashed = await passwordHash(senhaDigitada);
     
     const dadosFormulario = {
-        username: document.getElementById('username').value,
-        password: document.getElementById('password').value,
-        email: document.getElementById('email').value,
-        document: document.getElementById('document').value,
+        username: usernameInput.value,
+        password: passwordHashed,
+        email: emailInput.value,
+        document: documentoValue,
         type: tipoUsuarioAtual
     };
 
@@ -59,6 +95,7 @@ function enviarDadosParaOBackend(event) {
             alert('Sucesso', type)
         } else {
             alert('Erro no servidor.');
+            console.log(tipoUsuarioAtual)
         }
     })
     .catch(erro => console.error('Erro:', erro));

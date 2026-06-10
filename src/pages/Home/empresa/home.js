@@ -17,23 +17,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4. Manipula a lista de serviços que está DENTRO do usuário
   // Substitua 'servicosAceitos' pelo nome exato que o seu back-end deu para essa lista
-  const listaDeServicos = usuarioLogado.servicosAceitos || [];
+  const dadosFormulario = usuarioLogado.servicosAceitos || [];
   
   const container = document.getElementById('container-servicos');
   container.innerHTML = ''; // Limpa o container
 
-  if (listaDeServicos.length === 0) {
+  if (dadosFormulario.length === 0) {
     container.innerHTML = '<p>Você ainda não aceitou nenhum serviço.</p>';
     return;
   }
 
   // 5. Roda a lista interna de serviços e cria os cartões na tela
-  listaDeServicos.forEach(servico => {
+  dadosFormulario.forEach(servico => {
     container.innerHTML += `
       <div class="cartao-servico">
-        <h3>${servico.titulo}</h3>
-        <p>Status: <strong>${servico.status}</strong></p>
-        <button onclick="verDetalhesDoServico(${servico.id})">Ver Detalhes</button>
+        <h3>${servico.username}</h3>
       </div>
     `;
   });
@@ -42,4 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Exemplo de função para interagir com o cartão gerado
 function verDetalhesDoServico(idServico) {
   alert('Abrindo detalhes do serviço com ID: ' + idServico);
+}
+
+
+async function dadosHome() {
+  const resposta = await fetch ("http://localhost:8080/register-user");
 }
