@@ -1,0 +1,123 @@
+body {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+
+
+dialog{
+    width: 620px;
+    height: 625px;
+    border: none;
+    border-radius: 30px;
+    padding: 30px; 
+    box-shadow: 0 4px 15px #0000007e; 
+}
+
+dialog::backdrop { 
+    background-color: #00000031
+}
+
+
+.modal-conteudo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Estilos do Botão Alternador */
+.switch-container {
+    display: inline-flex;
+    justify-content: center;
+    background-color: #f1f5f2;
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid #dcdfdc;
+    margin-bottom: 20px;
+}
+
+.switch-btn {
+    background: none;
+    border: none;
+    padding: 10px 103px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #4a524a;
+    transition: all 0.2s ease;
+}
+
+.switch-btn.ativo {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    font-weight: 500;
+}
+
+/* Esconde a seção que não deve aparecer */
+.secao-cadastro.escondido {
+    display: none;
+}
+
+h2{
+    padding: 0;
+    margin: 5px;
+    margin-left: 6px;
+}
+
+p{
+    padding: 0;
+    margin: 5px;
+    font-size: 14px;
+    color: #86A081;
+}
+
+label{
+    font-size: 12px;
+}
+
+input{
+    display: flex;
+    width: 590px;
+    height: 25px;
+    background-color: #b8d7b293;
+    border-color: #86A081;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    color: #163310ab;
+}
+
+.inputs{
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.button-cadastrar{
+    height: 30px;
+    margin-top: 20px;
+    text-align: center;
+    background-color: #163310;
+    color: #ffffff;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+a{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 10px;
+}
+
+.jaTemConta{
+    color: #86A081;
+}
+
+.facaLogin{
+    text-decoration: none;
+    color: #163310;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Philance</title>
+    <link rel="stylesheet" href="/css/cadastroLogin.css">
+</head>
+<body>
+
+    <div class="modal-conteudo">
+        <div class="switch-container">
+            <button type="button" class="switch-btn ativo" data-tipo="F">Sou freelancer</button>
+            <button type="button" class="switch-btn" data-tipo="E">Sou empresa</button>
+        </div>
+        
+        <div class="title-description">
+            <h2>Cadastre-se</h2>
+            <p>Preencha as informações para criar a sua conta</p>
+        </div>
+
+        <input type="hidden" id="letra-cadastro" name="tipo_usuario" value="F">
+
+        <div class="inputs">
+            <label>Nome Completo:</label>
+            <input id="username" type="text" required>
+        </div>
+
+        <div class="inputs">
+            <label>Data de Nascimento:</label>
+            <input type="date" id="date" required>
+        </div>
+
+        <div class="inputs">
+            <label>Email:</label>
+            <input id="email" type="email" required>
+        </div>
+
+
+        <div class="inputs">
+            <label>Senha:</label>
+            <input id="password" type="password" required>
+        </div>
+
+        <label>Confirmar Senha:</label>
+        <input type="password" required>
+
+        <label>Telefone:</label>
+        <input id="phone" type="number" required>
+
+
+        <div class="inputs">
+            <div id="campos-freelancer" class="secao-cadastro">
+                <label>CPF:</label>
+                <input type="text" id="cpf" placeholder="000.000.000-00" required>
+            </div>
+        </div>
+
+        <div class="inputs">
+            <div id="campos-empresa" class="secao-cadastro escondido">
+                <label>CNPJ:</label>
+                <input type="text" id="cnpj" placeholder="00.000.000/0001-00">
+            </div>
+        </div>
+
+        <button class="button-cadastrar" id="btnCadastrar" type="submit">Criar conta</button>
+
+
+        <a class="jaTemConta">Já tem conta?<a class="facaLogin" href="/src/pages/login/loginE&F.html">Faça login</a></a>
+
+        <script src="/src/pages/cadastro/cadastroE&F.js"></script>
+    </div>
+
+</body>
+</html> 

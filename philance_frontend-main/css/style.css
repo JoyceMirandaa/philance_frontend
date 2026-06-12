@@ -1,0 +1,83 @@
+body {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/*Descrição de introdução*/
+
+.descricao-site{
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(to right, #588E55, #75B966);
+    height: 500px;
+}
+.title-descricao{
+    font-family: 'Anta', sans-serif;
+    font-size: 35px;
+    text-align: center;
+    color: #ffff
+}
+
+.texto-descricao{
+    font-size: 20px;
+    text-align: center;
+    margin-top: -20px;
+    margin-left: 60px;
+    margin-left: 60px;
+    color: #ffff;
+}
+
+.descricao{
+    display: flex;
+    flex-direction: column;
+    margin: 70px;
+}
+
+.imagem-site{
+    position: relative; 
+    width: 950px;
+    height: 300px;
+}
+
+.img-branco{
+    display: flex;
+    width: 610px;
+    height: 300px;
+    background-color: #ffff;
+    margin-right: 60px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-bottom: 60px;
+}
+
+.img-garcom{
+    display: flex;
+    position: absolute;
+    top: 30px;         
+    right: 89px;       
+    width: 550px;
+    height: 400px;       
+    z-index: 10;      
+    border-radius: 20px;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img{
+    height: 60px;
+}
+
+/* Sumario com circulos */
+.circulo {
+  width: 150px;
+  height: 150px;
+  background-color: #3498db;
+  border-radius: 50%;
+}
