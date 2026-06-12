@@ -9,8 +9,7 @@ export function inicializarEventosDoCadastro() {
     }
 }
 
-const tipoUsuarioAtual = 'F';
-
+let tipoUsuarioAtual = 'F';
 const botoesSwitch = document.querySelectorAll('.switch-btn');
 const secaoFreelancer = document.getElementById('campos-freelancer');
 const secaoEmpresa = document.getElementById('campos-empresa');
@@ -21,7 +20,7 @@ botoesSwitch.forEach(botao => {
         botoesSwitch.forEach(b => b.classList.remove('ativo'));
         event.target.classList.add('ativo');
 
-        const tipoSelecionado = event.target.getAttribute('data-tipo');
+        const tipoSelecionado = event.currentTarget.dataset.tipo;
         tipoUsuarioAtual = tipoSelecionado; // Atualiza se é 'F' ou 'E'
 
         // Alterna a exibição dos campos na tela
@@ -32,6 +31,7 @@ botoesSwitch.forEach(botao => {
             secaoEmpresa.classList.remove('escondido');
             secaoFreelancer.classList.add('escondido');
         }
+
     });
 });
 
@@ -56,6 +56,8 @@ async function enviarDadosParaOBackend(event) {
     const usernameInput = document.getElementById('username');
     const emailInput = document.getElementById('email');
     const senhaInput = document.getElementById('password');
+    const phoneinput = document.getElementById('phone');
+    const nascimentouInput = document.getElementById('date');
 
     if (!usernameInput || !emailInput || !senhaInput) {
         console.error("Campos obrigatórios (username, email ou password) não foram encontrados no HTML.");
@@ -64,23 +66,27 @@ async function enviarDadosParaOBackend(event) {
 
     // Leitura segura do documento (CPF ou CNPJ)
     let documentoValue = "";
-    if (cpfInput) {
+    if (tipoUsuarioAtual === 'F' && cpfInput) {
         documentoValue = cpfInput.value;
-    } else if (cnpjInput) {
+    } else if (tipoUsuarioAtual === 'E' && cnpjInput) {
         documentoValue = cnpjInput.value;
     }
 
+    
     // Gera o hash da senha de forma assíncrona e segura
     const senhaDigitada = senhaInput.value;
     const passwordHashed = await passwordHash(senhaDigitada);
     
     const dadosFormulario = {
         username: usernameInput.value,
-        password: passwordHashed,
         email: emailInput.value,
-        document: documentoValue,
-        type: tipoUsuarioAtual
+        phone: phoneinput.value,
+        birthday: nascimentouInput.value,
+        type: tipoUsuarioAtual,
+        password: passwordHashed,
+        document: documentoValue
     };
+
 
     fetch('http://localhost:8080/register-user', {
         method: 'POST',
@@ -91,11 +97,20 @@ async function enviarDadosParaOBackend(event) {
         if (resposta.ok) {
             alert('Sucesso! Salvo no MySQL.');
             document.getElementById("modal-container").close();
+            alert('Sucesso')
+            console.log(dadosFormulario)
+
+            const usuarioHome = {
+                nome: usernameInput,
+                email: emailInput,
+                phone: phoneinput
+            }
+
+            localStorage.setItem("dadosUsuario", JSON.stringify(usuarioHome));
             window.location.href = '/src/pages/Home/empresa/home.html';
-            alert('Sucesso', type)
         } else {
             alert('Erro no servidor.');
-            console.log(tipoUsuarioAtual)
+            console.log(dadosFormulario)
         }
     })
     .catch(erro => console.error('Erro:', erro));

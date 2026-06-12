@@ -28,7 +28,7 @@
 
         <div class="inputs">
             <label>Data de Nascimento:</label>
-            <input type="date" required>
+            <input type="date" id="date" required>
         </div>
 
         <div class="inputs">
@@ -36,15 +36,18 @@
             <input id="email" type="email" required>
         </div>
 
+
         <div class="inputs">
             <label>Senha:</label>
             <input id="password" type="password" required>
         </div>
 
-        <div class="inputs">
-            <label>Confirmar Senha:</label>
-            <input type="password" required>
-        </div>
+        <label>Confirmar Senha:</label>
+        <input type="password" required>
+
+        <label>Telefone:</label>
+        <input id="phone" type="number" required>
+
 
         <div class="inputs">
             <div id="campos-freelancer" class="secao-cadastro">
@@ -61,10 +64,12 @@
         </div>
 
         <button class="button-cadastrar" id="btnCadastrar" type="submit">Criar conta</button>
+
+
         <a class="jaTemConta">Já tem conta?<a class="facaLogin" href="/src/pages/login/loginE&F.html">Faça login</a></a>
 
         <script src="/src/pages/cadastro/cadastroE&F.js"></script>
     </div>
 
 </body>
-</html>
+</html> 

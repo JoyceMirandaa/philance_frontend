@@ -9,7 +9,7 @@ export function inicializarEventosDoLogin() {
     }
 }
 
-const tipoUsuarioAtual = 'F';
+let tipoUsuarioAtual = 'F';
 
 const botoesSwitch = document.querySelectorAll('.switch-btn');
 const secaoFreelancer = document.getElementById('campos-freelancer');
