@@ -4,16 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/homeEmpresa.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="perfil-cabecalho">
-        <h1>Bem-vindo, <span id="nome-usuario">...</span>!</h1>
-        <p>E-mail: <span id="email-usuario">...</span></p>
+    <div id="space-navbar"></div>
+    <container class="fundo"></container>
+
+    <div class="cards">
+
+        <div class="card-relatorio">
+            <h2>Avaliações</h2>
+            <a id="average_rating"></a>
+        </div>
+
+        <div class="card-relatorio">
+            <h2>Relatorio Semanal</h2>
+        </div>
+
     </div>
 
-    <h2>Seus Serviços Aceitos:</h2>
-    <!-- É aqui dentro que o JavaScript vai injetar os cartões -->
-    <div id="container-servicos" class="lista-cartoes"></div>
+    
+    <div class="card-servicos">
+        <h2>Serviçoes Solicitados</h2>
+
+    </div>
+   
+
+
+    <script src="/src/pages/Home/empresa/home.js"></script>
 
 </body>
+    <script src="/src/componentes/navbar/navbar.js"></script>
+<script>
+     carregarNavbarHomeEmpresa();
+</script>
 </html>

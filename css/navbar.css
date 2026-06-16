@@ -55,3 +55,59 @@ img{
     height: 80px; 
     width: auto;
 }
+
+/* Tela Home da Empresa */
+
+.button-home{
+    background-color: #ffffff;
+    padding: 14px 20px;
+    width: 150px;
+    cursor:pointer;
+    border-style: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.button-solicitar-servico{
+    background-color: #ffffff;
+    border-style: none;
+    padding: 14px 20px;
+    width: 250px;
+    cursor:pointer;
+    font-size: 18px;
+}
+.icon-nav{
+    width: 25px;
+    height: 30px;
+}
+.profile-photo {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid #2f6f1f;
+    transition: 0.3s;
+}
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(47, 111, 31, 0.3);
+}
+.nav-home-empresa{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 90px;
+    background-color: white;
+    border-bottom: 1px solid #41983D;
+}
+.menu-central{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    margin-right: 40px;
+}

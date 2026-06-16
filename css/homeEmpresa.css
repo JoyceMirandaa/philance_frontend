@@ -1,0 +1,44 @@
+body {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.fundo{    
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(to right, #588E55, #75B966);
+    height: 325px;
+}   
+
+
+/*Relatorio Semanal - CSS*/
+
+.cards{
+    display: flex;
+    flex-direction: row;
+}
+
+.card-relatorio {
+  width: 100%;
+  max-width: 600px; /* Ajuste a largura máxima como preferir */
+  min-height: 200px; /* Altura mínima para o card não sumir enquanto estiver vazio */
+  background-color: #ffffff; /* Fundo branco interno */
+  border: 1px solid #cccccc; /* Borda fina cinza igual à da imagem */
+  border-radius: 24px; /* Bordas bem arredondadas */
+  padding: 20px; /* Espaçamento interno para o futuro conteúdo */
+  margin: 20px auto; /* Centraliza o card na tela */
+  box-shadow: none; /* Sem sombras marcadas, mantendo o visual limpo */
+}
+
+.card-servicos{
+    width: 95%;
+    min-height: 300px;
+    background-color: #ffffff; /* Fundo branco interno */
+    border: 1px solid #cccccc; /* Borda fina cinza igual à da imagem */
+    border-radius: 24px; /* Bordas bem arredondadas */
+    padding: 20px; /* Espaçamento interno para o futuro conteúdo */
+    margin: 20px auto; /* Centraliza o card na tela */
+    box-shadow: none; /* Sem sombras marcadas, mantendo o visual limpo */
+}

@@ -78,14 +78,15 @@ async function enviarDadosParaOBackend(event) {
     const passwordHashed = await passwordHash(senhaDigitada);
     
     const dadosFormulario = {
-        username: usernameInput.value,
-        email: emailInput.value,
-        phone: phoneinput.value,
-        birthday: nascimentouInput.value,
+        username: usernameInput?.value || "",
+        email: emailInput?.value || "",
+        phone: phoneinput?.value || "",
+        birthday: nascimentouInput?.value || "",
         type: tipoUsuarioAtual,
         password: passwordHashed,
         document: documentoValue
     };
+
 
 
     fetch('http://localhost:8080/register-user', {
@@ -100,14 +101,10 @@ async function enviarDadosParaOBackend(event) {
             alert('Sucesso')
             console.log(dadosFormulario)
 
-            const usuarioHome = {
-                nome: usernameInput,
-                email: emailInput,
-                phone: phoneinput
-            }
+            localStorage.setItem("dadosFormulario", JSON.stringify(dadosFormulario));
 
-            localStorage.setItem("dadosUsuario", JSON.stringify(usuarioHome));
-            window.location.href = '/src/pages/Home/empresa/home.html';
+            window.location.href = "/src/pages/Home/empresa/home.html"; 
+
         } else {
             alert('Erro no servidor.');
             console.log(dadosFormulario)
