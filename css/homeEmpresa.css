@@ -21,24 +21,82 @@ body {
 }
 
 .card-relatorio {
-  width: 100%;
-  max-width: 600px; /* Ajuste a largura máxima como preferir */
-  min-height: 200px; /* Altura mínima para o card não sumir enquanto estiver vazio */
-  background-color: #ffffff; /* Fundo branco interno */
-  border: 1px solid #cccccc; /* Borda fina cinza igual à da imagem */
-  border-radius: 24px; /* Bordas bem arredondadas */
-  padding: 20px; /* Espaçamento interno para o futuro conteúdo */
-  margin: 20px auto; /* Centraliza o card na tela */
-  box-shadow: none; /* Sem sombras marcadas, mantendo o visual limpo */
+    display: flex;
+    flex-direction: column; /* Organiza os elementos de cima para baixo */
+    width: 600px;           /* Largura do seu card */
+    min-height: 200px;      /* Altura do card para o título ter espaço para descer */
+    padding: 20px;          /* Espaçamento interno para o texto não colar nas bordas */
+    border: 1px solid #ccc; /* Apenas para visualizar o card */
+    border: 1px solid #52754B; /* Borda fina cinza igual à da imagem */
+    border-radius: 24px; /* Bordas bem arredondadas */
+    margin: 20px auto; /* Centraliza o card na tela */
+    box-shadow: none; /* Sem sombras marcadas, mantendo o visual limpo */
 }
 
 .card-servicos{
     width: 95%;
     min-height: 300px;
     background-color: #ffffff; /* Fundo branco interno */
-    border: 1px solid #cccccc; /* Borda fina cinza igual à da imagem */
+    border: 1px solid #52754B; /* Borda fina cinza igual à da imagem */
     border-radius: 24px; /* Bordas bem arredondadas */
     padding: 20px; /* Espaçamento interno para o futuro conteúdo */
     margin: 20px auto; /* Centraliza o card na tela */
     box-shadow: none; /* Sem sombras marcadas, mantendo o visual limpo */
 }
+
+.titulo-relatorio{
+    text-align: center;
+    margin-top: -10px;
+    font-size: 24px;
+    font-family: "Idiqlat", serif;
+    color: #34562E;
+    font-weight: 300;
+}
+
+.titulo-avaliacao{
+    text-align: left;     /* Garante o alinhamento à esquerda */
+    margin-top: 80px;     /* Empurra o título exatamente a quantidade que você quiser */
+    margin-bottom: 22px;  /* Espaço opcional para o conteúdo que vem abaixo dele */
+    margin-left: 40px;
+    font-family: "Idiqlat", serif;
+    font-size: 32px;
+    color: #34562E;
+    font-weight: 300;
+}
+
+.nota-empresa{
+    text-align: right;     /* Garante o alinhamento à esquerda */
+    margin-top: 10px;     /* Empurra o título exatamente a quantidade que você quiser */
+    margin-bottom: 5px;  /* Espaço opcional para o conteúdo que vem abaixo dele */
+    margin-right: 130px;
+    margin-top: -100px;
+    font-family: "Idiqlat", serif;
+    font-size: 80px;
+    color: #34562E;
+    font-weight: lighter;
+}
+
+.rating-star{
+    display: block;        /* Transforma a imagem em bloco para aceitar as margens */
+    margin-top: -90px;      /* Empurra a imagem apenas um pouco para baixo */
+    margin-left: auto;     /* Empurra o bloco totalmente para a direita */
+    margin-right: 180px;       /* Garante que ela encoste na borda direita do card */
+}
+
+.avaliacaos {
+    display: inline-block;
+    width: fit-content; /* SENSACIONAL: Faz o fundo ter EXATAMENTE o tamanho do texto 1120 */
+    padding: 6px 16px; /* Espaçamento interno da pílula */
+    margin-left: 85px;
+    margin-top: -30px;
+    
+    background-color: rgba(21, 88, 24, 0.05); /* Fundo cinza bem clarinho e transparente */
+    border-radius: 50px; /* Garante o formato arredondado de pílula */
+    
+    color: #1a4225;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
