@@ -99,4 +99,11 @@ body {
     font-weight: 500;
 }
 
-
+.title-solicitados{
+    margin-top: 10px;
+    margin-left: 30px;
+    font-size: 34px;
+    font-family: "Idiqlat", serif;
+    color: #34562E;
+    font-weight: 300;
+}

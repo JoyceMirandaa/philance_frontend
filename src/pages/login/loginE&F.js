@@ -64,7 +64,7 @@ async function pegarDadosParaOBackend(event) {
     const senhaDigitada = senhaInput.value;
     const passwordHashed = await passwordHash(senhaDigitada);
     
-    const dadosLogin = {
+    const dadosFormulario = {
         email: emailInput?.value || "",
         password: passwordHashed,
     };
@@ -74,17 +74,17 @@ async function pegarDadosParaOBackend(event) {
         const respostalogin = await fetch('http://localhost:8080/login-user', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dadosLogin)
+            body: JSON.stringify(dadosFormulario)
         });
 
         if (respostalogin.ok) {
             alert('Sucesso! Salvo no MySQL.');
             document.getElementById("modal-container").close();
 
-            console.log(dadosLogin);
+            console.log(dadosFormulario);
                     
             const usuarioLogado = await respostalogin.json();
-            localStorage.setItem("dadosLogin", JSON.stringify(usuarioLogado));
+            localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
 
             window.location.href = "/src/pages/Home/empresa/home.html"; 
         } else {

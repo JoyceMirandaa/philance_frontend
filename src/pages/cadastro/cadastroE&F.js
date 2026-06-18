@@ -89,26 +89,29 @@ async function enviarDadosParaOBackend(event) {
 
 
 
-    fetch('http://localhost:8080/register-user', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dadosFormulario)
-    })
-    .then(resposta => {
-        if (resposta.ok) {
+     try {
+        const respostalogin = await fetch('http://localhost:8080/register-user', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dadosFormulario)
+        });
+
+        if (respostalogin.ok) {
             alert('Sucesso! Salvo no MySQL.');
             document.getElementById("modal-container").close();
-            alert('Sucesso')
-            console.log(dadosFormulario)
 
-            localStorage.setItem("dadosFormulario", JSON.stringify(dadosFormulario));
+            console.log(dadosLogin);
+                    
+            const usuarioLogado = await respostalogin.json();
+            localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
 
             window.location.href = "/src/pages/Home/empresa/home.html"; 
-
         } else {
             alert('Erro no servidor.');
-            console.log(dadosFormulario)
+            console.log(dadosLogin);
         }
-    })
-    .catch(erro => console.error('Erro:', erro));
+    } catch (erro) {
+        console.error('Erro:', erro);
+    }
+
 }
