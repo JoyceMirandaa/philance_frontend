@@ -83,12 +83,12 @@ img{
     height: 30px;
 }
 .profile-photo {
-    width: 75px;
-    height: 75px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
-    border: 2px solid #2f6f1f;
+    
     transition: 0.3s;
 }
 .profile-photo:hover {

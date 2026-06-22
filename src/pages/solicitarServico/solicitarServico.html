@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/homeEmpresa.css">
     <link rel="stylesheet" href="/css/solicitarServico.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,67 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Idiqlat:wght@200;300;400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="space-navbar"></div>
-
-    <div class="type-service">
-        <h3 class="title-type">Tipo de Serviço</h3>
-        <div class="type-buttons">
-             <!-- Opção 1 (Já inicia marcada por padrão com 'checked') -->
-            <input type="radio" id="por-hora" name="tipo_servico" value="hora" checked>
-            <label for="por-hora">Por hora</label>
-
-            <!-- Opção 2 -->
-            <input type="radio" id="por-projeto" name="tipo_servico" value="projeto">
-            <label for="por-projeto">Por serviço/projeto</label>
-        </div>
-    </div>
-
-    <div class="area-tags">
-        <h3 class="title-tags">Área/Tags</h3>
-        <div class="tags-buttons">
-            <input type="radio" id="garcom-tags" name="tags-garcom" value="garcom" checked>
-            <label for="garcom-tags">Garçom</label>
-
-            <input type="radio" id="dev-tags" name="tags-dev" value="dev">
-            <label for="dev-tags">Dev</label>
-
-            <input type="radio" id="entrega-tags" name="tags-entrega" value="entrega">
-            <label for="entrega-tags">Entrega</label>
-            
-            <input type="radio" id="atedimento-tags" name="tags-atedimento" value="atedimento">
-            <label for="atedimento-tags">Atedimento</label>
-
-            <input type="submitt" id="adicionar-tags" name="tags-adicionar" value="adicionar">
-        </div>
-    </div>
-
-    <div class="addresses">
-        <div class="rua-servico">
-            <h2 class="title-rua" >Endereço do Serviço</h2>
-            <input type="text" id="rua" name="Digite a sua Rua">
-            <label for="rua"></label>
-        </div>
-    </div>
-
     
-    <script>
-        document.querySelectorAll('.tags-buttons input[type="radio"]').forEach(radio => {
-            radio.addEventListener('click', function() {
-                if (this.wasChecked) {
-                    this.checked = false;
-                    this.wasChecked = false;
-                } else {
-                    // Remove o estado antigo dos outros do mesmo grupo
-                    document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => r.wasChecked = false);
-                    this.wasChecked = true;
-                }
-            });
-        });
-    </script>
 </body>
-<script src="/src/componentes/navbar/navbar.js"></script>
-<script>
-    carregarNavbarHomeEmpresa();
-
-</script>
 </html>

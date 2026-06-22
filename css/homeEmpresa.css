@@ -32,6 +32,23 @@ body {
     margin: 20px auto; /* Centraliza o card na tela */
     box-shadow: none; /* Sem sombras marcadas, mantendo o visual limpo */
 }
+.card-relatorio-servico {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column; /* Organiza os elementos de cima para baixo */
+    width: 600px;           /* Largura do seu card */
+    min-height: 200px;      /* Altura do card para o título ter espaço para descer */
+    padding: 20px;          /* Espaçamento interno para o texto não colar nas bordas */
+    border: 1px solid #ccc; /* Apenas para visualizar o card */
+    border: 1px solid #52754B; /* Borda fina cinza igual à da imagem */
+    border-radius: 24px; /* Bordas bem arredondadas */
+    margin: 20px auto; /* Centraliza o card na tela */
+    box-shadow: none; /* Sem sombras marcadas, mantendo o visual limpo */
+    gap: 8px;
+   
+    
+}
 
 .card-servicos{
     width: 95%;
@@ -45,7 +62,6 @@ body {
 }
 
 .titulo-relatorio{
-    text-align: center;
     margin-top: -10px;
     font-size: 24px;
     font-family: "Idiqlat", serif;
@@ -98,12 +114,30 @@ body {
     font-size: 14px;
     font-weight: 500;
 }
+.dias{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 170px;
+    margin-left: 70px;
+    color: #1a4225;
 
-.title-solicitados{
-    margin-top: 10px;
-    margin-left: 30px;
-    font-size: 34px;
-    font-family: "Idiqlat", serif;
-    color: #34562E;
-    font-weight: 300;
+}
+.dia{
+    margin-right: 40px;
+}
+.total-servicos{
+    display: flex;
+    margin-left: 260px;
+    width: fit-content; /* SENSACIONAL: Faz o fundo ter EXATAMENTE o tamanho do texto 1120 */
+    padding: 6px 16px; /* Espaçamento interno da pílula */
+    margin-top: -30px;
+    
+    background-color: rgba(21, 88, 24, 0.05); /* Fundo cinza bem clarinho e transparente */
+    border-radius: 50px; /* Garante o formato arredondado de pílula */
+    
+    color: #1a4225;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
 }

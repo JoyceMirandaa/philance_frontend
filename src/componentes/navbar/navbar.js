@@ -1,3 +1,34 @@
+function carregarNavbarUsuario() {
+    const html = `
+
+        <nav class="navbar nav-usuario">
+          <div class="logo"><a href="/src/index.html">Portal Usuário</a></div>
+          <ul class="nav-links">
+            <li><a href="/src/index.html">Home</a></li>
+            <li><a href="/src/pages/usuario/perfil.html">Meu Perfil</a></li>
+            <li><a href="/src/pages/usuario/vagas.html">Buscar Vagas</a></li>
+          </ul>
+        </nav>
+    `;
+    const container = document.getElementById('space-navbar');
+    if (container) container.innerHTML = html;
+}
+
+function carregarNavbarEmpresa() {
+    const html = `
+        <nav class="navbar nav-empresa">
+          <div class="logo"><a href="/src/index.html">Portal Empresa</a></div>
+          <ul class="nav-links">
+            <li><a href="/src/index.html">Home</a></li>
+            <li><a href="/src/pages/empresa/dashboard.html">Painel</a></li>
+            <li><a href="/src/pages/empresa/criar-vaga.html">Publicar Vaga</a></li>
+          </ul>
+        </nav>
+    `;
+    const container = document.getElementById('space-navbar');
+    if (container) container.innerHTML = html;
+}
+
 function carregarNavbarHome(){
     const html = `
         <nav class="navbar nav-home">
@@ -23,13 +54,13 @@ function carregarNavbarHomeEmpresa(){
                 <button class="button-home">
                 <img src="/assets/imagens/IconeHome.png" class="icon-nav">
                 Home</button>
-                <button class="button-solicitar-servico" onclick="window.location.href='/src/pages/solicitarServico/solicitarServico.html'">
+                <button class="button-solicitar-servico">
                 <img src="/assets/imagens/IconeSolicitarServico.png" class="icon-nav">
                 Solicitar Serviço</button>
             </div>
             <div class="perfil">
                 <a>
-                    <img src="../../../../assets/imagens/logoBranca.png"" alt="Perfil da Empresa" class="profile-photo" onclick="window.location.href='/src/index.html'">
+                    <img src="../../../../assets/imagens/logoBrancaFundoVerde.png"" alt="Perfil da Empresa" class="profile-photo" onclick="window.location.href='/src/index.html'">
                 </a>
             </div>   
         </nav>
@@ -38,4 +69,3 @@ function carregarNavbarHomeEmpresa(){
     if (container) container.innerHTML = html;
     
 }
-
