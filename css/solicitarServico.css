@@ -1,3 +1,9 @@
+.margin-page{
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+
 /* Container principal */
 .type-service {
     font-family: sans-serif;
@@ -94,7 +100,176 @@
     border-color: #163310;
 }
 
+/* Grupo que junta os botões lado a lado */
+.tags-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Esconde a bolinha padrão do Radio Button */
+.vestimenta-buttons input[type="radio"] {
+    display: none;
+}
+
+/* Estilo padrão do botão (Desmarcado) */
+.vestimenta-buttons label {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    margin-top: -10px;
+}
+
+/* Estilo do botão quando estiver selecionado (Marcado) */
+.vestimenta-buttons input[type="radio"]:checked + label {
+    background-color: #588E55; /* Cor verde aproximada da imagem */
+    color: white;
+    border-color: #163310;
+}
+
+.title-vestimenta{
+    color: #888;
+    font-size: 20px;
+}
+
+.type-vestimenta{
+    margin-left: 30px;
+}
+
+.rua-vestimenta{
+    display: flex;
+    flex-direction: row;
+}
+
+/*Inputs*/
+
+input{
+    border-radius: 5px;
+    border-color: #1633108e;
+    background-color: #adc5a82f;
+    border-style: solid;
+    border-width: 0.5px;
+}
+
+
+/*Rua*/
+
 .title-rua{
     color: #888;
     font-size: 20px;
+}
+
+.addresses{
+    margin-left: 30px;
+}
+
+.input-rua{
+    width: 760px;
+    height: 30px;
+}
+
+/*Horario/Dia*/
+
+.horario-dia{
+    margin-left: 30px;
+}
+
+.title-horario{
+    color: #888;
+    font-size: 20px;
+}
+
+.input-horario{
+    width: 300px;
+    height: 30px;
+}
+
+/*Container horario-idade*/
+
+.horario-idade{
+    display: flex;
+    flex-direction: row;
+}
+
+/*Container duração e pagamento*/
+
+.duracao-pagamento{
+    display: flex;
+    flex-direction: row;
+}
+
+/*Duração*/
+
+.duracao-container{
+    margin-left: 30px;
+}
+
+.title-duracao{
+    color: #888;
+    font-size: 20px;
+}
+
+.input-duracao{
+    width: 300px;
+    height: 30px;
+}
+
+/*Pagamento*/
+
+.pagamento{
+    margin-left: 155px;
+}
+
+.title-pagamento{
+    color: #888;
+    font-size: 20px;
+}
+
+.input-pagamento{
+    width: 300px;
+    height: 30px;
+}
+
+/*Idade Minima*/
+
+.idade-minima{
+    margin-left: 155px;
+}
+
+.title-idade{
+    color: #888;
+    font-size: 20px;
+}
+
+.input-idade{
+    width: 300px;
+    height: 30px;
+}
+
+/*Descrição*/
+
+.input-descricao{
+    width: 800px;
+    height: 130px;
+}
+
+.descricao{
+    margin-left: 30px ;
+}
+
+.title-descricao{
+    color: #888;
+    font-size: 20px;
+}
+
+/*Container descrição e tags*/
+
+.tags-descricao{
+    display: flex;
+    justify-content: space-between;
 }

@@ -15,7 +15,8 @@
 <body>
     <div id="space-navbar"></div>
 
-    <div class="type-service">
+    <div class="margin-page">
+         <div class="type-service">
         <h3 class="title-type">Tipo de Serviço</h3>
         <div class="type-buttons">
              <!-- Opção 1 (Já inicia marcada por padrão com 'checked') -->
@@ -28,6 +29,7 @@
         </div>
     </div>
 
+    
     <div class="area-tags">
         <h3 class="title-tags">Área/Tags</h3>
         <div class="tags-buttons">
@@ -42,20 +44,71 @@
             
             <input type="radio" id="atedimento-tags" name="tags-atedimento" value="atedimento">
             <label for="atedimento-tags">Atedimento</label>
-
-            <input type="submitt" id="adicionar-tags" name="tags-adicionar" value="adicionar">
         </div>
     </div>
-
+   
     <div class="addresses">
         <div class="rua-servico">
             <h2 class="title-rua" >Endereço do Serviço</h2>
-            <input type="text" id="rua" name="Digite a sua Rua">
-            <label for="rua"></label>
+            <input type="text" id="rua" class="input-rua">
         </div>
     </div>
 
-    
+    <div class="horario-idade">
+        <div class="horario-dia">
+            <div class="horario">
+                <h2 class="title-horario" >Horário/dia</h2>
+                <input type="datetime-local" id="horario" class="input-horario">
+            </div>
+        </div>
+
+        <div class="idade-minima">
+            <div class="idade">
+                <h2 class="title-idade" >Idade Mínima</h2>
+                <input type="number" id="idade" class="input-idade">
+            </div>
+        </div>
+    </div>
+
+    <div class="duracao-pagamento">
+        <div class="duracao-container">
+            <div class="duracao">
+                <h2 class="title-duracao" >Duração</h2>
+                <input type="time" id="horario" class="input-duracao">
+            </div>
+        </div>
+
+        <div class="pagamento-container">
+            <div class="pagamento">
+                <h2 class="title-pagamento" >Valor do Pagamento</h2>
+                <input type="number" id="pagamento" class="input-pagamento">
+            </div>
+        </div>
+    </div>
+
+    <div class="type-vestimenta">
+        <h3 class="title-vestimenta">Vestimenta Exigida</h3>
+        <div class="vestimenta-buttons">
+            <!-- Opção 1 (Já inicia marcada por padrão com 'checked') -->
+            <input type="radio" id="vestimenta-social" name="vestimenta" value="social" checked>
+            <label for="vestimenta-social">Traje Social Escuro</label>
+
+            <!-- Opção 2 -->
+            <input type="radio" id="vestimenta-casual" name="vestimenta" value="casual">
+            <label for="vestimenta-casual">Casual</label>
+        </div>
+    </div>
+
+    <div class="descricao">
+        <h3 class="title-descricao">Descrição Serviço</h3>
+        <div>
+            <input type="text" class="input-descricao">
+        </div>
+    </div>
+
+    <button>Publicar Serviço</button>
+
+    </div>
     <script>
         document.querySelectorAll('.tags-buttons input[type="radio"]').forEach(radio => {
             radio.addEventListener('click', function() {
