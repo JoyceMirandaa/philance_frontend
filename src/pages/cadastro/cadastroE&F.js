@@ -100,7 +100,7 @@ async function enviarDadosParaOBackend(event) {
             alert('Sucesso! Salvo no MySQL.');
             document.getElementById("modal-container").close();
 
-            console.log(dadosLogin);
+            console.log(dadosFormulario);
                     
             const usuarioLogado = await respostalogin.json();
             localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
@@ -108,7 +108,7 @@ async function enviarDadosParaOBackend(event) {
             window.location.href = "/src/pages/Home/empresa/home.html"; 
         } else {
             alert('Erro no servidor.');
-            console.log(dadosLogin);
+            console.log(dadosFormulario);
         }
     } catch (erro) {
         console.error('Erro:', erro);

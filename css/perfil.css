@@ -1,0 +1,139 @@
+body {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.background{    
+    background-image: linear-gradient(to right, #588E55, #75B966);
+    height: 180px;
+    width: 100%;
+}   
+
+/* Profile */
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: -80px; /* Sobe a logo para cima do banner */
+    margin-bottom: 40px;
+}
+
+.brand-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile-avatar { /* Foto de perfil */
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-color: #bbf7d0;
+    border: 8px solid #ffffff;
+    box-sizing: border-box;
+}
+
+.profile-title {
+    margin-top: 15px;
+    padding-left: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-title .profile-name { /* Nome da empresa */
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 5px 0;
+    color: #000000;
+    font-family: "Idiqlat";
+}
+
+.profile-title .location { /* Localização da empresa */
+    font-size: 13px;
+    color: #9ca3af;
+    margin: 0;
+}
+
+.edit-profile-btn { /* Botão */
+    /* Alinhamento */
+    align-self: flex-end;
+    margin-bottom: 5px;
+    
+    /* Cores e visual */
+    background-color: #e2ede0;
+    color: #2d4a29; 
+    border: 1px solid #c2dac0; 
+    
+    /* Tipografia e espaçamento */
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    
+    /* Transição */
+    transition: all 0.2s ease-in-out;
+}
+
+.edit-profile-btn:hover { /* Botão */
+    background-color: #588e55; 
+    color: #ffffff; 
+    border-color: #588e55;
+    box-shadow: 0 4px 12px rgba(88, 142, 85, 0.2);
+}
+
+/* Statistics */
+.profile-stats {
+    display: flex;
+    gap: 80px;
+    margin-bottom: 40px;
+    padding-left: 5px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+/* About */
+.profile-about { /* Linhas */
+    border-top: 1.5px solid #588E55;
+    border-bottom: 1.5px solid #588E55;
+    padding: 25px 5px;
+    margin-bottom: 50px;
+}
+
+.profile-about h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    color: #000000;
+}
+
+.profile-about a {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    text-align: justify;
+}

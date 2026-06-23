@@ -65,7 +65,7 @@
         <div class="idade-minima">
             <div class="idade">
                 <h2 class="title-idade" >Idade Mínima</h2>
-                <input type="number" id="idade" class="input-idade">
+                <input type="number" id="min_age" class="input-idade" required>
             </div>
         </div>
     </div>
@@ -74,14 +74,14 @@
         <div class="duracao-container">
             <div class="duracao">
                 <h2 class="title-duracao" >Duração</h2>
-                <input type="time" id="horario" class="input-duracao">
+                <input type="time" id="horario" class="input-duracao" required>
             </div>
         </div>
 
         <div class="pagamento-container">
             <div class="pagamento">
                 <h2 class="title-pagamento" >Valor do Pagamento</h2>
-                <input type="number" id="pagamento" class="input-pagamento">
+                <input type="number" id="payment" class="input-pagamento" required>
             </div>
         </div>
     </div>
@@ -102,11 +102,11 @@
     <div class="descricao">
         <h3 class="title-descricao">Descrição Serviço</h3>
         <div>
-            <input type="text" class="input-descricao">
+            <input type="text" class="input-descricao" id="description">
         </div>
     </div>
 
-    <button>Publicar Serviço</button>
+    <button onclick="enviarDadosParaOBackendSolicitar(event, 'vestimenta')">Publicar Serviço</button>
 
     </div>
     <script>
@@ -123,6 +123,7 @@
             });
         });
     </script>
+    <script src="/src/pages/solicitarServico/solicitarServico.js"></script>
 </body>
 <script src="/src/componentes/navbar/navbar.js"></script>
 <script>
