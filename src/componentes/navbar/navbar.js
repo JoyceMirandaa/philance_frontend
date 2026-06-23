@@ -14,22 +14,22 @@ function carregarNavbarHome(){
 }
 function carregarNavbarHomeEmpresa(){
     const html = `
-        <nav class="navbar nav-home-empresa">
+       <nav class="navbar nav-home-empresa">
             <div class="logo">
                 <img src="/assets/imagens/PhilanceEmpresa.png"> 
             </div>
 
             <div class="menu-central">
-                <button class="button-home">
+                <button class="button-home" onclick="window.location.href='/src/pages/Home/empresa/home.html'">
                 <img src="/assets/imagens/IconeHome.png" class="icon-nav">
                 Home</button>
-                <button class="button-solicitar-servico" onclick="window.location.href='/src/pages/solicitarServico/solicitarServico.html'">
+               <button class="button-solicitar-servico" onclick="window.location.href='/src/pages/solicitarServico/solicitarServico.html'">
                 <img src="/assets/imagens/IconeSolicitarServico.png" class="icon-nav">
                 Solicitar Serviço</button>
             </div>
             <div class="perfil">
                 <a>
-                    <img src="../../../../assets/imagens/logoBranca.png"" alt="Perfil da Empresa" class="profile-photo" onclick="window.location.href='/src/index.html'">
+                    <img src="../../../../assets/imagens/logoBrancaFundoVerde.png"" alt="Perfil da Empresa" class="profile-photo" onclick="window.location.href='/src/pages/perfil/perfilE&F.html'">
                 </a>
             </div>   
         </nav>
