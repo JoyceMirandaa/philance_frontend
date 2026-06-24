@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/editarPerfil.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Idiqlat:wght@200;300;400&display=swap" rel="stylesheet"> <!-- Fonte Idiqlat -->
+</head>
+<body>
+    <div id="space-navbar"></div>
+    <div class="background"></div>
+
+    <form id="form-editar-perfil">
+
+        <!-- Seu bloco de perfil atual (que você mandou no print) -->
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="brand-group">
+                    <div class="profile-avatar">
+                        <label for="file-input">
+                            <!-- Imagem de perfil atual (padrão) -->
+                            <img id="profile-pic" src="/assets/imagens/building.png" alt="Foto de Perfil">
+                            <div class="overlay">Alterar</div>
+                        </label>
+                        
+                        <input type="file" id="file-input" accept="image/*" style="display: none;">
+                    </div>
+
+                    <div class="profile-title">
+                        <a class="profile-name">Italy Caffe</a>
+                        <a class="location">Curitiba, PR</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="linha-solid">
+
+            <h2>Editar Perfil</h2>
+            
+            <h3>Endereço</h3>
+            <div class="inputs">
+                <label>CEP:</label>
+                <input id="cep" type="text" required>
+            </div>
+
+            <div class="Rua">
+                <label>Rua:</label>
+                <input id="rua" type="text" required>
+
+                <label>Número:</label>
+                <input id="numero" type="number" required>
+
+                <label>Complemento:</label>
+                <input id="complemento" type="number" required>
+            </div>
+
+            <div class="inputs">
+                <label>Bairro:</label>
+                <input id="bairro" type="text" required>
+            </div>
+
+            <div class="inputs">
+                <label>Cidade:</label>
+                <input id="cidade" type="text" required>
+            </div>
+
+            <div class="inputs">
+                <label>Estado:</label>
+                <input id="estado" type="text" required>
+            </div>
+        </div>
+
+        <div class="actions-container">
+            <button type="submit" id="btn-salvar">Salvar Perfil</button>
+        </div>
+
+    </form>
+
+    <script src="/src/pages/perfil/editarPerfil.js"></script>
+    <script src="/src/componentes/navbar/navbar.js"></script>
+    <script>carregarNavbarHomeEmpresa();</script>
+</body>
+</html>

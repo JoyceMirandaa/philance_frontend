@@ -162,3 +162,30 @@ body {
     margin: 0;
     text-align: justify;
 }
+
+.linha-solida {
+  border: none; 
+  border-top: 1px solid #588E55; 
+  margin: 20px 0; 
+}
+
+label{
+    font-size: 12px;
+}
+
+input{
+    display: flex;
+    width: 500px;
+    height: 25px;
+    background-color: #b8d7b293;
+    border-color: #86A081;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    color: #163310ab;
+}
+
+.inputs{
+    margin-top: 5px;
+    padding: 5px;
+}

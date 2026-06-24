@@ -273,3 +273,35 @@ input{
     display: flex;
     justify-content: space-between;
 }
+
+
+.btn-solicitar{ /* Botão */
+    /* Alinhamento */
+    align-self: flex-end;
+    margin-bottom: 5px;
+    
+    /* Cores e visual */
+    background-color: #e2ede0;
+    color: #2d4a29; 
+    border: 1px solid #c2dac0; 
+    
+    /* Tipografia e espaçamento */
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 30px ;
+    margin-top: 20px;
+    
+    /* Transição */
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-solicitar:hover { /* Botão */
+    background-color: #588e55; 
+    color: #ffffff; 
+    border-color: #588e55;
+    box-shadow: 0 4px 12px rgba(88, 142, 85, 0.2);
+}
+

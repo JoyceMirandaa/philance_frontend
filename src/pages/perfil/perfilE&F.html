@@ -18,13 +18,21 @@
     <div class="profile-container">
         <div class="profile-header">
             <div class="brand-group">
-                <div class="profile-avatar"></div>
+                <div class="profile-avatar">
+                    <label for="file-input">
+                        <!-- Imagem de perfil atual (padrão) -->
+                        <img id="profile-pic" src="/assets/imagens/building.png" alt="Foto de Perfil">
+                    </label>
+    
+                </div>
                 <div class="profile-title">
                     <a class="profile-name">Italy Caffe</a>
                     <a class="location">Curitiba, PR</a>
                 </div>
             </div>
-            <button class="edit-profile-btn">Editar perfil</button>
+            <a href="/src/pages/perfil/editarPerfil.html">
+                <button class="edit-profile-btn" onclick="enviarDadosParaOBackendPerfil(event)">Editar perfil</button>
+            </a>
         </div>
 
         <!-- Statistics -->
@@ -46,7 +54,7 @@
         </div>
 
     </div>
-
+    <script src="/src/pages/perfil/perfilE&F.js"></script>
     <script src="/src/componentes/navbar/navbar.js"></script>
     <script>carregarNavbarHomeEmpresa();</script>
 </body>
