@@ -51,10 +51,10 @@
                 <input id="rua" type="text" required>
 
                 <label>Número:</label>
-                <input id="numero" type="number" required>
+                <input id="numero" type="text" required>
 
                 <label>Complemento:</label>
-                <input id="complemento" type="number" required>
+                <input id="complemento" type="text" required>
             </div>
 
             <div class="inputs">
@@ -74,7 +74,7 @@
         </div>
 
         <div class="actions-container">
-            <button type="submit" id="btn-salvar">Salvar Perfil</button>
+            <button type="submit" id="btn-salvar"  onclick="enviarDadosParaOBackendEditar(event)">Salvar Perfil</button>
         </div>
 
     </form>

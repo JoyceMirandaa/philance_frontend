@@ -1,46 +1,42 @@
-async function enviarDadosParaOBackend(event) {
+async function enviarDadosParaOBackendEditar(event) {
     if (event) event.preventDefault();
 
-    const cpfInput = document.getElementById("cpf");
-    const cnpjInput = document.getElementById("cnpj");
-    const usernameInput = document.getElementById('username');
-    const emailInput = document.getElementById('email');
-    const senhaInput = document.getElementById('password');
-    const phoneinput = document.getElementById('phone');
-    const nascimentouInput = document.getElementById('date');
-
-    if (!usernameInput || !emailInput || !senhaInput) {
-        console.error("Campos obrigatórios (username, email ou password) não foram encontrados no HTML.");
-        return;
-    }
-
-    // Leitura segura do documento (CPF ou CNPJ)
-    let documentoValue = "";
-    if (tipoUsuarioAtual === 'F' && cpfInput) {
-        documentoValue = cpfInput.value;
-    } else if (tipoUsuarioAtual === 'E' && cnpjInput) {
-        documentoValue = cnpjInput.value;
-    }
-
+     // 1. PEGA OS DADOS DO USUÁRIO QUE JÁ ESTÃO GUARDADOS NO LOCALSTORAGE
+    const usuarioLogadoString = localStorage.getItem("dadosFormulario");
     
-    // Gera o hash da senha de forma assíncrona e segura
-    const senhaDigitada = senhaInput.value;
-    const passwordHashed = await passwordHash(senhaDigitada);
+    if (!usuarioLogadoString) {
+      alert("Usuário não está logado!");
+      return;
+    }
+    
+    // Converte a string do localStorage de volta para um objeto JavaScript
+    const usuarioLogadoPerfil = JSON.parse(usuarioLogadoString);
+    console.log("Dados do usuário logado recuperados:", usuarioLogadoPerfil);
+
+    const cepInput = document.getElementById("cep");
+    const ruaInput = document.getElementById("rua");
+    const numeroInput = document.getElementById('numero');
+    const complementInput = document.getElementById('complemento');
+    const bairroInput = document.getElementById('bairro');
+    const cidadeinput = document.getElementById('cidade');
+    const estadoInput = document.getElementById('estado');
+
     
     const dadosFormulario = {
-        username: usernameInput?.value || "",
-        email: emailInput?.value || "",
-        phone: phoneinput?.value || "",
-        birthday: nascimentouInput?.value || "",
-        type: tipoUsuarioAtual,
-        password: passwordHashed,
-        document: documentoValue
+        zip_code: cepInput.value,
+        street: ruaInput.value,
+        number: numeroInput.value,
+        complement: complementInput.value,
+        neighborhood: bairroInput.value,
+        city: cidadeinput.value,
+        state: estadoInput.value,
+        id_user: usuarioLogadoPerfil.id_user
     };
 
 
 
      try {
-        const respostalogin = await fetch('http://localhost:8080/register-user', {
+        const respostalogin = await fetch('http://localhost:8080/add-address', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dadosFormulario)
