@@ -82,19 +82,7 @@ img{
     width: 25px;
     height: 30px;
 }
-.profile-photo {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-    border: 2px solid #2f6f1f;
-    transition: 0.3s;
-}
-.profile-photo:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(47, 111, 31, 0.3);
-}
+
 .nav-home-empresa{
     display: flex;
     align-items: center;
@@ -110,4 +98,69 @@ img{
     justify-content: center;
     gap: 100px;
     margin-right: 40px;
+}
+
+
+/* A caixinha mãe serve como a "âncora" para o menu saber onde se posicionar */
+.perfil-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo do botão da foto */
+.foto-perfil-btn {
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* O Menu Suspenso*/
+.dropdown-menu {
+    position: absolute;
+    top: 92%;      
+    right: -20px;        
+    margin-top: 8px; 
+    
+    background-color: #ffffff;
+    padding:12px;
+    width: 220px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Sombra suave */
+    z-index: 99;    /* Garante que ele vai flutuar acima de qualquer elemento */
+    border: solid 2px #c0e9bd;
+    border-radius: 10px;
+}
+
+/* Esta classe esconde o menu por padrão */
+.escondido {
+    display: none;
+}
+
+/* Estilização rápida dos links de dentro do menu */
+.dropdown-menu a {
+    display: block;
+    color: #313a30;
+    text-decoration: none;
+    padding: 8px 0;
+    text-align: left;
+}
+
+.dropdown-menu a:hover {
+    transform: scale(1.00);
+    box-shadow: 0 0 10px rgba(47, 111, 31, 0.4);
+    background-color: rgba(153, 211, 138, 0.3);
+    padding: 10px;
+}
+
+.username{
+    color: #313a30d5;
+    font-family: "Idiqlat";
+    font-size: 23px ;
+    margin-bottom: -5px;
+}
+
+.email{
+    color: #727272;
+    font-size: 15px;
 }

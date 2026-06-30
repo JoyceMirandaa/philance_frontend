@@ -10,29 +10,37 @@ export function inicializarEventosDoLogin() {
 }
 
 let tipoUsuarioAtual = 'F';
-const botoesSwitch = document.querySelectorAll('.switch-btn');
 const secaoFreelancer = document.getElementById('campos-freelancer');
 const secaoEmpresa = document.getElementById('campos-empresa');
 
-// 1. Controla a troca visual e atualiza a variável do tipo
-botoesSwitch.forEach(botao => {
-    botao.addEventListener('click', (event) => {
-        botoesSwitch.forEach(b => b.classList.remove('ativo'));
-        event.target.classList.add('ativo');
+// Ouvinte global no documento (Delegação de Eventos)
+document.addEventListener('click', (event) => {
+    // Verifica se o clique foi em um botão switch
+    const botaoClicado = event.target.closest('.switch-button');
+    
+    // Se não foi em um switch button, ignora o clique
+    if (!botaoClicado) return;
 
-        const tipoSelecionado = event.currentTarget.dataset.tipo;
-        tipoUsuarioAtual = tipoSelecionado; // Atualiza se é 'F' ou 'E'
+    // Busca TODOS os botões switch que estão na tela AGORA
+    const botoesSwitch = document.querySelectorAll('.switch-button');
+    
+    // Remove a classe ativo de todos
+    botoesSwitch.forEach(b => b.classList.remove('ativo'));
+    
+    // Adiciona no que foi clicado
+    botaoClicado.classList.add('ativo');
 
-        // Alterna a exibição dos campos na tela
-        if (tipoSelecionado === 'F') {
-            secaoFreelancer.classList.remove('escondido');
-            secaoEmpresa.classList.add('escondido');
-        } else if (tipoSelecionado === 'E') {
-            secaoEmpresa.classList.remove('escondido');
-            secaoFreelancer.classList.add('escondido');
-        }
+    const tipoSelecionado = botaoClicado.dataset.tipo;
+    tipoUsuarioAtual = tipoSelecionado; // Sua variável global
 
-    });
+    // Alterna a exibição dos campos
+    if (tipoSelecionado === 'F') {
+        secaoFreelancer.classList.remove('escondido');
+        secaoEmpresa.classList.add('escondido');
+    } else if (tipoSelecionado === 'E') {
+        secaoEmpresa.classList.remove('escondido');
+        secaoFreelancer.classList.add('escondido');
+    }
 });
 
 async function passwordHash(senha) {

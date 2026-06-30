@@ -14,99 +14,89 @@
 </head>
 <body>
     <div id="space-navbar"></div>
+    <div class="background">
+        <div class="container-form">
+            <div class="infos">
+                <div class="area-tags">
+                    <h3 class="title-tags">Área/Tags</h3>
+                    <div class="tags-buttons">
+                        <input type="radio" id="garcom-tags" name="tags-garcom" value="garcom" checked>
+                        <label for="garcom-tags">Garçom</label>
 
-    <div class="margin-page">
-         <div class="type-service">
-        <h3 class="title-type">Tipo de Serviço</h3>
-        <div class="type-buttons">
-             <!-- Opção 1 (Já inicia marcada por padrão com 'checked') -->
-            <input type="radio" id="por-hora" name="tipo_servico" value="hora" checked>
-            <label for="por-hora">Por hora</label>
+                        <input type="radio" id="dev-tags" name="tags-dev" value="dev">
+                        <label for="dev-tags">Dev</label>
 
-            <!-- Opção 2 -->
-            <input type="radio" id="por-projeto" name="tipo_servico" value="projeto">
-            <label for="por-projeto">Por serviço/projeto</label>
-        </div>
-    </div>
-
-    
-    <div class="area-tags">
-        <h3 class="title-tags">Área/Tags</h3>
-        <div class="tags-buttons">
-            <input type="radio" id="garcom-tags" name="tags-garcom" value="garcom" checked>
-            <label for="garcom-tags">Garçom</label>
-
-            <input type="radio" id="dev-tags" name="tags-dev" value="dev">
-            <label for="dev-tags">Dev</label>
-
-            <input type="radio" id="entrega-tags" name="tags-entrega" value="entrega">
-            <label for="entrega-tags">Entrega</label>
+                        <input type="radio" id="entrega-tags" name="tags-entrega" value="entrega">
+                        <label for="entrega-tags">Entrega</label>
+                        
+                        <input type="radio" id="atedimento-tags" name="tags-atedimento" value="atedimento">
+                        <label for="atedimento-tags">Atedimento</label>
+                    </div>
+                </div>
             
-            <input type="radio" id="atedimento-tags" name="tags-atedimento" value="atedimento">
-            <label for="atedimento-tags">Atedimento</label>
-        </div>
-    </div>
-   
-    <div class="addresses">
-        <div class="rua-servico">
-            <h2 class="title-rua" >Endereço do Serviço</h2>
-            <input type="text" id="rua" class="input-rua">
-        </div>
-    </div>
+                <div class="addresses">
+                    <div class="rua-servico">
+                        <h2 class="title-rua" >Endereço do Serviço</h2>
+                        <input type="text" id="rua" class="input-rua">
+                    </div>
+                </div>
 
-    <div class="horario-idade">
-        <div class="horario-dia">
-            <div class="horario">
-                <h2 class="title-horario" >Horário/dia</h2>
-                <input type="datetime-local" id="horario" class="input-horario">
+                <div class="horario-idade">
+                    <div class="horario-dia">
+                        <div class="horario">
+                            <h2 class="title-horario" >Horário/Dia</h2>
+                            <input type="datetime-local" id="horario" class="input-horario">
+                        </div>
+                    </div>
+
+                    <div class="idade-minima">
+                        <div class="idade">
+                            <h2 class="title-idade" >Idade Mínima</h2>
+                            <input type="number" id="min_age" class="input-idade" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="duracao-pagamento">
+                    <div class="duracao-container">
+                        <div class="duracao">
+                            <h2 class="title-duracao" >Duração</h2>
+                            <input type="time" id="horario" class="input-duracao" required>
+                        </div>
+                    </div>
+
+                    <div class="pagamento-container">
+                        <div class="pagamento">
+                            <h2 class="title-pagamento" >Valor do Pagamento</h2>
+                            <input type="number" id="payment" class="input-pagamento" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="type-vestimenta">
+                    <h3 class="title-vestimenta">Vestimenta Exigida</h3>
+                    <div class="vestimenta-buttons">
+                        <!-- Opção 1 (Já inicia marcada por padrão com 'checked') -->
+                        <input type="radio" id="vestimenta-social" name="vestimenta" value="social" checked>
+                        <label for="vestimenta-social">Traje Social Escuro</label>
+
+                        <!-- Opção 2 -->
+                        <input type="radio" id="vestimenta-casual" name="vestimenta" value="casual">
+                        <label for="vestimenta-casual">Casual</label>
+                    </div>
+                </div>
+
+                <div class="descricao">
+                    <h3 class="title-descricao">Descrição Serviço</h3>
+                    <div>
+                        <input type="text" rows="4" class="input-descricao" id="description">
+                    </div>
+                </div>
+
+                <button class="btn-publicar" onclick="enviarDadosParaOBackendSolicitar(event, 'vestimenta')">Publicar Serviço</button>
             </div>
         </div>
-
-        <div class="idade-minima">
-            <div class="idade">
-                <h2 class="title-idade" >Idade Mínima</h2>
-                <input type="number" id="min_age" class="input-idade" required>
-            </div>
-        </div>
     </div>
-
-    <div class="duracao-pagamento">
-        <div class="duracao-container">
-            <div class="duracao">
-                <h2 class="title-duracao" >Duração</h2>
-                <input type="time" id="horario" class="input-duracao" required>
-            </div>
-        </div>
-
-        <div class="pagamento-container">
-            <div class="pagamento">
-                <h2 class="title-pagamento" >Valor do Pagamento</h2>
-                <input type="number" id="payment" class="input-pagamento" required>
-            </div>
-        </div>
-    </div>
-
-    <div class="type-vestimenta">
-        <h3 class="title-vestimenta">Vestimenta Exigida</h3>
-        <div class="vestimenta-buttons">
-            <!-- Opção 1 (Já inicia marcada por padrão com 'checked') -->
-            <input type="radio" id="vestimenta-social" name="vestimenta" value="social" checked>
-            <label for="vestimenta-social">Traje Social Escuro</label>
-
-            <!-- Opção 2 -->
-            <input type="radio" id="vestimenta-casual" name="vestimenta" value="casual">
-            <label for="vestimenta-casual">Casual</label>
-        </div>
-    </div>
-
-    <div class="descricao">
-        <h3 class="title-descricao">Descrição Serviço</h3>
-        <div>
-            <input type="text" class="input-descricao" id="description">
-        </div>
-    </div>
-
-    <button class="btn-solicitar" onclick="enviarDadosParaOBackendSolicitar(event, 'vestimenta')">Publicar Serviço</button>
 
     </div>
     <script>

@@ -53,6 +53,24 @@ dialog::backdrop {
     font-weight: 500;
 }
 
+.switch-button{
+    background: none;
+    border: none;
+    padding: 10px 103px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #4a524a;
+    transition: all 0.2s ease;
+}
+
+.switch-button.ativo{
+    background-color: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    font-weight: 500;
+}
+
 /* Esconde a seção que não deve aparecer */
 .secao-cadastro.escondido {
     display: none;
