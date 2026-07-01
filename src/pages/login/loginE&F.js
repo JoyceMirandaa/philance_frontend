@@ -86,18 +86,37 @@ async function pegarDadosParaOBackend(event) {
         });
 
         if (respostalogin.ok) {
-            alert('Sucesso! Salvo no MySQL.');
-            document.getElementById("modal-container").close();
-
-            console.log(dadosFormulario);
-                    
+        
             const usuarioLogado = await respostalogin.json();
+        
+            if (tipoUsuarioAtual !== usuarioLogado.type) {
+                const perfilCorreto = usuarioLogado.type === 'E' ? 'Empresa' : 'Freelancer';
+                alert(`Atenção: Esta conta está registrada como perfil de ${perfilCorreto}. Selecione o botão correto na tela.`);
+                return; 
+            }
+
+            alert('Login realizado com sucesso!');
+            
+            const modal = document.getElementById("modal-container");
+            if (modal && typeof modal.close === 'function') {
+                modal.close();
+            }
+                    
             localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
 
-            window.location.href = "/src/pages/Home/empresa/home.html"; 
+            console.log('Botão selecionado na tela:', tipoUsuarioAtual);
+            console.log('Dados do banco de dados:', usuarioLogado);
+
+
+            if (tipoUsuarioAtual === 'E') {
+                window.location.href = "/src/pages/Home/empresa/home.html"; 
+            } else if (tipoUsuarioAtual === 'F') {
+                window.location.href = "/src/pages/Home/freelancer/homefreelancer.html"; 
+            }
+
         } else {
             alert('Erro no servidor.');
-            console.log(dadosLogin);
+            console.log(dadosFormulario);
         }
     } catch (erro) {
         console.error('Erro:', erro);
