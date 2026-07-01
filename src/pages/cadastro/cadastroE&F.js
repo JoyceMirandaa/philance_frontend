@@ -10,8 +10,8 @@ export function inicializarEventosDoCadastro() {
 }
 
 let tipoUsuarioAtual = 'F';
-const secaoFreelancer = document.getElementById('campos-freelancer');
-const secaoEmpresa = document.getElementById('campos-empresa');
+const secaoFreelancer = document.getElementById('campos-freelancer-cadastro');
+const secaoEmpresa = document.getElementById('campos-empresa-cadastro');
 
 // Ouvinte global no documento (Delegação de Eventos)
 document.addEventListener('click', (event) => {

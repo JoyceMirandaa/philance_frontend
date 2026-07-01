@@ -42,7 +42,7 @@
 
     </div>
 
-    <h2>Serviçoes Solicitados</h2>
+    <h2 class="titulo-Servico">Serviçoes Solicitados</h2>
     <div class="card-servicos">
         
 
@@ -50,11 +50,26 @@
    
 
 
-    <script src="/src/pages/Home/empresa/home.js"></script>
+    <script src="/src/pages/Home/freelancer/homefreelancer.js"></script>
 
 </body>
     <script src="/src/componentes/navbar/navbar.js"></script>
 <script>
     carregarNavbarHomeFreelancer();
+
+</script>
+<script>
+    // Executa assim que a página e todos os scripts carregarem completamente
+    window.addEventListener('load', function() {
+        // Força a rolagem no HTML e no BODY tirando qualquer trava
+        document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
+        document.body.style.setProperty('overflow-y', 'auto', 'important');
+        
+        // Remove travas de altura restrita se algum script tiver colocado
+        document.documentElement.style.setProperty('height', 'auto', 'important');
+        document.body.style.setProperty('height', 'auto', 'important');
+        
+        console.log("Rolagem liberada à força!");
+    });
 </script>
 </html>

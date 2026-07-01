@@ -24,7 +24,7 @@ function carregarNavbarHomeEmpresa(){
                 <img src="/assets/imagens/IconeHome.png" class="icon-nav">
                 Home</button>
                 <button class="button-solicitar-servico" onclick="window.location.href='/src/pages/solicitarServico/solicitarServico.html'">
-                <img src="/assets/imagens/IconeSolicitarServico.png" class="icon-nav">
+                <img src="/assets/imagens/IconeSolicitarServico.png" class="icon-servico">
                 Solicitar Serviço</button>
             </div>
             <div class="perfil-container">
@@ -105,8 +105,8 @@ function carregarNavbarHomeFreelancer(){
                 <img src="/assets/imagens/IconeHome.png" class="icon-nav">
                 Home</button>
                 <button class="button-solicitar-servico" onclick="window.location.href='/src/pages/buscarServico/buscarServico.html'">
-                <img src="/assets/imagens/IconeSolicitarServico.png" class="icon-nav">
-                Buscar Serviço</button>
+                <img src="/assets/imagens/IconBuscarServico.png" class="icon-servico">
+                Buscar Serviços</button>
             </div>
             <div class="perfil-container">
                 <!-- 1. O botão que o usuário vai clicar -->

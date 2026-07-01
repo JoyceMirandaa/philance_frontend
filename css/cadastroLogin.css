@@ -121,14 +121,15 @@ input{
     border-style: solid;
 }
 
-a{
+a, .Conta{
     display: flex;
     justify-content: center;
     text-align: center;
     font-size: 10px;
+    padding-left: 5px;
 }
 
-.jaTemConta{
+.Conta{
     color: #86A081;
 }
 

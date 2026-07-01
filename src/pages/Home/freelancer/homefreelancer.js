@@ -27,6 +27,8 @@ if (!dadosSalvosFormulario) {
     }
 }
 
+
+
 async function carregarServicosSolicitados() {
     try {
         const respostaSolicitados = await fetch("http://localhost:8080/assignments");

@@ -49,14 +49,14 @@
 
 
         <div class="inputs">
-            <div id="campos-freelancer" class="secao-cadastro">
+            <div id="campos-freelancer-cadastro" class="secao-cadastro">
                 <label>CPF:</label>
                 <input type="text" id="cpf" placeholder="000.000.000-00" required>
             </div>
         </div>
 
         <div class="inputs">
-            <div id="campos-empresa" class="secao-cadastro escondido">
+            <div id="campos-empresa-cadastro" class="secao-cadastro escondido">
                 <label>CNPJ:</label>
                 <input type="text" id="cnpj" placeholder="00.000.000/0001-00">
             </div>
@@ -65,7 +65,12 @@
         <button class="button-entrar" id="btnCadastrar" type="submit">Criar conta</button>
 
 
-        <a class="jaTemConta">Já tem conta?<a class="facaLogin" href="#" onclick="document.getElementById('modal-container').showModal(); return false;">Faça login</a></a>
+        <p class="Conta">
+            Já tem conta? <a class="facaLogin" href="#" onclick="abrirModal('/src/pages/login/loginE&F.html', event)">Faça login</a>
+        </p>
+
+
+
 
         <script src="/src/pages/cadastro/cadastroE&F.js"></script>
     </div>
