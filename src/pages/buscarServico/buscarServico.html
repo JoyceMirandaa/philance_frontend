@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/buscarServico.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Idiqlat:wght@200;300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="space-navbar"></div>
+    <div class="fundos">
+        <div class="white">
+            <div class="area-tags">
+            <h3 class="title-tags">Filtro</h3>
+                <div class="tags-buttons">
+                    <input type="radio" id="garcom-tags" name="tags-garcom" value="garcom" checked>
+                    <label for="garcom-tags">Área/Tags</label>
+
+                    <input type="radio" id="dev-tags" name="tags-dev" value="dev">
+                    <label for="dev-tags">Horario</label>
+
+                    <input type="radio" id="entrega-tags" name="tags-entrega" value="entrega">
+                    <label for="entrega-tags">Duração</label>
+                    
+                    <input type="radio" id="atedimento-tags" name="tags-atedimento" value="atedimento">
+                    <label for="atedimento-tags">Pagamento</label>
+                </div>
+            </div>
+
+            <div class="card-servicos">
+
+            </div>
+
+            <div class="card-servicos">
+
+            </div>
+
+            <div class="card-servicos">
+
+            </div>
+
+            <div class="card-servicos">
+
+            </div>
+        </div>
+
+        <div class="green">
+         
+
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.tags-buttons input[type="radio"]').forEach(radio => {
+            radio.addEventListener('click', function() {
+                if (this.wasChecked) {
+                    this.checked = false;
+                    this.wasChecked = false;
+                } else {
+                    // Remove o estado antigo dos outros do mesmo grupo
+                    document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => r.wasChecked = false);
+                    this.wasChecked = true;
+                }
+            });
+        });a
+    </script>
+    <script src="/src/pages/solicitarServico/solicitarServico.js"></script>
+</body>
+<script src="/src/componentes/navbar/navbar.js"></script>
+<script>
+    carregarNavbarHomeFreelancer();
+
+</script>
+</html>

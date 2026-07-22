@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    overflow: scroll;
+    height: 100vh;
+}
+
+.fundos{
+    display: flex;
+    flex-direction: row;
+}
+
+.green{
+    background-color: #b8d7b2db;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Container principal */
+.area-tags {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 65px;
+}
+
+/* Título de cima */
+.title-tags{
+    color: #888;
+    font-size: 15px;
+}
+
+/* Esconde a bolinha padrão do Radio Button */
+.tags-buttons input[type="radio"] {
+    display: none;
+}
+
+/* Estilo padrão do botão (Desmarcado) */
+.tags-buttons label {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    margin-top: -10px;
+}
+
+.tags-buttons label:hover{
+    border-color: #799a72;
+    box-shadow: 0 4px 12px rgba(88, 142, 85, 0.2);
+}
+
+/* Estilo do botão quando estiver selecionado (Marcado) */
+.tags-buttons input[type="radio"]:checked + label {
+    background-color: #86A081; 
+    color: white;
+    border-color: #163310;
+}
+
+/* Grupo que junta os botões lado a lado */
+.tags-buttons,
+.vestimenta-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.card-servicos {
+    display: flex;
+    flex-direction: column; 
+    width: 500px;           
+    height: 150px;            
+    border: 1px solid #52754B; 
+    border-radius: 24px; 
+    margin: 25px 30px; 
+    box-shadow: none; 
+}
