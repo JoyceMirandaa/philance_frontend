@@ -1,6 +1,10 @@
 console.log("Arquivo empresaCadastro.js carregado isoladamente de sua pasta!");
 
-export function inicializarEventosDoCadastro() {
+document.addEventListener("DOMContentLoaded", () => {
+    inicializarEventosDoCadastro();
+});
+
+function inicializarEventosDoCadastro() {
     const btnCadastrar = document.getElementById("btnCadastrar");
     if (btnCadastrar) {
         btnCadastrar.addEventListener("click", enviarDadosParaOBackend);
@@ -33,11 +37,9 @@ document.addEventListener('click', (event) => {
         secaoEmpresa?.classList.add('escondido');
     } else if (tipoSelecionado === 'E') {
         secaoEmpresa?.classList.remove('escondido');
-        secaoFreelancer?.classList.remove('escondido'); // Esconde a outra seção
         secaoFreelancer?.classList.add('escondido');
     }
 });
-
 
 async function passwordHash(senha) {
     const encoder = new TextEncoder();
@@ -48,13 +50,13 @@ async function passwordHash(senha) {
 
     const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
 
-    return hashHex
+    return hashHex;
 }
-
 
 async function enviarDadosParaOBackend(event) {
     if (event) event.preventDefault();
 
+    /* Dados pessoais */
     const cpfInput = document.getElementById("cpf");
     const cnpjInput = document.getElementById("cnpj");
     const usernameInput = document.getElementById('username');
@@ -68,11 +70,11 @@ async function enviarDadosParaOBackend(event) {
         return;
     }
 
-     // Gera o hash da senha de forma assíncrona e segura
+    // Gera o hash da senha de forma assíncrona
     const senhaDigitada = senhaInput.value;
     const passwordHashed = await passwordHash(senhaDigitada);
 
-   // 1. Obtenção segura e sanitização da String
+    // 1. Obtenção segura e sanitização da String
     let documentoValue = "";
 
     if (tipoUsuarioAtual === 'F' && cpfInput) {
@@ -85,10 +87,10 @@ async function enviarDadosParaOBackend(event) {
     const dadosFormulario = {
         username: usernameInput.value.trim(),
         email: emailInput.value.trim(),
-        phone: phoneInput.value,
-        birthday: nascimentoInput.value || "",
+        phone: phoneInput?.value || "",
+        birthday: nascimentoInput?.value || "",
         type: tipoUsuarioAtual,
-        password: passwordHashed, // Ou a senha em texto limpo conforme discutido anteriormente
+        password: passwordHashed,
         document: documentoValue  // Enviado como String
     };
 
@@ -110,23 +112,18 @@ async function enviarDadosParaOBackend(event) {
                 return; 
             }
 
-            alert('Cadastro/Login realizado com sucesso!');
+            alert('Cadastro realizado com sucesso!');
             
-            const modal = document.getElementById("modal-container");
-            if (modal && typeof modal.close === 'function') {
-                modal.close();
-            }
-                    
+            // Salva os dados no navegador
             localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
 
-            // Redirecionamento condicional
+            // Redirecionamento direto de página
             if (tipoUsuarioAtual === 'E') {
                 window.location.href = "/src/pages/Home/empresa/home.html"; 
             } else if (tipoUsuarioAtual === 'F') {
                 window.location.href = "/src/pages/Home/freelancer/homefreelancer.html"; 
             }
         } else {
-            // Exibe mensagem retornada pela API ou fallback genérico
             const mensagemErro = conteudoResposta?.message || 'Falha ao processar a requisição no servidor.';
             alert(`Erro (${resposta.status}): ${mensagemErro}`);
             console.error('Detalhes do envio:', dadosFormulario);

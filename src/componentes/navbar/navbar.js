@@ -3,8 +3,8 @@ function carregarNavbarHome(){
         <nav class="navbar nav-home">
             <div class="logo"><img src="/assets/imagens/PhilanceHome.png"> </div>
             <ul class "nav-links">
-                <button class="button-login" onclick="abrirModal('/src/pages/login/loginE&F.html')">Entrar</button>
-                <button class="button-cadastro" onclick="abrirModal('/src/pages/cadastro/cadastroE&F.html')">Cadastre-se</button>
+                <button class="button-login" onclick="window.location.href= '/src/pages/login/loginE&F.html' ">Entrar</button>
+                <button class="button-cadastro" onclick="window.location.href='/src/pages/cadastro/cadastroE&F.html'">Cadastre-se</button>
             </ul>
         </nav>
     `;
@@ -41,8 +41,6 @@ function carregarNavbarHomeEmpresa(){
                     <hr> <!-- Linha divisória opcional -->
                     
                     <a href="/src/pages/perfil/perfilE&F.html">Meu perfil</a>
-                    <a href="#">Favoritos</a>
-                    <a href="#">Bloqueados</a>
                     <a href="/src/index.html" class="sair">Sair</a>
                 </div>
             </div>

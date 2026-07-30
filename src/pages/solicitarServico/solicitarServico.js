@@ -25,7 +25,7 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo) {
     console.log(valorEnviado)
 
     const dadosSolicitar = {
-        id_user: usuarioLogado.id_user,
+        id_company: usuarioLogado.id_company,
         description: description.value,
         payment: payment.value,
         min_age: min_age.value,
