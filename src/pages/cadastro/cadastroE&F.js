@@ -1,6 +1,5 @@
 console.log("Arquivo empresaCadastro.js carregado isoladamente de sua pasta!");
 
-// Adicione a palavra 'export' na frente da função
 export function inicializarEventosDoCadastro() {
     const btnCadastrar = document.getElementById("btnCadastrar");
     if (btnCadastrar) {
@@ -10,36 +9,32 @@ export function inicializarEventosDoCadastro() {
 }
 
 let tipoUsuarioAtual = 'F';
-const secaoFreelancer = document.getElementById('campos-freelancer-cadastro');
-const secaoEmpresa = document.getElementById('campos-empresa-cadastro');
 
 // Ouvinte global no documento (Delegação de Eventos)
 document.addEventListener('click', (event) => {
-    // Verifica se o clique foi em um botão switch
     const botaoClicado = event.target.closest('.switch-btn');
-    
-    // Se não foi em um switch button, ignora o clique
     if (!botaoClicado) return;
 
-    // Busca TODOS os botões switch que estão na tela AGORA
+    // Busca os elementos dinamicamente para evitar erro caso não existam no carregamento
+    const secaoFreelancer = document.getElementById('campos-freelancer-cadastro');
+    const secaoEmpresa = document.getElementById('campos-empresa-cadastro');
+
     const botoesSwitch = document.querySelectorAll('.switch-btn');
-    
-    // Remove a classe ativo de todos
     botoesSwitch.forEach(b => b.classList.remove('ativo'));
     
-    // Adiciona no que foi clicado
     botaoClicado.classList.add('ativo');
 
     const tipoSelecionado = botaoClicado.dataset.tipo;
-    tipoUsuarioAtual = tipoSelecionado; // Sua variável global
+    tipoUsuarioAtual = tipoSelecionado;
 
-    // Alterna a exibição dos campos
+    // Alterna a exibição com segurança
     if (tipoSelecionado === 'F') {
-        secaoFreelancer.classList.remove('escondido');
-        secaoEmpresa.classList.add('escondido');
+        secaoFreelancer?.classList.remove('escondido');
+        secaoEmpresa?.classList.add('escondido');
     } else if (tipoSelecionado === 'E') {
-        secaoEmpresa.classList.remove('escondido');
-        secaoFreelancer.classList.add('escondido');
+        secaoEmpresa?.classList.remove('escondido');
+        secaoFreelancer?.classList.remove('escondido'); // Esconde a outra seção
+        secaoFreelancer?.classList.add('escondido');
     }
 });
 
@@ -65,56 +60,57 @@ async function enviarDadosParaOBackend(event) {
     const usernameInput = document.getElementById('username');
     const emailInput = document.getElementById('email');
     const senhaInput = document.getElementById('password');
-    const phoneinput = document.getElementById('phone');
-    const nascimentouInput = document.getElementById('date');
+    const phoneInput = document.getElementById('phone');
+    const nascimentoInput = document.getElementById('date');
 
-    if (!usernameInput || !emailInput || !senhaInput) {
-        console.error("Campos obrigatórios (username, email ou password) não foram encontrados no HTML.");
+    if (!usernameInput?.value || !emailInput?.value || !senhaInput?.value) {
+        alert("Preencha todos os campos obrigatórios (Usuário, E-mail e Senha).");
         return;
     }
 
-    // Leitura segura do documento (CPF ou CNPJ)
-    let documentoValue = "";
-    if (tipoUsuarioAtual === 'F' && cpfInput) {
-        documentoValue = cpfInput.value;
-    } else if (tipoUsuarioAtual === 'E' && cnpjInput) {
-        documentoValue = cnpjInput.value;
-    }
-
-    
-    // Gera o hash da senha de forma assíncrona e segura
+     // Gera o hash da senha de forma assíncrona e segura
     const senhaDigitada = senhaInput.value;
     const passwordHashed = await passwordHash(senhaDigitada);
-    
+
+   // 1. Obtenção segura e sanitização da String
+    let documentoValue = "";
+
+    if (tipoUsuarioAtual === 'F' && cpfInput) {
+        documentoValue = String(cpfInput.value).trim();
+    } else if (tipoUsuarioAtual === 'E' && cnpjInput) {
+        documentoValue = String(cnpjInput.value).trim();
+    }
+
+    // 2. Montagem do objeto JSON que vai para o backend
     const dadosFormulario = {
-        username: usernameInput?.value || "",
-        email: emailInput?.value || "",
-        phone: phoneinput?.value || "",
-        birthday: nascimentouInput?.value || "",
+        username: usernameInput.value.trim(),
+        email: emailInput.value.trim(),
+        phone: phoneInput.value,
+        birthday: nascimentoInput.value || "",
         type: tipoUsuarioAtual,
-        password: passwordHashed,
-        document: documentoValue
+        password: passwordHashed, // Ou a senha em texto limpo conforme discutido anteriormente
+        document: documentoValue  // Enviado como String
     };
 
-
-
     try {
-        const respostalogin = await fetch('http://localhost:8080/register-user', {
+        const resposta = await fetch('http://localhost:8080/register-user', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dadosFormulario)
         });
 
-        if (respostalogin.ok) {
-            const usuarioLogado = await respostalogin.json();
-        
-            if (tipoUsuarioAtual !== usuarioLogado.type) {
+        const conteudoResposta = await resposta.json().catch(() => null);
+
+        if (resposta.ok) {
+            const usuarioLogado = conteudoResposta;
+
+            if (usuarioLogado && tipoUsuarioAtual !== usuarioLogado.type) {
                 const perfilCorreto = usuarioLogado.type === 'E' ? 'Empresa' : 'Freelancer';
-                alert(`Atenção: Esta conta está registrada como perfil de ${perfilCorreto}. Selecione o botão correto na tela.`);
+                alert(`Atenção: Esta conta está registrada como perfil de ${perfilCorreto}. Selecione o tipo correto na tela.`);
                 return; 
             }
 
-            alert('Login realizado com sucesso!');
+            alert('Cadastro/Login realizado com sucesso!');
             
             const modal = document.getElementById("modal-container");
             if (modal && typeof modal.close === 'function') {
@@ -123,21 +119,20 @@ async function enviarDadosParaOBackend(event) {
                     
             localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
 
-            console.log('Botão selecionado na tela:', tipoUsuarioAtual);
-            console.log('Dados do banco de dados:', usuarioLogado);
-
-
+            // Redirecionamento condicional
             if (tipoUsuarioAtual === 'E') {
                 window.location.href = "/src/pages/Home/empresa/home.html"; 
             } else if (tipoUsuarioAtual === 'F') {
                 window.location.href = "/src/pages/Home/freelancer/homefreelancer.html"; 
             }
         } else {
-            alert('Erro no servidor.');
-            console.log(dadosFormulario);
+            // Exibe mensagem retornada pela API ou fallback genérico
+            const mensagemErro = conteudoResposta?.message || 'Falha ao processar a requisição no servidor.';
+            alert(`Erro (${resposta.status}): ${mensagemErro}`);
+            console.error('Detalhes do envio:', dadosFormulario);
         }
     } catch (erro) {
-        console.error('Erro:', erro);
+        alert('Erro de conexão com o servidor. Verifique se o backend está rodando.');
+        console.error('Erro na requisição:', erro);
     }
-
 }

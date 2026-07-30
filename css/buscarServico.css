@@ -80,3 +80,38 @@ body {
     margin: 25px 30px; 
     box-shadow: none; 
 }
+
+/* Estilizando os elementos internos que você criou no innerHTML */
+.empresa-nome {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+}
+
+.vaga-titulo {
+    font-size: 24px;
+    color: #34562E;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.card-rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.vaga-valor {
+    font-weight: bold;
+    color: #52754B;
+}
+
+.btn-detalhes {
+    background-color: #e2ede0;
+    color: #34562E;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+}
