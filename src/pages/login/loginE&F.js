@@ -1,7 +1,12 @@
 console.log("Arquivo empresaCadastro.js carregado isoladamente de sua pasta!");
 
+document.addEventListener("DOMContentLoaded", () => {
+    inicializarEventosDoCadastro();
+});
+
+
 // Adicione a palavra 'export' na frente da função
-export function inicializarEventosDoLogin() {
+function inicializarEventosDoLogin() {
     const btnLogin = document.getElementById("btnLogin");
     if (btnLogin) {
         btnLogin.addEventListener("click", pegarDadosParaOBackend);
@@ -96,11 +101,6 @@ async function pegarDadosParaOBackend(event) {
             }
 
             alert('Login realizado com sucesso!');
-            
-            const modal = document.getElementById("modal-container");
-            if (modal && typeof modal.close === 'function') {
-                modal.close();
-            }
                     
             localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
 
