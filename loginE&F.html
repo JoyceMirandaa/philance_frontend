@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Philance</title>
+    <link rel="stylesheet" href="/css/cadastroLogin.css">
+</head>
+<body>
+
+    <div class="modal-conteudo">
+        <div class="switch-container">
+            <button type="button" class="switch-button ativo" data-tipo="F">Sou freelancer</button>
+            <button type="button" class="switch-button" data-tipo="E">Sou empresa</button>
+        </div>
+        
+        <div class="title-description">
+            <h2>Bem-Vindo de Volta</h2>
+            <div id="campos-freelancer" class="secao-login">
+                <p>Entre na sua conta freelancer</p>
+            </div>
+            <div id="campos-empresa" class="secao-login escondido">
+                <p>Entre na sua conta empresa</p>
+            </div>
+        </div>
+
+        <input type="hidden" id="letra-cadastro" name="tipo_usuario" value="F">
+
+        <div class="inputs">
+            <label>Email:</label>
+            <input id="email" type="email" required>
+        </div>
+
+        <div class="inputs">
+            <label>Senha:</label>
+            <input id="password" type="password" required>
+        </div>
+
+        <script type="module" src="/src/pages/login/loginE&F.js"></script>
+        <button class="button-entrar" id="btnLogin" type="submit">Entrar</button>
+
+        <p>
+            Já tem conta? <a class="facaLogin" href="/src/pages/cadastro/cadastroE&F.html">Faça login</a>
+        </p>
+
+        <script src="/src/pages/login/loginE&F.js"></script>
+    </div>
+
+</body>
+</html>
