@@ -30,7 +30,7 @@ async function enviarDadosParaOBackendEditar(event) {
         neighborhood: bairroInput.value,
         city: cidadeinput.value,
         state: estadoInput.value,
-        id_user: usuarioLogadoPerfil.id_user
+        id_user: usuarioLogadoPerfil.id
     };
 
 
