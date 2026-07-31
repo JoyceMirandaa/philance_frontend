@@ -1,4 +1,4 @@
-async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo) {
+async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
     if (event) event.preventDefault();
 
     // 1. PEGA OS DADOS DO USUÁRIO QUE JÁ ESTÃO GUARDADOS NO LOCALSTORAGE
@@ -20,16 +20,22 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo) {
 
      // Busca o elemento selecionado dentro do grupo 'opcaoEnvio'
     const radioSelecionado = document.querySelector(`input[name="${nomeDogrupo}"]:checked`);
+    const radioTags = document.querySelector(`input[name="${nomeTags}"]:checked`);
 
     const valorEnviado = radioSelecionado.value;
-    console.log(valorEnviado)
+    const tags = radioTags.value;
+
+    console.log(valorEnviado, tags)
 
     const dadosSolicitar = {
-        id_user: usuarioLogado.id_user,
+        title: tags,
+        id: usuarioLogado.id,
+        id_address: "44039688-b34a-4745-9ba4-825d47770012",
         description: description.value,
         payment: payment.value,
         min_age: min_age.value,
-        attire: valorEnviado
+        attire: valorEnviado,
+        tag: tags
     };
 
     try {
