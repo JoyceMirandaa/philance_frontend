@@ -3,40 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/navbar.css">
+    <title>Philance</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
 
     <div id="space-navbar"></div>
-    
-    <container class="descricao-site">
-        <div class="descricao">
-            <div class="logo">
-                <img class="logo-img" src="/assets/imagens/logoVerdeClaro.png">
-                <p class="title-descricao">Philance</p>
+    <!-- Banner -->
+    <section class="banner">
+        <div class="banner-interior">
+            <div class="banner-text">
+                <span class="primeiro-text">Trabalho freelance de curta duração</span>
+                <h1>Conecte-se a serviços.<br>Sem burocracia.</h1>
+                <p>A Philance liga freelancers a empresas de forma rápida, segura e transparente. Publique um serviço ou encontre seu próximo turno em minutos.</p>
+                <div class="banner-actions">
+                    <button class="btn btn-dark">Sou freelancer</button>
+                    <button class="btn btn-outline">Sou empresa</button>
+                </div>
             </div>
-            <p class="texto-descricao">"lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, 
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. reprehenderit in voluptate velit esse ci"</p>
         </div>
-        <div class="imagem-site">
-            <div class="img-branco"></div>
-            <img class="img-garcom" src="/assets/imagens/garcom-home.jpg">
+        <div class="banner-wave" aria-hidden="true"></div>
+    </section>
+
+    <!-- Como funciona -->
+    <section class="section-one">
+        <div class="section-two">
+            <span class="section-three">Como funciona</span>
+            <h2>Do cadastro ao pagamento, em três passos</h2>
         </div>
-    </container>
+
+        <div class="passos">
+            <article class="step-card"> <!-- article para poder reutilizar -->
+                <span class="step-num">01</span>
+                <h3>Crie seu perfil</h3>
+                <p>Cadastre-se como freelancer ou empresa com e-mail, CPF ou CNPJ. Freelancers adicionam suas especialidades por tags.</p>
+            </article>
+            <article class="step-card">
+                <span class="step-num">02</span>
+                <h3>Encontre ou publique</h3>
+                <p>Freelancers buscam serviços por categoria, horário e pagamento. Empresas publicam vagas em três etapas simples.</p>
+            </article>
+            <article class="step-card">
+                <span class="step-num">03</span>
+                <h3>Trabalhe e avalie</h3>
+                <p>Depois do serviço, freelancer e empresa se avaliam mutuamente, construindo reputação na plataforma.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Recursos -->
+    <section class="section-one" >
+        <div class="section-two">
+            <span class="section-three">Recursos</span>
+            <h2>Tudo o que você precisa em um só lugar</h2>
+        </div>
+
+        <div class="recursos">
+            <article class="recurso-card">
+                <div class="recurso-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <h3>Busca inteligente</h3>
+                <p>Filtre serviços por categoria, urgência, duração e valor mínimo até achar a vaga certa.</p>
+            </article>
+
+            <article class="recurso-card">
+                <div class="recurso-icon">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h3>Reputação por avaliações</h3>
+                <p>Freelancers e empresas se avaliam mutuamente após cada serviço, construindo confiança na plataforma.</p>
+            </article>
+
+            <article class="recurso-card">
+                <div class="recurso-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h3>Favoritos e bloqueados</h3>
+                <p>Salve empresas ou freelancers de confiança e bloqueie quem você prefere não trabalhar novamente.</p>
+            </article>
+
+            <article class="recurso-card">
+                <div class="recurso-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <h3>Painel de estatísticas</h3>
+                <p>Acompanhe avaliação média e ganhos do mês direto na sua home.</p>
+            </article>
+
+            <article class="recurso-card">
+                <div class="recurso-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3>Cancelamento com regras claras</h3>
+                <p>Justificativas e anexos de comprovação evitam penalidades indevidas para quem cumpre os prazos.</p>
+            </article>
+
+            <article class="recurso-card">
+                <div class="recurso-icon">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+                <h3>Publicação guiada</h3>
+                <p>Empresas criam vagas com pré-visualização exata de como o freelancer vai ver.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Para quem é -->
+    <section class="section-one audience">
+
+        <article class="audience-card audience-card-freelancer" >
+        <span class="audience-tag audience-tag-freelancer">Para freelancers</span>
+        <h3>Encontre trabalho compatível com sua rotina</h3>
+        <ul class="audience-list">
+            <li>Recomendações de serviços com base no seu perfil</li>
+            <li>Filtros por urgência, categoria, duração e valor</li>
+            <li>Acompanhe avaliações e ganhos do mês em um painel</li>
+        </ul>
+        <button class="btn btn-outline-light">Criar perfil de freelancer</button>
+        </article>
+
+        <article class="audience-card audience-card-empresa" >
+        <span class="audience-tag audience-tag-empresa">Para empresas</span>
+        <h3>Publique vagas e contrate em minutos</h3>
+        <ul class="audience-list">
+            <li>Solicitação de serviços de freelancer</li>
+            <li>Pré-visualização exata de como o freelancer vai ver</li>
+            <li>Gerencie favoritos, bloqueios e avaliações recebidas</li>
+        </ul>
+        <button class="btn btn-outline-dark">Criar perfil de empresa</button>
+        </article>
+
+    </section>
+
+    <!-- Perguntas frequentes -->
+    <section class="section-one" >
+        <div class="section-two">
+            <span class="section-three">Dúvidas</span>
+            <h2>Perguntas frequentes</h2>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item open">
+                <button class="faq-question">
+                    Preciso pagar para me cadastrar?
+                    <span class="faq-icon">−</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Não. O cadastro é gratuito tanto para freelancers quanto para empresas. Você só precisa de e-mail, senha e CPF ou CNPJ para começar.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Como funciona o cancelamento de um serviço?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Freelancer e empresa podem cancelar informando uma justificativa, com opção de anexar imagens como comprovação. Cancelamentos com menos de 4 horas de antecedência podem gerar penalidade; dentro do prazo ou devidamente justificados, não.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Como funcionam as avaliações?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Depois que um serviço é concluído, freelancer e empresa se avaliam por estrelas, com comentários opcionais. Isso atualiza automaticamente a reputação de cada perfil e influencia recomendações futuras.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Posso escolher com quem trabalhar?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Sim. Você pode favoritar empresas ou freelancers de confiança para priorizá-los em futuras recomendações, e bloquear quem preferir não encontrar novamente.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Como vejo os detalhes de uma vaga antes de aceitar?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Ao selecionar um serviço na busca, um painel lateral mostra informações completas da vaga, dados da empresa contratante e a descrição detalhada das atividades antes de você aceitar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final -->
+    <section class="final">
+        <h2>Pronto para começar?</h2>
+        <p>Leva menos de dois minutos para criar sua conta.</p>
+        <button class="btn btn-dark btn-log">Cadastre-se gratuitamente</button>
+    </section>
+
+    </body>
+
+    <footer class="footer">
+        <div class="logo">
+            <img src="/assets/imagens/PhilanceHome.png">
+        </div>
+        <p>© 2026 Philance. Conectando freelancers a empresas.</p>
+    </footer>
 
     <script src="/src/componentes/navbar/navbar.js"></script>
+    <script src="/src/main.js"></script> <!--script para "perguntas frequentes"-->
 <script>
     carregarNavbarHome();
 </script>
-</body>
-</html>
+<script>
+    // Fecha o modal se o usuário clicar na área escura (fora do formulário)
+    const modal = document.getElementById('modal-container');
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.close();
+        }
+    });
 
+    async function carregarConteudoModal(arquivoHtml) {
+        const modalContainer = document.getElementById('modal-container');
+        try {
+            const resposta = await fetch(arquivoHtml);
+            if (!resposta.ok) throw new Error('Erro ao carregar o arquivo');
+            const html = await resposta.text();
+            
+            // Coloca o HTML do cadastro dentro do <dialog>
+            modalContainer.innerHTML = html;
+        } catch (erro) {
+            console.error(erro);
+            modalContainer.innerHTML = '<p style="padding:20px; color:red;">Erro ao carregar a tela. Tente novamente.</p>';
+        }
+    }
+
+    async function abrirModal(arquivoInicial, event) {
+        const modalContainer = document.getElementById('modal-container');
+        
+        // 1. Busca o HTML do cadastro via Ajax e coloca no modal
+        await carregarConteudoModal(arquivoInicial);
+        
+        // 2. Abre a janela flutuante nativa por cima da Home
+        modalContainer.showModal();
+        
+        try {
+            // 3. O JavaScript vai até a pasta e importa a função de lá de dentro dinamicamente!
+            const moduloCadastro = await import('/src/pages/cadastro/cadastroE&F.js');
+            const moduloLogin = await import('/src/pages/login/loginE&F.js');
+            
+            // 4. Executa a função importada diretamente do módulo
+            moduloCadastro.inicializarEventosDoCadastro();
+            moduloLogin.inicializarEventosDoLogin();
+            
+        } catch (erro) {
+            console.error("Não foi possível importar o arquivo JS das pastas:", erro);
+        }
+    }
+
+</script>
+</html>

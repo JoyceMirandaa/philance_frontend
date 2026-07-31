@@ -3,77 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Philance | Home</title>
+    <link rel="stylesheet" href="/css/homeFreelancer.css">
     <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/homeEmpresa.css">
-    <link rel="stylesheet" href="/css/solicitarServico.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Idiqlat:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
+
     <div id="space-navbar"></div>
-    <container class="fundo"></container>
-
-    <div class="cards">
-
-        <div class="card-relatorio">
-            <h2 class="titulo-avaliacao">Avaliações</h2>
-            <a id="avaliacaos" class="avaliacaos">1120</a>
-            <img src="/assets/imagens/rating-star.png" class="rating-star">
-            <a id="average_rating" class="nota-empresa"></a>
+    <!-- Banner -->
+    <section class="banner">
+        <div class="banner-interior">
+            <div class="banner-text">
+                <h1>O que você vai trabalhar<br>em seguida?</h1>
+                <p>Serviços recomendados para o seu perfil</p>
+                <div class="banner-actions">
+                    <button class="btn btn-outline-light">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Encontrar serviço
+                    </button>
+                    <button class="btn-icone">
+                        <i class="fa-solid fa-filter"></i>
+                    </button>
+                </div>
+            </div>
         </div>
+        <div class="banner-wave" aria-hidden="true"></div>
+    </section>
 
-        <div class="card-relatorio-financeiro">
-            <h2 class="titulo-relatorio" >Relatório Financeiro</h2>
-        </div>
+    <!-- Estatísticas -->
+    <section class="estatisticas">
 
-        <div class="card-relatorio-servico">
-            <h2 class="titulo-relatorio" >Relatório Semanal de Serviços</h2>
-            <a class="total-servicos">100</a>
-            <div class="dias">
-                <span class="dia">Seg</span>
-                 <span class="dia">Ter</span>
-                 <span class="dia">Qua</span>
-                 <span class="dia">Qui</span>
-                 <span class="dia">Sex</span>
-                 <span class="dia">Sáb</span>
-                 <span class="dia">Dom</span>
+        <!-- Avaliações -->
+        <article class="estatistica-card">
+            <div class="estatistica-head card-head">
+                <div class="avalia">
+                    <h3>Avaliações</h3>
+                    <span class="backg">1.460</span>
+                </div>
+                    <div class="avaliacao-valor">
+                        <i class="fa-solid fa-star"></i>
+                        <span class="avaliacao-numero">4.8</span>
+                    </div>
+            </div>
+        </article>
+
+        <!-- Relatório Financeiro -->
+        <article class="estatistica-card ">
+            <div class="estatistica-head">
+                <h3>Relatório<br>Financeiro</h3>
+                <div class="totais">
+                    <div class="totais-linha">
+                        <span class="totais-label">Total da Semana:</span>
+                        <span class="backg">R$ 700</span>
+                    </div>
+                    <div class="totais-linha">
+                        <span class="totais-label">Total do Mês:</span>
+                        <span class="backg">R$ 1.000</span>
+                    </div>
+                </div>
             </div>
             
+            <div class="progresso-linha">
+                <div class="progresso-trilha">
+                    <div class="progresso-preenchido" style="width: 50%;">
+                        <span class="progresso-label">R$ 1.000</span>
+                    </div>
+                </div>
+                <div class="progresso-meta">
+                    <span class="progresso-meta-label">Meta</span>
+                    <span class="progresso-meta-valor">R$ 2.000</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Relatório de Serviços -->
+        <article class="estatistica-card ">
+            <h3 class="grafico-titulo">Relatório de Serviços</h3>
+            <div class="grafico-barras">
+                <div class="barra-coluna">
+                    <span class="barra-valor">5</span>
+                    <div class="barra" style="height: 33%;"></div>
+                    <span class="barra-label">Seg</span>
+                </div>
+                <div class="barra-coluna">
+                    <span class="barra-valor">10</span>
+                    <div class="barra" style="height: 67%;"></div>
+                    <span class="barra-label">Ter</span>
+                </div>
+                <div class="barra-coluna">
+                    <span class="barra-valor">15</span>
+                    <div class="barra" style="height: 100%;"></div>
+                    <span class="barra-label">Qua</span>
+                </div>
+                <div class="barra-coluna">
+                    <span class="barra-valor">7</span>
+                    <div class="barra" style="height: 47%;"></div>
+                    <span class="barra-label">Qui</span>
+                </div>
+                <div class="barra-coluna">
+                    <span class="barra-valor">12</span>
+                    <div class="barra" style="height: 80%;"></div>
+                    <span class="barra-label">Sex</span>
+                </div>
+                <div class="barra-coluna">
+                    <span class="barra-valor">5</span>
+                    <div class="barra" style="height: 33%;"></div>
+                    <span class="barra-label">Sáb</span>
+                </div>
+                <div class="barra-coluna">
+                    <span class="barra-valor">3</span>
+                    <div class="barra" style="height: 20%;"></div>
+                    <span class="barra-label">Dom</span>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+    <!-- Serviços aceitos -->
+    <section class="servicos-aceitos">
+        <div class="servicos-aceitos-head">
+            <h2>Serviços Aceitos</h2>
+            <span class="contador-badge">4</span>
         </div>
 
-    </div>
+        <div class="servico-lista">
 
-    <h2 class="titulo-Servico">Serviçoes Solicitados</h2>
-    <div class="card-servicos">
-        
+            <article class="servico-card">
+                <div class="servico-coluna linha-vertical">
+                    <div class="servico-avatar"></div>
+                    <div class="servico-empresa">
+                        <h4>Italy Caffé <span class="servico-avaliacao"><i class="fa-solid fa-star"></i> 4.5</span></h4>
+                        <span class="servico-local">Curitiba, PR</span>
+                    </div>
+                    <span class="servico-contagem">
+                        <span class="dot"></span> Faltam 2h até o serviço
+                    </span>
+                    <h3 class="servico-funcao">Barista</h3>
+                    <div class="servico-preco">
+                        <span class="servico-valor-hora">R$18/h</span>
+                        <span class="servico-valor-total">R$108 total (6h)</span>
+                    </div>
+                </div>
 
-    </div>
-   
+                <div class="servico-coluna linha-vertical">
+                    <h4 class="servico-coluna-titulo">Informações</h4>
+                    <div class="info-grade">
+                        <div class="info-item">
+                            <span class="info-label">Tipo</span>
+                            <span class="info-valor">Por hora</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Horário</span>
+                            <span class="info-valor">14h - 20h</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Duração</span>
+                            <span class="info-valor">6 horas</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Idade mínima</span>
+                            <span class="info-valor">Sem restrição</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Endereço</span>
+                            <span class="info-valor">Praça Gen. Osório, 125</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Vestimenta</span>
+                            <span class="info-valor">Sem restrição</span>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="servico-coluna">
+                    <h4 class="servico-coluna-titulo">Descrição</h4>
+                    <p>Buscamos barista experiente para turno da tarde no Italy Café. Responsável pelo preparo de espresso, cappuccino e drinks especiais. Ambiente descontraído e equipe acolhedora.</p>
+                </div>
+            </article>
 
-    <script src="/src/pages/Home/freelancer/homefreelancer.js"></script>
+        </div>
+    </section>
 
-</body>
     <script src="/src/componentes/navbar/navbar.js"></script>
-<script>
-    carregarNavbarHomeFreelancer();
-
-</script>
-<script>
-    // Executa assim que a página e todos os scripts carregarem completamente
-    window.addEventListener('load', function() {
-        // Força a rolagem no HTML e no BODY tirando qualquer trava
-        document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
-        document.body.style.setProperty('overflow-y', 'auto', 'important');
-        
-        // Remove travas de altura restrita se algum script tiver colocado
-        document.documentElement.style.setProperty('height', 'auto', 'important');
-        document.body.style.setProperty('height', 'auto', 'important');
-        
-        console.log("Rolagem liberada à força!");
-    });
-</script>
+    <script>
+        carregarNavbarHomeFreelancer();
+    </script>
+</body>
 </html>

@@ -61,7 +61,7 @@ button {
 }
 
 .banner-text p {
-    font-size: 16px;
+    font-size: 14px;
     color: rgba(255,255,255,.82);
     margin-bottom: 26px;
 }
@@ -102,17 +102,6 @@ button {
 .btn-outline-light:hover {
     background: rgba(255,255,255,.3);
 }
-
-.btn-outline {
-  background: rgba(255,255,255,.14);
-  border: 1.5px solid rgba(255,255,255,.55);
-  backdrop-filter: blur(6px);
-  color: #fff;
-}
-.btn-outline:hover { 
-  background: rgba(255,255,255,.24); 
-}
-
 
 .btn-icone { /* botão redondo de filtro, ao lado do btn principal do banner */
     display: flex;

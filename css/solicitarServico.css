@@ -2,22 +2,29 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
-    /* impede scroll da página */
-    overflow: hidden;
-    height: 100vh;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background:
+    radial-gradient(680px circle at 20% -15%, rgba(255,255,255,.24), transparent 60%),
+    radial-gradient(560px circle at 92% 120%, rgba(15,30,20,.4), transparent 60%),
+    radial-gradient(rgba(255,255,255,.12) 1px, transparent 1.6px) 0 0/26px 26px,
+    linear-gradient(120deg, #35603F 0%, #4E8B5A 45%, #82BB80 100%);
+
 }
 
 /* Fundo */
 .background {
     height: 100%;
     width: 100%;
-
-    background: linear-gradient(to right, #588E55, #75B966);                       
-
     /* centraliza o conteúdo */
     display: flex;
     justify-content: center;
     align-items: flex-start;               
+}
+
+.container-form {
+    width: 100%;
+    max-width: 840px;
 }
 
 /* Forms */
@@ -26,23 +33,9 @@ body {
     height: 794px;
     max-width: 100%;
     background-color: #ffffff;
+    border-radius: 16px;
     padding: 30px 40px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);                      
-}
-
-/* Container principal */
-.type-service {
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-left: 30px;
-}
-
-/* Título de cima - Que diabos é o título de cima? Pq eu não achei. ass. Milena */
-.title-type {
-    color: #888;
-    font-size: 20px;
 }
 
 /* Esconde a bolinha padrão do Radio Button */
@@ -80,7 +73,7 @@ body {
     margin-left: 0px;
 }
 
-/* Título de cima */
+/* Título das seções */
 .title-tags,
 .title-vestimenta,
 .title-rua,
@@ -89,8 +82,11 @@ body {
 .title-pagamento,
 .title-idade,
 .title-descricao {
-    color: #888;
-    font-size: 20px;
+    color: #4A5568;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* Esconde a bolinha padrão do Radio Button */
@@ -205,7 +201,7 @@ input:focus {
 .horario-idade,
 .duracao-pagamento{
     display: flex;
-    flex-direction: row;
+    gap: 20px;
 }
 
 .pagamento,
@@ -225,31 +221,41 @@ input:focus {
     justify-content: space-between;
 }
 
-.btn-publicar { /* Botão */
-    /* Alinhamento */
-    align-self: flex-end;
-    margin-top: 10px;
-    margin-left: 0px;
-    
-    /* Cores e visual */
-    background-color: #e2ede0;
-    color: #2d4a29; 
-    border: 1px solid #c2dac0; 
-    
-    /* Tipografia e espaçamento */
-    padding: 10px 22px;
+textarea {
     border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    
-    /* Transição */
-    transition: all 0.2s ease-in-out;
+    border-color: #1633108e;
+    background-color: #adc5a82f;
+    border-style: solid;
+    border-width: 0.5px;
+    margin-bottom: 20px;
 }
 
-.btn-publicar:hover { /* Botão */
-    background-color: #588e55; 
-    color: #ffffff; 
-    border-color: #588e55;
-    box-shadow: 0 4px 12px rgba(88, 142, 85, 0.2);
+
+
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: transform .12s ease, opacity .12s ease, background .12s ease;
+}
+
+.btn:hover { 
+  transform: translateY(-1px); 
+}
+.btn:active { 
+  transform: translateY(0); 
+}
+
+.btn-dark {
+  background: #1F3D2B;
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(10,25,15,.28);
+}
+.btn-dark:hover { 
+  opacity: .9; 
 }

@@ -5,11 +5,28 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-.background{    
-    background-image: linear-gradient(to right, #588E55, #75B966);
-    height: 180px;
-    width: 100%;
-}   
+.banner { /* fundo do banner */
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(680px circle at 20% -15%, rgba(255,255,255,.24), transparent 60%),
+        radial-gradient(560px circle at 92% 120%, rgba(15,30,20,.4), transparent 60%),
+        radial-gradient(rgba(255,255,255,.12) 1px, transparent 1.6px) 0 0/26px 26px,
+        linear-gradient(120deg, #35603F 0%, #4E8B5A 45%, #82BB80 100%);
+    padding: 64px 40px 170px;
+    text-align: center;
+}
+
+.banner-wave { /* ondinha do banner */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 56px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C240,90 480,0 720,42 C960,84 1200,12 1440,48 L1440,100 L0,100 Z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+} 
 
 /* Profile */
 .profile-container {
@@ -23,7 +40,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-top: -80px; /* Sobe a logo para cima do banner */
+    margin-top: -100px; /* Sobe a logo para cima do banner */
     margin-bottom: 40px;
 }
 
@@ -88,33 +105,33 @@ body {
     margin: 0;
 }
 
-.edit-profile-btn { /* Botão */
-    /* Alinhamento */
-    align-self: flex-end;
-    margin-bottom: 5px;
-    
-    /* Cores e visual */
-    background-color: #e2ede0;
-    color: #2d4a29; 
-    border: 1px solid #c2dac0; 
-    
-    /* Tipografia e espaçamento */
-    padding: 10px 22px;
-    border-radius: 8px;
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 999px;
     font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    
-    /* Transição */
-    transition: all 0.2s ease-in-out;
+    font-weight: 700;
+    transition: transform .12s ease, opacity .12s ease, background .12s ease;
 }
 
-.edit-profile-btn:hover { /* Botão */
-    background-color: #588e55; 
-    color: #ffffff; 
-    border-color: #588e55;
-    box-shadow: 0 4px 12px rgba(88, 142, 85, 0.2);
+.btn:hover {
+    transform: translateY(-1px);
 }
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-dark {
+  background: #1F3D2B;
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(10,25,15,.28);
+}
+.btn-dark:hover { 
+  opacity: .9; 
+}
+
 
 /* Statistics */
 .profile-stats {

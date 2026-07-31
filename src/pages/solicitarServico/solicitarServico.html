@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/homeEmpresa.css">
-    <link rel="stylesheet" href="/css/solicitarServico.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Philance | Solicitar Serviço</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Idiqlat:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/solicitarServico.css">
 </head>
 <body>
     <div id="space-navbar"></div>
     <div class="background">
         <div class="container-form">
             <div class="infos">
-                <div class="area-tags">
+                <!-- Tags -->
+                <section class="area-tags">
                     <h3 class="title-tags">Área/Tags</h3>
                     <div class="tags-buttons">
                         <input type="radio" id="garcom-tags" name="tags-garcom" value="garcom" checked>
@@ -32,16 +33,18 @@
                         <input type="radio" id="atedimento-tags" name="tags-atedimento" value="atedimento">
                         <label for="atedimento-tags">Atedimento</label>
                     </div>
-                </div>
+                </section>
             
-                <div class="addresses">
+                <!-- Endereço -->
+                <section class="addresses">
                     <div class="rua-servico">
                         <h2 class="title-rua" >Endereço do Serviço</h2>
                         <input type="text" id="rua" class="input-rua">
                     </div>
-                </div>
+                </section>
 
-                <div class="horario-idade">
+                <!-- Horário e Idade -->
+                <section class="horario-idade">
                     <div class="horario-dia">
                         <div class="horario">
                             <h2 class="title-horario" >Horário/Dia</h2>
@@ -55,9 +58,10 @@
                             <input type="number" id="min_age" class="input-idade" required>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div class="duracao-pagamento">
+                <!-- Duração e Pagamento -->
+                <section class="duracao-pagamento">
                     <div class="duracao-container">
                         <div class="duracao">
                             <h2 class="title-duracao" >Duração</h2>
@@ -71,9 +75,10 @@
                             <input type="number" id="payment" class="input-pagamento" required>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div class="type-vestimenta">
+                <!-- Vestimenta -->
+                <section class="type-vestimenta">
                     <h3 class="title-vestimenta">Vestimenta Exigida</h3>
                     <div class="vestimenta-buttons">
                         <!-- Opção 1 (Já inicia marcada por padrão com 'checked') -->
@@ -84,16 +89,15 @@
                         <input type="radio" id="vestimenta-casual" name="vestimenta" value="casual">
                         <label for="vestimenta-casual">Casual</label>
                     </div>
-                </div>
+                </section>
 
-                <div class="descricao">
+                <!-- Descrição -->
+                <section class="descricao">
                     <h3 class="title-descricao">Descrição Serviço</h3>
-                    <div>
-                        <input type="text" rows="4" class="input-descricao" id="description">
-                    </div>
-                </div>
+                    <textarea class="input-descricao" id="description" placeholder="Descreva os detalhes do trabalho..."></textarea>
+                </section>
 
-                <button class="btn-publicar" onclick="enviarDadosParaOBackendSolicitar(event, 'vestimenta')">Publicar Serviço</button>
+                <button class="btn btn-dark" onclick="enviarDadosParaOBackendSolicitar(event, 'vestimenta')">Publicar Serviço</button>
             </div>
         </div>
     </div>

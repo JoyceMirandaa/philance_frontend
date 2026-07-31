@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil da Empresa</title>
+    <title>Philance | Perfil</title>
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/perfil.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Idiqlat:wght@200;300;400&display=swap" rel="stylesheet"> <!-- Fonte Idiqlat -->
 </head>
 <body>
     <div id="space-navbar"></div>
-    <div class="background"></div>
 
+    <section class="banner">
+        <div class="banner-wave" aria-hidden="true"></div>
+    </section>
+    
     <!-- Profile -->
     <div class="profile-container">
         <div class="profile-header">
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <a href="/src/pages/perfil/editarPerfil.html">
-                <button class="edit-profile-btn" onclick="enviarDadosParaOBackendPerfil(event)">Editar perfil</button>
+                <button class="btn btn-dark" onclick="enviarDadosParaOBackendPerfil(event)">Editar perfil</button>
             </a>
         </div>
 
