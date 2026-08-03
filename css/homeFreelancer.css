@@ -296,8 +296,10 @@ button {
     align-items: flex-end;
     justify-content: space-between;
     gap: 10px;
-    height: 100px;
+    height: 150px;
+    margin: auto;
 }
+
 
 .barra-coluna {
     flex: 1;

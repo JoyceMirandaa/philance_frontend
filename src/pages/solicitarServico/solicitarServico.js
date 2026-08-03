@@ -1,3 +1,25 @@
+const usuarioLogadoString = localStorage.getItem("dadosFormulario");
+
+if (usuarioLogadoString) {
+    const usuarioLogado = JSON.parse(usuarioLogadoString);
+    const selectElement = document.getElementById("rua"); // Seu select
+
+    if (usuarioLogado.rua && selectElement) {
+        // Limpa opções anteriores
+        selectElement.innerHTML = '<option value="">Selecione o endereço...</option>';
+
+        // Cria a opção com a rua do usuário logado
+        const option = document.createElement("option");
+        option.value = usuarioLogado.rua;
+        option.textContent = `Meu Endereço: ${usuarioLogado.rua}`;
+        option.selected = true; // Deixa ela já selecionada
+        
+        selectElement.appendChild(option);
+    }
+}
+
+
+
 async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
     if (event) event.preventDefault();
 
@@ -9,12 +31,9 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
       return;
     }
     
-    // Converte a string do localStorage de volta para um objeto JavaScript
-    const usuarioLogado = JSON.parse(usuarioLogadoString);
-    console.log("Dados do usuário logado recuperados:", usuarioLogado);
 
 
-    const description = document.querySelector('#description');
+    const description = document.querySelector('#description').value;
     const payment = document.querySelector('#payment');
     const min_age = document.querySelector('#min_age');
 
@@ -30,12 +49,13 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
     const dadosSolicitar = {
         title: tags,
         id: usuarioLogado.id,
-        id_address: "44039688-b34a-4745-9ba4-825d47770012",
+        id_address: usuarioLogado.id_address,
         description: description.value,
         payment: payment.value,
         min_age: min_age.value,
         attire: valorEnviado,
-        tag: tags
+        tag: tags,
+
     };
 
     try {

@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -85,41 +87,7 @@
         <article class="estatistica-card ">
             <h3 class="grafico-titulo">Relatório de Serviços</h3>
             <div class="grafico-barras">
-                <div class="barra-coluna">
-                    <span class="barra-valor">5</span>
-                    <div class="barra" style="height: 33%;"></div>
-                    <span class="barra-label">Seg</span>
-                </div>
-                <div class="barra-coluna">
-                    <span class="barra-valor">10</span>
-                    <div class="barra" style="height: 67%;"></div>
-                    <span class="barra-label">Ter</span>
-                </div>
-                <div class="barra-coluna">
-                    <span class="barra-valor">15</span>
-                    <div class="barra" style="height: 100%;"></div>
-                    <span class="barra-label">Qua</span>
-                </div>
-                <div class="barra-coluna">
-                    <span class="barra-valor">7</span>
-                    <div class="barra" style="height: 47%;"></div>
-                    <span class="barra-label">Qui</span>
-                </div>
-                <div class="barra-coluna">
-                    <span class="barra-valor">12</span>
-                    <div class="barra" style="height: 80%;"></div>
-                    <span class="barra-label">Sex</span>
-                </div>
-                <div class="barra-coluna">
-                    <span class="barra-valor">5</span>
-                    <div class="barra" style="height: 33%;"></div>
-                    <span class="barra-label">Sáb</span>
-                </div>
-                <div class="barra-coluna">
-                    <span class="barra-valor">3</span>
-                    <div class="barra" style="height: 20%;"></div>
-                    <span class="barra-label">Dom</span>
-                </div>
+                <canvas class="grafico" id="meuGrafico"></canvas>
             </div>
         </article>
 
@@ -189,7 +157,7 @@
 
         </div>
     </section>
-
+    <script src="/src/pages/Home/freelancer/homefreelancer.js"></script>
     <script src="/src/componentes/navbar/navbar.js"></script>
     <script>
         carregarNavbarHomeFreelancer();

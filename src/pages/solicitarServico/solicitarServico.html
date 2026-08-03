@@ -36,12 +36,10 @@
                 </section>
             
                 <!-- Endereço -->
-                <section class="addresses">
-                    <div class="rua-servico">
-                        <h2 class="title-rua" >Endereço do Serviço</h2>
-                        <input type="text" id="rua" class="input-rua">
-                    </div>
-                </section>
+                <label for="lista-enderecos" class="title-rua">Escolha um endereço:</label>
+                <select id="lista-enderecos" class="input-rua">
+                    <option value="" class="input-rua" >Selecione...</option>
+                </select>
 
                 <!-- Horário e Idade -->
                 <section class="horario-idade">
@@ -102,7 +100,12 @@
         </div>
     </div>
 
+    
+
+
+
     </div>
+    <script src="/src/pages/solicitarServico/solicitarServico.js"></script>
     <script>
         document.querySelectorAll('.tags-buttons input[type="radio"]').forEach(radio => {
             radio.addEventListener('click', function() {
@@ -117,7 +120,7 @@
             });
         });
     </script>
-    <script src="/src/pages/solicitarServico/solicitarServico.js"></script>
+    
 </body>
 <script src="/src/componentes/navbar/navbar.js"></script>
 <script>
