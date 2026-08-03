@@ -149,15 +149,28 @@ body {
     gap: 6px;
 }
 
-.btn {
+.buttons{
     display: flex;
+    justify-content: center;
+    align-items: center;     
+    gap: 16px;               
+    width: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn {
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 230px;
+    padding: 12px 50px;
     border-radius: 999px;
     font-size: 14px;
     font-weight: 700;
     transition: transform .12s ease, opacity .12s ease, background .12s ease;
+    background: #FFFFFF;
 }
 
 .btn:hover { 
@@ -167,13 +180,26 @@ body {
     transform: translateY(0); 
 }
 
+
 .btn-dark {
-    background: #1F3D2B;
-    color: #fff;
+  background: #1F3D2B;
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(10,25,15,.10);
 }
 .btn-dark:hover { 
-    opacity: .9; 
+  opacity: .9; 
 }
+
+.btn-light {
+  background: #FFFFFF;
+  color: #1F3D2B;
+  box-shadow: 0 12px 26px rgba(10,25,15,.10);
+}
+.btn-light:hover { 
+  opacity: .9; 
+}
+
+
 
 .login-link {
     margin-top: 5px;
@@ -192,4 +218,13 @@ body {
 .login-link a.facaLogin:hover {
     color: #1F3D2B;
     text-decoration: underline;
+}
+
+/* Controle das Etapas do Formulário */
+.step {
+    display: none; /* Esconde todas as etapas por padrão */
+}
+
+.step.active {
+    display: block; /* Mostra apenas a etapa ativa */
 }
