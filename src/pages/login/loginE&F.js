@@ -1,7 +1,7 @@
 console.log("Arquivo empresaCadastro.js carregado isoladamente de sua pasta!");
 
 document.addEventListener("DOMContentLoaded", () => {
-    inicializarEventosDoCadastro();
+    inicializarEventosDoLogin();
 });
 
 

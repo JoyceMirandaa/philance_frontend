@@ -26,7 +26,7 @@
             <p>Preencha as informações para criar a sua conta</p>
         </div>
 
-        <form id="formCadastro">
+        
             <input type="hidden" id="letra-cadastro" name="tipo_usuario" value="F">
 
             <!-- Dados Pessoais -->
@@ -76,7 +76,7 @@
 
             <div class="inputs">
                 <label for="cep">CEP:</label>
-                <input id="cep" type="text" placeholder="00000-000" required>
+                <input type="text" id="cep" placeholder="00000-000" maxlength="9">
             </div>
 
             <!-- Grid para Rua, Número e Complemento -->
@@ -109,18 +109,16 @@
 
             <div class="inputs">
                 <label for="estado">Estado:</label>
-                <input id="estado" type="text" placeholder="UF" required>
+                <input id="uf" type="text" placeholder="UF" required>
             </div>
-
-            <button class="btn btn-dark" id="btnCadastrar" type="submit">Criar conta</button>
+        
+            <script type="module" src="/src/pages/cadastro/cadastroE&F.js"></script>
+            <button class="btn btn-dark" id="btnCadastro" type="submit">Cadastre-se</button>
         </form>
 
         <p class="login-link">
             Já tem conta? <a class="facaLogin" href="/src/pages/login/loginE&F.html">Faça login</a>
         </p>
-
     </main>
-
-    <script type="module" src="/src/pages/cadastro/cadastroE&F.js"></script>
 </body>
 </html>
