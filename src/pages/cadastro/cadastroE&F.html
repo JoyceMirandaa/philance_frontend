@@ -37,9 +37,13 @@
                     <input id="username" type="text" placeholder="Digite seu nome completo" required>
                 </div>
 
-                <div id="campos-freelancer-cadastro" class="secao-cadastro inputs">
-                    <label for="date">Data de Nascimento:</label>
-                    <input type="date" id="date" required>
+                <div id="campo-data-freelancer-cadastro" class="secao-cadastro inputs">
+                    <label for="date">Data de Nascimento</label>
+                    <input type="date" id="date-nascimento" required>
+                </div>
+                <div id="campo-data-empresa-cadastro" class="secao-cadastro escondido inputs">
+                    <label for="date">Data de Criação da Empresa</label>
+                    <input type="date" id="date-criacao" required>
                 </div>
 
                 <div class="inputs">
@@ -53,14 +57,14 @@
                 </div>
 
                 <!-- (CPF / CNPJ) -->
-                <div id="campos-freelancer-cadastro" class="secao-cadastro inputs">
+                <div id="campo-cpf-freelancer-cadastro" class="secao-cadastro inputs">
                     <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf" placeholder="000.000.000-00">
+                    <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14">
                 </div>
-
-                <div id="campos-empresa-cadastro" class="secao-cadastro escondido inputs">
+            
+                <div id="campo-cnpj-empresa-cadastro" class="secao-cadastro escondido inputs">
                     <label for="cnpj">CNPJ:</label>
-                    <input type="text" id="cnpj" placeholder="00.000.000/0001-00">
+                    <input type="text" id="cnpj" placeholder="00.000.000/0001-00" maxlength="18">
                 </div>
 
                 <div class="inputs">

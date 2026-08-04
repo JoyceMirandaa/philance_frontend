@@ -20,8 +20,10 @@ document.addEventListener('click', (event) => {
     if (!botaoClicado) return;
 
     // Busca os elementos dinamicamente para evitar erro caso não existam no carregamento
-    const secaoFreelancer = document.getElementById('campos-freelancer-cadastro');
-    const secaoEmpresa = document.getElementById('campos-empresa-cadastro');
+    const secaoFreelancer = document.getElementById('campo-data-freelancer-cadastro');
+    const secaoEmpresa = document.getElementById('campo-data-empresa-cadastro');
+    const secaoFreelancercpf = document.getElementById('campo-cpf-freelancer-cadastro');
+    const secaoEmpresacnpj = document.getElementById('campo-cnpj-empresa-cadastro');
 
     const botoesSwitch = document.querySelectorAll('.switch-btn');
     botoesSwitch.forEach(b => b.classList.remove('ativo'));
@@ -35,9 +37,14 @@ document.addEventListener('click', (event) => {
     if (tipoSelecionado === 'F') {
         secaoFreelancer?.classList.remove('escondido');
         secaoEmpresa?.classList.add('escondido');
+        secaoFreelancercpf?.classList.remove('escondido');
+        secaoEmpresacnpj?.classList.add('escondido');
+        
     } else if (tipoSelecionado === 'E') {
         secaoEmpresa?.classList.remove('escondido');
         secaoFreelancer?.classList.add('escondido');
+        secaoEmpresacnpj?.classList.remove('escondido');
+        secaoFreelancercpf?.classList.add('escondido');
     }
 });
 
@@ -103,7 +110,8 @@ async function enviarDadosParaOBackend(event) {
     const emailInput = document.getElementById('email');
     const senhaInput = document.getElementById('password');
     const phoneInput = document.getElementById('phone');
-    const nascimentoInput = document.getElementById('date');
+    const nascimentoInput = document.getElementById('date-nascimento');
+    const criacaoInput = document.getElementById('date-criacao')
 
     const ruaInput = document.getElementById('rua');
     const numeroInput = document.getElementById('numero');
@@ -123,11 +131,14 @@ async function enviarDadosParaOBackend(event) {
 
     // 1. Obtenção segura e sanitização da String
     let documentoValue = "";
+    let dateValue = "";
 
-    if (tipoUsuarioAtual === 'F' && cpfInput) {
+    if (tipoUsuarioAtual === 'F' && cpfInput && nascimentoInput) {
         documentoValue = String(cpfInput.value).trim();
-    } else if (tipoUsuarioAtual === 'E' && cnpjInput) {
+        dateValue = String(nascimentoInput.value).trim();
+    } else if (tipoUsuarioAtual === 'E' && cnpjInput && criacaoInput) {
         documentoValue = String(cnpjInput.value).trim();
+        dateValue = String(criacaoInput.value).trim();
     }
 
     // 2. Montagem do objeto JSON que vai para o backend
@@ -135,7 +146,7 @@ async function enviarDadosParaOBackend(event) {
         username: usernameInput.value.trim(),
         email: emailInput.value.trim(),
         phone: phoneInput?.value || "",
-        birthday: nascimentoInput?.value || "",
+        birthday: dateValue,
         type: tipoUsuarioAtual,
         password: passwordHashed,
         document: documentoValue,  // Enviado como String
