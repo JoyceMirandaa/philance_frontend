@@ -1,61 +1,106 @@
-const usuarioLogadoString = localStorage.getItem("dadosFormulario");
+// Executa as funções de inicialização assim que a página carrega
+document.addEventListener("DOMContentLoaded", () => {
+    configurarEnderecoUsuario();
+    carregarTagsDoBackend();
+});
 
-if (usuarioLogadoString) {
-    const usuarioLogado = JSON.parse(usuarioLogadoString);
-    const selectElement = document.getElementById("rua"); // Seu select
 
-    if (usuarioLogado.rua && selectElement) {
-        // Limpa opções anteriores
-        selectElement.innerHTML = '<option value="">Selecione o endereço...</option>';
+function configurarEnderecoUsuario() {
+    const usuarioLogadoString = localStorage.getItem("dadosFormulario");
+    if (usuarioLogadoString) {
+        const usuarioLogado = JSON.parse(usuarioLogadoString);
+        const selectElement = document.getElementById("rua");
 
-        // Cria a opção com a rua do usuário logado
-        const option = document.createElement("option");
-        option.value = usuarioLogado.rua;
-        option.textContent = `Meu Endereço: ${usuarioLogado.rua}`;
-        option.selected = true; // Deixa ela já selecionada
-        
-        selectElement.appendChild(option);
+        if (selectElement && usuarioLogado.address) {
+            selectElement.innerHTML = '<option value="">Selecione o endereço...</option>';
+            const option = document.createElement("option");
+            option.value = usuarioLogado.address.id; 
+            option.textContent = `${usuarioLogado.address.street}, ${usuarioLogado.address.number}`;
+            option.selected = true; 
+            selectElement.appendChild(option);
+        }
     }
 }
 
+async function carregarTagsDoBackend() {
+    const selectTags = document.getElementById('tags');
+    if (!selectTags) return;
 
+    try {
+        const resposta = await fetch('http://localhost:8080/list-tags'); 
+        
+        if (!resposta.ok) throw new Error('Erro ao buscar tags do servidor');
+
+        const listaDeTags = await resposta.json(); // Espera receber uma Array do backend
+
+        // Limpa o "Carregando..." e define a opção padrão
+        selectTags.innerHTML = '<option value="">Selecione uma tag...</option>';
+
+        // Preenche o select com as tags vindas do banco
+        listaDeTags.forEach(tag => {
+            const option = document.createElement("option");
+            
+            option.value = tag.id;    
+            option.textContent = tag.name_tag; 
+            
+            selectTags.appendChild(option);
+        });
+
+    } catch (erro) {
+        console.error('Erro ao carregar tags:', erro);
+        selectTags.innerHTML = '<option value="">Erro ao carregar tags</option>';
+    }
+}
 
 async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
     if (event) event.preventDefault();
 
-    // 1. PEGA OS DADOS DO USUÁRIO QUE JÁ ESTÃO GUARDADOS NO LOCALSTORAGE
-    const usuarioLogadoString = localStorage.getItem("dadosFormulario");
+    const dadosLocalStorage = localStorage.getItem("dadosFormulario");
     
-    if (!usuarioLogadoString) {
+    if (!dadosLocalStorage) {
       alert("Usuário não está logado!");
       return;
     }
-    
+
+    // CORREÇÃO 1: Converter a string do localStorage em objeto para poder acessar .id e .address
+    const usuarioLogado = JSON.parse(dadosLocalStorage);
+
+    const campoDescription = document.getElementById('description');
+    const campoPayment = document.getElementById('payment');
+    const campoMinAge = document.getElementById('min_age');
+    const campoTags = document.getElementById('tags');
+    const campoTermino = document.getElementById('termino');
+    const campoInicio = document.getElementById('inicio');
 
 
-    const description = document.querySelector('#description').value;
-    const payment = document.querySelector('#payment');
-    const min_age = document.querySelector('#min_age');
+    const idTagSelecionada = campoTags ? campoTags.value : "";
 
-     // Busca o elemento selecionado dentro do grupo 'opcaoEnvio'
+    const nomeTagSelecionada = campoTags && campoTags.selectedIndex >= 0 ? campoTags.options[campoTags.selectedIndex].text : "";
+
+    if (!idTagSelecionada) {
+        alert("Por favor, selecione uma tag válida.");
+        return;
+    }
+
     const radioSelecionado = document.querySelector(`input[name="${nomeDogrupo}"]:checked`);
-    const radioTags = document.querySelector(`input[name="${nomeTags}"]:checked`);
+    const valorEnviado = radioSelecionado ? radioSelecionado.value : "";
 
-    const valorEnviado = radioSelecionado.value;
-    const tags = radioTags.value;
+    if (!campoDescription || !campoPayment || !campoMinAge) {
+        console.error("Erro: Um ou mais campos não foram encontrados no HTML. Verifique os IDs!");
+    }
 
-    console.log(valorEnviado, tags)
-
+    // CORREÇÃO 3: Uso das variáveis do objeto correto 'usuarioLogado' e checagem de segurança nas propriedades
     const dadosSolicitar = {
-        title: tags,
-        id: usuarioLogado.id,
-        id_address: usuarioLogado.id_address,
-        description: description.value,
-        payment: payment.value,
-        min_age: min_age.value,
+        id_company: usuarioLogado?.id || "",
+        id_address: usuarioLogado?.address?.id || "", 
+        title: nomeTagSelecionada, // Envia a tag selecionada
+        description: campoDescription ? campoDescription.value : "", 
+        payment: campoPayment ? campoPayment.value : "",
+        min_age: campoMinAge ? campoMinAge.value : "",
         attire: valorEnviado,
-        tag: tags,
-
+        id_tag: idTagSelecionada,
+        start_hour: campoInicio ? campoInicio.value : "",
+        finish_hour: campoTermino ? campoTermino.value : ""
     };
 
     try {
@@ -67,12 +112,14 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
 
         if (respostalogin.ok) {
             alert('Sucesso! Salvo no MySQL.');
-            document.getElementById("modal-container").close();
+            
+            const modal = document.getElementById("modal-container");
+            if (modal && typeof modal.close === "function") modal.close();
 
             console.log(dadosSolicitar);
                     
-            const usuarioLogado = await respostalogin.json();
-            localStorage.setItem("dadosSolicitar", JSON.stringify(usuarioLogado));
+            const respostaDados = await respostalogin.json();
+            localStorage.setItem("dadosSolicitar", JSON.stringify(respostaDados));
 
             window.location.href = "/src/pages/Home/empresa/home.html"; 
         } else {
@@ -81,6 +128,7 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
         }
     } catch (erro) {
         console.error('Erro:', erro);
+        console.log(dadosSolicitar);
     }
-
 }
+

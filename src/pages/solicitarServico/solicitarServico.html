@@ -18,35 +18,32 @@
         <div class="container-form">
             <div class="infos">
                 <!-- Tags -->
-                <section class="area-tags">
-                    <h3 class="title-tags">Área/Tags</h3>
-                    <div class="tags-buttons">
-                        <input type="radio" id="garcom-tags" name="tags-garcom" value="garcom" checked>
-                        <label for="garcom-tags">Garçom</label>
-
-                        <input type="radio" id="dev-tags" name="tags-dev" value="dev">
-                        <label for="dev-tags">Dev</label>
-
-                        <input type="radio" id="entrega-tags" name="tags-entrega" value="entrega">
-                        <label for="entrega-tags">Entrega</label>
-                        
-                        <input type="radio" id="atedimento-tags" name="tags-atedimento" value="atedimento">
-                        <label for="atedimento-tags">Atedimento</label>
-                    </div>
-                </section>
+                <div class="form-group">
+                    <label for="tags">Categoria / Tag do Serviço:</label>
+                    <select id="tags" name="tags" required>
+                        <option value="">Carregando tags...</option>
+                    </select>
+                </div>
             
                 <!-- Endereço -->
-                <label for="lista-enderecos" class="title-rua">Escolha um endereço:</label>
-                <select id="lista-enderecos" class="input-rua">
-                    <option value="" class="input-rua" >Selecione...</option>
+                <label for="rua">Escolha o endereço:</label>
+                <select id="rua">
+                    <option value="">Selecione o endereço...</option>
                 </select>
 
                 <!-- Horário e Idade -->
                 <section class="horario-idade">
                     <div class="horario-dia">
                         <div class="horario">
-                            <h2 class="title-horario" >Horário/Dia</h2>
-                            <input type="datetime-local" id="horario" class="input-horario">
+                            <h2 class="title-horario" >Horário do Início</h2>
+                            <input type="datetime-local" id="inicio" class="input-horario">
+                        </div>
+                    </div>
+
+                    <div class="horario-dia">
+                        <div class="horario">
+                            <h2 class="title-horario" >Horário de Termino</h2>
+                            <input type="datetime-local" id="termino" class="input-horario">
                         </div>
                     </div>
 
@@ -60,13 +57,6 @@
 
                 <!-- Duração e Pagamento -->
                 <section class="duracao-pagamento">
-                    <div class="duracao-container">
-                        <div class="duracao">
-                            <h2 class="title-duracao" >Duração</h2>
-                            <input type="time" id="horario" class="input-duracao" required>
-                        </div>
-                    </div>
-
                     <div class="pagamento-container">
                         <div class="pagamento">
                             <h2 class="title-pagamento" >Valor do Pagamento</h2>
@@ -99,10 +89,6 @@
             </div>
         </div>
     </div>
-
-    
-
-
 
     </div>
     <script src="/src/pages/solicitarServico/solicitarServico.js"></script>
