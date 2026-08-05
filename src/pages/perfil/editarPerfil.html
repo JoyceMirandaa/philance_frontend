@@ -9,13 +9,16 @@
 </head>
 <body>
     <div id="space-navbar"></div>
-    <div class="background"></div>
+
+    <section class="banner">
+        <div class="banner-wave" aria-hidden="true"></div>
+    </section>
 
     <form id="form-editar-perfil">
 
-        <!-- Seu bloco de perfil atual (que você mandou no print) -->
+        <!-- Profile -->
         <div class="profile-container">
-            <div class="profile-header">
+            <section class="profile-header">
                 <div class="brand-group">
                     <div class="profile-avatar">
                         <label for="file-input">
@@ -32,46 +35,72 @@
                         <a class="location">Curitiba, PR</a>
                     </div>
                 </div>
-            </div>
+            </section>
             <hr class="linha-solid">
 
             <h2>Editar Perfil</h2>
+
+            <section class="personal">
+                <h3>Dados Pessoais</h3>
+                <div class="inputs">
+                    <label for="username">Nome:</label>
+                    <input id="username" type="text" required>
+                </div>
+
+                <div class="inputs">
+                    <label for="email">Email:</label>
+                    <input id="email" type="email" required>
+                </div>
+
+                <div class="inputs">
+                    <label for="password">Senha:</label>
+                    <input id="password" type="password" required> 
+                </div>
+
+                <div class="inputs">
+                    <label for="phone">Telefone:</label>
+                    <input id="phone" type="tel" required>
+                </div>
+                <!-- Fazer as Tags -->
+            </section>
             
-            <h3>Endereço</h3>
-            <div class="inputs">
-                <label>CEP:</label>
-                <input id="cep" type="text" required>
-            </div>
+            <section class="address">
+                <h3>Endereço</h3>
+                <div class="inputs">
+                    <label for="cep">CEP:</label>
+                    <input id="cep" type="text" required>
+                </div>
 
-            <div class="Rua">
-                <label>Rua:</label>
-                <input id="rua" type="text" required>
+                <div class="rua-grid">
+                    <label for="rua">Rua:</label>
+                    <input id="rua" type="text" required>
 
-                <label>Número:</label>
-                <input id="numero" type="text" required>
+                    <label for="numero">Número:</label>
+                    <input id="numero" type="text" required>
 
-                <label>Complemento:</label>
-                <input id="complemento" type="text" required>
-            </div>
+                    <label for="complemento">Complemento:</label>
+                    <input id="complemento" type="text" required>
+                </div>
 
-            <div class="inputs">
-                <label>Bairro:</label>
-                <input id="bairro" type="text" required>
-            </div>
+                <div class="inputs">
+                    <label for="bairro">Bairro:</label>
+                    <input id="bairro" type="text" required>
+                </div>
 
-            <div class="inputs">
-                <label>Cidade:</label>
-                <input id="cidade" type="text" required>
-            </div>
+                <div class="inputs">
+                    <label for="cidade">Cidade:</label>
+                    <input id="cidade" type="text" required>
+                </div>
 
-            <div class="inputs">
-                <label>Estado:</label>
-                <input id="estado" type="text" required>
-            </div>
+                <div class="inputs">
+                    <label for="estado">Estado:</label>
+                    <input id="estado" type="text" required>
+                </div>
+            </section>
         </div>
 
         <div class="actions-container">
-            <button type="submit" id="btn-salvar"  onclick="enviarDadosParaOBackendEditar(event)">Salvar Perfil</button>
+            <button class="btn btn-dark" type="submit" id="btn-salvar"  onclick="enviarDadosParaOBackendEditar(event)">Salvar Perfil</button>
         </div>
 
     </form>
