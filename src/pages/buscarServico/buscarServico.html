@@ -6,43 +6,31 @@
     <title>Philance | Buscar Serviço</title>
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/buscarServico.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 <body>
     <div id="space-navbar"></div>
     <div class="fundos">
         <div class="white">
-            <div class="area-tags">
-            <h3 class="title-tags">Filtro</h3>
-                <div class="tags-buttons">
-                    <input type="radio" id="garcom-tags" name="tags-garcom" value="garcom" checked>
-                    <label for="garcom-tags">Área/Tags</label>
+            <section class="title-filtro"> 
+                <button id="botao-perfil" class="foto-perfil-btn">
+                    <img class="filter" src="/assets/imagens/filter.png" alt="filter">
+                </button>
 
-                    <input type="radio" id="dev-tags" name="tags-dev" value="dev">
-                    <label for="dev-tags">Horario</label>
-
-                    <input type="radio" id="entrega-tags" name="tags-entrega" value="entrega">
-                    <label for="entrega-tags">Duração</label>
+                <h2>Recomendados para você</h2>
+                <div id="menu-suspenso" class="dropdown-menu escondido">
                     
-                    <input type="radio" id="atedimento-tags" name="tags-atedimento" value="atedimento">
-                    <label for="atedimento-tags">Pagamento</label>
                 </div>
-            </div>
 
-            <div class="card-servicos">
+            </section>
 
-            </div>
 
-            <div class="card-servicos">
-
-            </div>
-
-            <div class="card-servicos">
-
-            </div>
-
-            <div class="card-servicos">
-
-            </div>
+            <div class="card-servico" id="card-servico"></div>
         </div>
 
         <div class="green">
@@ -62,9 +50,9 @@
                     this.wasChecked = true;
                 }
             });
-        });a
+        });
     </script>
-    <script src="/src/pages/solicitarServico/solicitarServico.js"></script>
+    <script src="/src/pages/buscarServico/buscarServico.js"></script>
 </body>
 <script src="/src/componentes/navbar/navbar.js"></script>
 <script>
