@@ -1,0 +1,230 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #1C2A1E;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+
+    background:
+    radial-gradient(680px circle at 20% -15%, rgba(255,255,255,.24), transparent 60%),
+    radial-gradient(560px circle at 92% 120%, rgba(15,30,20,.4), transparent 60%),
+    radial-gradient(rgba(255,255,255,.12) 1px, transparent 1.6px) 0 0/26px 26px,
+    linear-gradient(120deg, #35603F 0%, #4E8B5A 45%, #82BB80 100%);
+}
+
+/* Container do Formulário de Cadastro */
+.cadastro-container {
+    background: #FFFFFF;
+    width: 100%;
+    max-width: 620px;
+    border: 1px solid #ECEAE0;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 12px 32px rgba(31, 61, 43, 0.05);
+}
+
+/* Estilos do Botão Alternador */
+.switch-container {
+    display: flex;
+    background: #F6F5EF;
+    border: 1px solid #ECEAE0;
+    border-radius: 999px;
+    padding: 4px;
+    margin-bottom: 28px;
+}
+
+.switch-btn {
+    flex: 1;
+    padding: 12px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #6B7A6D;
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.switch-btn:hover {
+    color: #1F3D2B;
+}
+
+.switch-btn.ativo {
+    background: #1F3D2B;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(31, 61, 43, 0.15);
+}
+
+/* Titulos */
+
+.title-description {
+    text-align: start;
+    margin-bottom: 32px;
+}
+
+/* Esconde a seção que não deve aparecer */
+.secao-cadastro.escondido {
+    display: none;
+}
+
+.title-description h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1F3D2B;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+.title-description p {
+    font-size: 15px;
+    color: #6B7A6D;
+}
+
+/* Endereço */
+.cadastro-container h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1F3D2B;
+    margin: 28px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ECEAE0;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.inputs label,
+.rua-grid label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1F3D2B;
+}
+
+.inputs input,
+.rua-grid input {
+    width: 100%;
+    height: 46px;
+    padding: 0 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #6B7A6D;
+    border: solid 1px;
+    border-radius: 12px;
+}
+
+.inputs input:focus,
+.rua-grid input:focus {
+    border-color: #1F3D2B;
+}  
+
+.inputs input::placeholder,
+.rua-grid input::placeholder {
+    color: #A3B0A5;
+}
+
+.rua-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.rua-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+    gap: 16px;               
+    width: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 50px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: transform .12s ease, opacity .12s ease, background .12s ease;
+    background: #FFFFFF;
+}
+
+.btn:hover { 
+    transform: translateY(-1px); 
+}
+.btn:active { 
+    transform: translateY(0); 
+}
+
+
+.btn-dark {
+  background: #1F3D2B;
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(10,25,15,.10);
+}
+.btn-dark:hover { 
+  opacity: .9; 
+}
+
+.btn-light {
+  background: #FFFFFF;
+  color: #1F3D2B;
+  box-shadow: 0 12px 26px rgba(10,25,15,.10);
+}
+.btn-light:hover { 
+  opacity: .9; 
+}
+
+
+
+.login-link {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 14px;
+    color: #6B7A6D;
+}
+
+.login-link a.facaLogin {
+    color: #4E8B5A;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.login-link a.facaLogin:hover {
+    color: #1F3D2B;
+    text-decoration: underline;
+}
+
+/* Controle das Etapas do Formulário */
+.step {
+    display: none; /* Esconde todas as etapas por padrão */
+}
+
+.step.active {
+    display: block; /* Mostra apenas a etapa ativa */
+}
