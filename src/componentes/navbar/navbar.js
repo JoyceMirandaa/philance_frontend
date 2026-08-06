@@ -3,7 +3,7 @@ function carregarNavbarHome(){
         <nav class="navbar nav-home">
             <div class="logo"><img src="/assets/imagens/PhilanceHome.png"> </div>
             <ul class "nav-links">
-                <button class="button-login" onclick="window.location.href='/src/pages/login/loginE&F.html'">Entrar</button>
+                <button class="btn btn-light" onclick="window.location.href='/src/pages/login/loginE&F.html'">Entrar</button>
                 <button class= "btn btn-dark" onclick="window.location.href='/src/pages/cadastro/cadastroE&F.html'">Cadastre-se</button>
             </ul>
         </nav>

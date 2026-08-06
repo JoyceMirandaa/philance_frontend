@@ -70,6 +70,17 @@ img{
     justify-content: center;
     gap: 8px;
 }
+
+.btn-light {
+  background: #FFFFFF;
+  color: #1F3D2B;
+  box-shadow: 0 12px 26px rgba(10,25,15,.10);
+  border: 1.5px solid #1F3D2B;
+}
+.btn-light:hover { 
+  opacity: .9; 
+}
+
 .button-solicitar-servico{
     background-color: #ffffff;
     border-style: none;
@@ -169,3 +180,4 @@ img{
     color: #727272;
     font-size: 15px;
 }
+
