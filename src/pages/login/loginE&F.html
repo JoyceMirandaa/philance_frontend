@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - Philance</title>
-    <link rel="stylesheet" href="/css/login.css">
+    <title>Philance | Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/Login.css">
 </head>
 <body>
 
-    <div class="modal-conteudo">
+    <main class="login-container">
+
+        <!-- Switch -->
         <div class="switch-container">
             <button type="button" class="switch-button ativo" data-tipo="F">Sou freelancer</button>
             <button type="button" class="switch-button" data-tipo="E">Sou empresa</button>
@@ -16,30 +23,35 @@
         
         <div class="title-description">
             <h2>Bem-Vindo de Volta</h2>
-            <div id="campos-freelancer" class="secao-login">
-                <p>Entre na sua conta freelancer</p>
-            </div>
-            <div id="campos-empresa" class="secao-login escondido">
-                <p>Entre na sua conta empresa</p>
-            </div>
+            <p>Preencha as informações para acessar a sua conta</p>
+        </div>
+
+        <div id="campos-freelancer" class="secao-login">
+            <p>Entre na sua conta de freelancer</p>
+        </div>
+        <div id="campos-empresa" class="secao-login escondido">
+            <p>Entre na sua conta de empresa</p>
         </div>
 
         <input type="hidden" id="letra-cadastro" name="tipo_usuario" value="F">
 
+        <!-- Dados -->
         <div class="inputs">
             <label>Email:</label>
-            <input id="email" type="email" required>
+            <input id="email" type="email" placeholder="seuemail@exemplo.com" required>
         </div>
 
         <div class="inputs">
             <label>Senha:</label>
-            <input id="password" type="password" required>
+            <input id="password" type="password" placeholder="••••••••" required>
         </div>
 
         <script type="module" src="/src/pages/login/loginE&F.js"></script>
-        <button class="button-entrar" id="btnLogin" type="submit">Entrar</button>
+        <div class="buttons">
+            <button class="btn btn-dark" id="btnLogin" type="submit">Entrar</button>
+        </div>
 
-        <p>
+        <p class="cadastrar-link">
             Não tem uma conta? <a class="Cadastre-se" href="/src/pages/cadastro/cadastroE&F.html">Cadastre-se</a>
         </p>
 
