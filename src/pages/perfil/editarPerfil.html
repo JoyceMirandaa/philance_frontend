@@ -9,13 +9,16 @@
 </head>
 <body>
     <div id="space-navbar"></div>
-    <div class="background"></div>
+
+    <section class="banner">
+        <div class="banner-wave" aria-hidden="true"></div>
+    </section>
 
     <form id="form-editar-perfil">
 
-        <!-- Seu bloco de perfil atual (que você mandou no print) -->
+        <!-- Profile -->
         <div class="profile-container">
-            <div class="profile-header">
+            <section class="profile-header">
                 <div class="brand-group">
                     <div class="profile-avatar">
                         <label for="file-input">
@@ -32,47 +35,89 @@
                         <a class="location">Curitiba, PR</a>
                     </div>
                 </div>
-            </div>
+            </section>
             <hr class="linha-solid">
 
-            <h2>Editar Perfil</h2>
+            <h2>Dados Pessoais</h2>
+
+            <section class="personal">
+                
+                <div class="inputs">
+                    <label for="username">Nome:</label>
+                    <input id="username" type="text" required>
+                </div>
+
+                <div class="inputs">
+                    <label for="email">Email:</label>
+                    <input id="email" type="email" required>
+                </div>
+
+                <div class="inputs">
+                    <label for="password">Senha:</label>
+                    <input id="password" type="password" required> 
+                </div>
+
+                <div class="inputs">
+                    <label for="phone">Telefone:</label>
+                    <input id="phone" type="tel" required>
+                </div>
+
+                <div class="inputs">
+                    <label for="sobre">Sobre:</label>
+                    <textarea id="sobre"></textarea>
+                </div>
+                
+            </section>
             
-            <h3>Endereço</h3>
-            <div class="inputs">
-                <label>CEP:</label>
-                <input id="cep" type="text" required>
-            </div>
+            <h2>Endereço</h2>
 
-            <div class="Rua">
-                <label>Rua:</label>
-                <input id="rua" type="text" required>
+            <section class="address">
+                
+                <div class="inputs">
+                    <label for="cep">CEP:</label>
+                    <input id="cep" type="text" required>
+                </div>
 
-                <label>Número:</label>
-                <input id="numero" type="text" required>
+                <div class="inputs">
+                    <label for="estado">Estado:</label>
+                    <input id="estado" type="text" required>
+                </div>
+                    
+                <div class="inputs">
+                    <label for="rua">Rua:</label>
+                    <input id="rua" type="text" required>
+                </div>
+                    
+                <div class="inputs">
+                    <label for="cidade">Cidade:</label>
+                    <input id="cidade" type="text" required>
+                </div>
 
-                <label>Complemento:</label>
-                <input id="complemento" type="text" required>
-            </div>
+                <div class="rua-grid">
+                    <div class="inputs">
+                        <label for="numero">Número:</label>
+                        <input id="numero" type="text" required>
+                    </div>
 
-            <div class="inputs">
-                <label>Bairro:</label>
-                <input id="bairro" type="text" required>
-            </div>
+                    <div class="inputs">
+                        <label for="complemento">Complemento:</label>
+                        <input id="complemento" type="text" required>
+                    </div>
+                </div>
 
-            <div class="inputs">
-                <label>Cidade:</label>
-                <input id="cidade" type="text" required>
-            </div>
-
-            <div class="inputs">
-                <label>Estado:</label>
-                <input id="estado" type="text" required>
-            </div>
+                <div class="inputs">
+                    <label for="bairro">Bairro:</label>
+                    <input id="bairro" type="text" required>
+                </div>
+            </section>
         </div>
 
-        <div class="actions-container">
-            <button type="submit" id="btn-salvar"  onclick="enviarDadosParaOBackendEditar(event)">Salvar Perfil</button>
-        </div>
+        <div class="buttons">
+            <a href="/src/pages/perfil/perfilE&F.html">
+                <button type="button" class="btn btn-light">Voltar</button>
+            </a>
+            <button class="btn btn-dark" type="submit" id="btn-salvar"  onclick="enviarDadosParaOBackendEditar(event)">Salvar Perfil</button>
+        </div> 
 
     </form>
 
