@@ -55,9 +55,10 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    overflow: hidden;
     cursor: pointer;
-    border: 8px solid #ffffff; 
+    border: 6px solid #FFFFFF;
+    box-shadow: 0 0 0 1px #ECEAE0, 0 18px 34px rgba(20, 40, 25, .18);
+    background: #fff;
 }
 
 #profile-pic {
@@ -103,6 +104,13 @@ body {
     font-size: 13px;
     color: #9ca3af;
     margin: 0;
+    font-weight: 600;
+}
+
+.linha-solid {
+    border: none;
+    border-top: 1px solid #E4E2D6;
+    margin: 0 0 36px;
 }
 
 .btn {

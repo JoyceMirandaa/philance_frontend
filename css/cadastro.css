@@ -107,6 +107,22 @@ body {
     margin-bottom: 18px;
 }
 
+/* Sobre */
+.inputs textarea{
+    width: 100%;
+    height: 110px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #6B7A6D;
+
+    border: solid 1px;
+    border-radius: 12px;
+
+    padding: 14px 16px;
+    line-height: 1.5;
+    resize: vertical;
+}
+
 .inputs label,
 .rua-grid label {
     font-size: 13.5px;
@@ -149,12 +165,22 @@ body {
     gap: 6px;
 }
 
+/* Mensagem */
+
+.mensagem-css{
+    font-size: 13.5px;
+    color: red;
+}
+
+/* Botões */
+
 .buttons{
     display: flex;
     justify-content: center;
     align-items: center;     
     gap: 16px;               
     width: 100%;
+    margin-bottom: 10px;
 }
 
 a{

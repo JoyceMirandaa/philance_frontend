@@ -1,9 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
     min-height: 100vh;
+    
     background:
     radial-gradient(680px circle at 20% -15%, rgba(255,255,255,.24), transparent 60%),
     radial-gradient(560px circle at 92% 120%, rgba(15,30,20,.4), transparent 60%),
@@ -12,32 +19,30 @@ body {
 
 }
 
-/* Fundo */
-.background {
-    height: 100%;
+/* background do forms */
+.solicitar-container {
     width: 100%;
-    /* centraliza o conteúdo */
     display: flex;
     justify-content: center;
-    align-items: flex-start;               
-}
-
-.container-form {
-    width: 100%;
-    max-width: 840px;
+    padding: 72px 20px;              
 }
 
 /* Forms */
 .infos {
-    width: auto;
-    height: 794px;
-    max-width: 100%;
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 30px 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);                      
+    width: 1100px;
+    height: 620px;
+    background: #FFFFFF;
+    border: 1px solid #ECEAE0;
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(37, 73, 46, 0.116);
+    padding: 40px 45px 44px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 24px;                   
 }
 
+/* ------------------------ Estilo do botão radio ------------------------ */
 /* Esconde a bolinha padrão do Radio Button */
 .type-buttons input[type="radio"] {
     display: none;
@@ -62,31 +67,6 @@ body {
     background-color: #588E55; /* Cor verde aproximada da imagem */
     color: white;
     border-color: #163310;
-}
-
-/* Container principal */
-.area-tags {
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-left: 0px;
-}
-
-/* Título das seções */
-.title-tags,
-.title-vestimenta,
-.title-rua,
-.title-horario,
-.title-duracao,
-.title-pagamento,
-.title-idade,
-.title-descricao {
-    color: #4A5568;
-    font-size: 15px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 /* Esconde a bolinha padrão do Radio Button */
@@ -123,6 +103,7 @@ body {
 /* Grupo que junta os botões lado a lado */
 .tags-buttons,
 .vestimenta-buttons {
+    margin-top: 10px;
     display: flex;
     gap: 10px;
 }
@@ -157,82 +138,101 @@ body {
     color: white;
     border-color: #163310;
 }   
-    
-.type-vestimenta,
-.duracao-container,
-.horario-dia,
-.addresses
-.descricao{    
-    margin-left: 0px;    
-}    
-    
-.rua-vestimenta{    
-    display: flex;    
-    flex-direction: row;    
-}    
 
-/*Inputs*/
-input{
-    border-radius: 8px;
-    border-color: #1633108e;
-    background-color: #adc5a82f;
-    border-style: solid;
-    border-width: 0.5px;
-}
+/* ------------------------ ------------------------ */
 
-/* Inputs quando selecionado */
-input:focus {
-    border-color: #588E55;
-}
-
-.input-rua{
-    width: 760px;
-    height: 30px;
-}
-
-.input-horario,
-.input-idade,
-.input-duracao,
-.input-pagamento{
-    width: 300px;
-    height: 30px;
-}
-
-.horario-idade,
-.duracao-pagamento{
+/* div inputs */
+.inputs {
     display: flex;
-    gap: 20px;
-}
-
-.pagamento,
-.idade-minima{
-    margin-left: 155px;
-}
-
-/*Descrição*/
-.input-descricao{
-    width: 760px;
-    height: 130px;
-}
-
-/*Container descrição e tags*/
-.tags-descricao{
-    display: flex;
-    justify-content: space-between;
-}
-
-textarea {
-    border-radius: 8px;
-    border-color: #1633108e;
-    background-color: #adc5a82f;
-    border-style: solid;
-    border-width: 0.5px;
+    flex-direction: column;
+    gap: 8px;
     margin-bottom: 20px;
+    position: relative;
 }
 
+.inputs label{
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1F3D2B;
+}
 
+/* inputs */
+.inputs input{
+    width: 100%;
+    height: 46px;
+    padding: 0 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #6B7A6D;
+    border: solid 1px;
+    border-radius: 12px;
+}
+
+/* Sobre */
+.inputs textarea{
+    width: 100%;
+    height: 110px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #6B7A6D;
+
+    border: solid 1px;
+    border-radius: 12px;
+
+    padding: 14px 16px;
+    line-height: 1.5;
+    resize: vertical;
+}
+
+.inputs select{
+    width: 100%;
+    height: 46px;
+    padding: 0 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #6B7A6D;
+    border: solid 1px;
+    border-radius: 12px;
+}
+
+.inputs input:focus {
+    border-color: #1F3D2B;
+} 
+
+.inputs:has(#payment) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs:has(#payment)::after {
+  content: "R$";
+  position: absolute;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  bottom: 28px; /* Ajusta conforme a altura do input */
+  left: 12px;   /* Distância da borda esquerda */
+  color: #555;
+  font-weight: 300;
+  pointer-events: none; /* Permite clicar através do texto */
+}
+
+/* Cria o espaço para digitar a esquerda do R$ */
+.inputs #payment {
+  padding-left: 35px !important; 
+}
 
 /* ---------- Botões ---------- */
+
+.buttons{
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+    gap: 16px;               
+    width: 100%;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -260,3 +260,11 @@ textarea {
   opacity: .9; 
 }
 
+.btn-light {
+  background: #FFFFFF;
+  color: #1F3D2B;
+  box-shadow: 0 12px 26px rgba(10,25,15,.10);
+}
+.btn-light:hover { 
+  opacity: .9; 
+}

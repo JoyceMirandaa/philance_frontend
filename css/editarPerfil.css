@@ -5,15 +5,32 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-.background{    
-    background-image: linear-gradient(to right, #588E55, #75B966);
-    height: 180px;
-    width: 100%;
-}   
+.banner { /* fundo do banner */
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(680px circle at 20% -15%, rgba(255,255,255,.24), transparent 60%),
+        radial-gradient(560px circle at 92% 120%, rgba(15,30,20,.4), transparent 60%),
+        radial-gradient(rgba(255,255,255,.12) 1px, transparent 1.6px) 0 0/26px 26px,
+        linear-gradient(120deg, #35603F 0%, #4E8B5A 45%, #82BB80 100%);
+    padding: 64px 40px 170px;
+    text-align: center;
+}
+
+.banner-wave { /* ondinha do banner */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 56px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C240,90 480,0 720,42 C960,84 1200,12 1440,48 L1440,100 L0,100 Z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+} 
 
 /* Profile */
 .profile-container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 40px;
     position: relative;
@@ -23,7 +40,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-top: -80px; /* Sobe a logo para cima do banner */
+    margin-top: -100px; /* Sobe a logo para cima do banner */
     margin-bottom: 40px;
 }
 
@@ -38,29 +55,16 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    overflow: hidden;
     cursor: pointer;
-    border: 8px solid #ffffff; 
+    border: 6px solid #FFFFFF;
+    box-shadow: 0 0 0 1px #ECEAE0, 0 18px 34px rgba(20, 40, 25, .18);
+    background: #fff;
 }
 
 #profile-pic {
     width: 100%;
     height: 100%;
     object-fit: cover; 
-}
-
-.overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #588E55;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
 
 .profile-avatar:hover .overlay {
@@ -86,106 +90,129 @@ body {
     font-size: 13px;
     color: #9ca3af;
     margin: 0;
-}
-
-.edit-profile-btn { /* Botão */
-    /* Alinhamento */
-    align-self: flex-end;
-    margin-bottom: 5px;
-    
-    /* Cores e visual */
-    background-color: #e2ede0;
-    color: #2d4a29; 
-    border: 1px solid #c2dac0; 
-    
-    /* Tipografia e espaçamento */
-    padding: 10px 22px;
-    border-radius: 8px;
-    font-size: 14px;
     font-weight: 600;
-    cursor: pointer;
-    
-    /* Transição */
-    transition: all 0.2s ease-in-out;
 }
 
-.edit-profile-btn:hover { /* Botão */
-    background-color: #588e55; 
-    color: #ffffff; 
-    border-color: #588e55;
-    box-shadow: 0 4px 12px rgba(88, 142, 85, 0.2);
+/* Cards */
+.personal,
+.address {
+    background: #FFFFFF;
+    border: 1px solid #ECEAE0;
+    border-radius: 22px;
+    box-shadow: 0 16px 40px rgba(37, 73, 46, 0.116);
+    padding: 36px 40px 40px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 28px;
 }
 
-/* Statistics */
-.profile-stats {
-    display: flex;
-    gap: 80px;
-    margin-bottom: 40px;
-    padding-left: 5px;
-}
-
-.stat-item {
+.inputs {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
 }
 
-.stat-number {
-    font-size: 24px;
-    font-weight: 500;
-    color: #000000;
-}
-
-.stat-label {
-    font-size: 14px;
-    color: #9ca3af;
-}
-
-/* About */
-.profile-about { /* Linhas */
-    border-top: 1.5px solid #588E55;
-    border-bottom: 1.5px solid #588E55;
-    padding: 25px 5px;
-    margin-bottom: 50px;
-}
-
-.profile-about h2 {
-    font-size: 20px;
+.inputs label,
+.rua-grid label {
+    font-size: 13.5px;
     font-weight: 600;
-    margin: 0 0 15px 0;
-    color: #000000;
+    color: #1F3D2B;
 }
 
-.profile-about a {
+.inputs textarea{
+    width: 95%;
+    height: 90px;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
-    line-height: 1.6;
-    margin: 0;
-    text-align: justify;
+    color: #6B7A6D;
+
+    border: solid 1px;
+    border-radius: 12px;
 }
 
-.linha-solida {
-  border: none; 
-  border-top: 1px solid #588E55; 
-  margin: 20px 0; 
+.inputs input,
+.rua-grid input {
+    width: 90%;
+    height: 46px;
+    padding: 0 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #6B7A6D;
+
+    border: solid 1px;
+    border-radius: 12px;
 }
 
-label{
-    font-size: 12px;
+.inputs input:focus,
+.rua-grid input:focus {
+    border-color: #1F3D2B;
+}  
+
+.inputs input::placeholder,
+.rua-grid input::placeholder {
+    color: #A3B0A5;
 }
 
-input{
+.rua-grid {
+    display: inline-flex;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+    grid-template-rows: auto auto;
+    gap: 8px 55px;
+    margin-bottom: 22px;
+}
+
+.linha-solid {
+    border: none;
+    border-top: 1px solid #E4E2D6;
+    margin: 0 0 36px;
+}
+
+.buttons{
     display: flex;
-    width: 500px;
-    height: 25px;
-    background-color: #b8d7b293;
-    border-color: #86A081;
-    border-radius: 5px;
-    border-width: 1px;
-    border-style: solid;
-    color: #163310ab;
+    justify-content: center;
+    align-items: center;     
+    gap: 16px;               
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-.inputs{
-    margin-top: 5px;
-    padding: 5px;
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 50px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: transform .12s ease, opacity .12s ease, background .12s ease;
+    background: #FFFFFF;
+}
+
+.btn:hover { 
+    transform: translateY(-1px); 
+}
+.btn:active { 
+    transform: translateY(0); 
+}
+
+
+.btn-dark {
+  background: #1F3D2B;
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(10,25,15,.10);
+}
+.btn-dark:hover { 
+  opacity: .9; 
+}
+
+.btn-light {
+  background: #FFFFFF;
+  color: #1F3D2B;
+  box-shadow: 0 12px 26px rgba(10,25,15,.10);
+}
+.btn-light:hover { 
+  opacity: .9; 
 }
