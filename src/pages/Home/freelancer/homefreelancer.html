@@ -18,13 +18,13 @@
 
     <div id="space-navbar"></div>
     <!-- Banner -->
-    <section class="banner">
+    <section class="banner" id="banner">
         <div class="banner-interior">
             <div class="banner-text">
                 <h1>O que você vai trabalhar<br>em seguida?</h1>
                 <p>Serviços recomendados para o seu perfil</p>
                 <div class="banner-actions">
-                    <button class="btn btn-outline-light">
+                    <button class="btn btn-outline-light" id="btn-sortear">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         Encontrar serviço
                     </button>
@@ -32,6 +32,10 @@
                         <i class="fa-solid fa-filter"></i>
                     </button>
                 </div>
+            </div>
+
+            <div class="area-servico">
+                <p id="texto-servico"></p>
             </div>
         </div>
         <div class="banner-wave" aria-hidden="true"></div>
@@ -106,16 +110,14 @@
                 <div class="servico-coluna linha-vertical">
                     <div class="servico-avatar"></div>
                     <div class="servico-empresa">
-                        <h4>Italy Caffé <span class="servico-avaliacao"><i class="fa-solid fa-star"></i> 4.5</span></h4>
+                        <h4 id="title"><span class="servico-avaliacao"><i class="fa-solid fa-star"></i> 4.5</span></h4>
                         <span class="servico-local">Curitiba, PR</span>
                     </div>
-                    <span class="servico-contagem">
+                    <span class="servico-contagem" id="dia">
                         <span class="dot"></span> Faltam 2h até o serviço
                     </span>
-                    <h3 class="servico-funcao">Barista</h3>
                     <div class="servico-preco">
-                        <span class="servico-valor-hora">R$18/h</span>
-                        <span class="servico-valor-total">R$108 total (6h)</span>
+                        <span class="servico-valor-hora" id="pagamento">R$ </span>
                     </div>
                 </div>
 
@@ -123,34 +125,26 @@
                     <h4 class="servico-coluna-titulo">Informações</h4>
                     <div class="info-grade">
                         <div class="info-item">
-                            <span class="info-label">Tipo</span>
-                            <span class="info-valor">Por hora</span>
-                        </div>
-                        <div class="info-item">
                             <span class="info-label">Horário</span>
-                            <span class="info-valor">14h - 20h</span>
+                            <span class="info-valor" id="horario"></span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Duração</span>
-                            <span class="info-valor">6 horas</span>
+                            <span class="info-valor" id="duracao"></span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Idade mínima</span>
-                            <span class="info-valor">Sem restrição</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Endereço</span>
-                            <span class="info-valor">Praça Gen. Osório, 125</span>
+                            <span class="info-valor" id="idade"></span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Vestimenta</span>
-                            <span class="info-valor">Sem restrição</span>
+                            <span class="info-valor" id="vestimenta"></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="servico-coluna">
-                    <h4 class="servico-coluna-titulo">Descrição</h4>
+                    <h4 class="servico-coluna-titulo" id="descricao">Descrição</h4>
                     <p>Buscamos barista experiente para turno da tarde no Italy Café. Responsável pelo preparo de espresso, cappuccino e drinks especiais. Ambiente descontraído e equipe acolhedora.</p>
                 </div>
             </article>

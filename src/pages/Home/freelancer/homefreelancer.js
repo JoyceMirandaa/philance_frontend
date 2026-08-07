@@ -30,19 +30,21 @@ if (!dadosSalvosFormulario) {
 
 
 async function carregarServicosSolicitados() {
+    //Ai só troca a rota e adciona o que falta para o card do serviço aceitados quando o Antonio mudar o back =)
     try {
-        const respostaSolicitados = await fetch("http://localhost:8080/assignments");
-        
-        // Verifica se o servidor respondeu com status de sucesso (200-299)
-        if (!respostaSolicitados.ok) {
-            throw new Error(`Erro na requisição: ${respostaSolicitados.status}`);
+        const respostaSolicitados = await fetch("http://localhost:8080/all-assignments");
+
+       const servicosSolicitados = await respostaSolicitados.json();
+       console.log("Serviços solicitados carregados com sucesso:", servicosSolicitados);
+
+        // CORREÇÃO: Acessa o primeiro item da lista dentro de content
+        if (servicosSolicitados.content && servicosSolicitados.content.length > 0) {
+            document.getElementById("title").textContent = servicosSolicitados.content[0].title;
+        } else {
+            document.getElementById("title").textContent = "Nenhum serviço disponível";
         }
 
-        const servicosSolicitados = await respostaSolicitados.json();
-        console.log("Serviços solicitados carregados com sucesso:", servicosSolicitados);
-        
-        // Retorna os dados caso você precise usá-los em outra parte do código
-        return servicosSolicitados;
+return servicosSolicitados;;
 
     } catch (erro) {
         console.error("Não foi possível carregar os serviços da API:", erro);
@@ -74,4 +76,89 @@ const meuGrafico = new Chart(ctx, {
             }
         }
     }
+});
+
+
+const botao = document.getElementById('btn-sortear');
+const banner = document.getElementById('banner');
+const areaServico = document.querySelector('.area-servico'); 
+
+botao.addEventListener('click', async () => {
+  if (banner.classList.contains('expandido')) {
+    banner.classList.remove('expandido');
+    return;
+  }
+
+  try {
+    const resposta = await fetch("http://localhost:8080/random-assignment"); 
+    const dados = await resposta.json(); 
+
+     // 1. Trata as datas do back-end
+    const dataInicio = new Date(dados.startHour);
+    const dataFim = new Date(dados.finishHour);
+
+    // 2. Formata o dia e mês para o badge (ex: "03/09")
+    const diaMes = dataInicio.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+    
+    // 3. Pega apenas as horas de início e fim (ex: "14h" e "20h")
+    const horaInicio = dataInicio.getHours();
+    const horaFim = dataFim.getHours();
+
+    // 4. Calcula a duração total em horas
+    const duracaoHoras = Math.round((dataFim - dataInicio) / (1000 * 60 * 60));
+
+   
+    areaServico.innerHTML = `
+        <article class="servicoAleatorio-card">
+            <div class="servico-coluna linha-vertical">
+                <div class="servico-avatar"></div>
+                <div class="title-empresa">
+                    <h4> ${dados.company} <span class="servico-avaliacao"><i class="fa-solid fa-star"></i> 4.5</span></h4>
+                    <span class="servico-local">Curitiba, PR</span>
+                </div>
+                <span class="servico-contagem">
+                    <span class="dot"></span> ${diaMes}
+                </span>
+                <h3 class="servico-funcao">${dados.title}</h3>
+                <div class="servico-preco">
+                    <span class="servico-valor-hora">R$ ${dados.payment}</span>
+                </div>
+            </div>
+
+            <div class="servico-colunaAleatorio linha-vertical">
+                <h4 class="servico-coluna-titulo">Informações</h4>
+                <div class="info-grade">
+                    <div class="info-item">
+                        <span class="info-label">Horário</span>
+                        <span class="info-valor">${horaInicio} - ${horaFim}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Duração</span>
+                        <span class="info-valor">${duracaoHoras}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Idade mínima</span>
+                        <span class="info-valor">${dados.min_age}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Vestimenta</span>
+                        <span class="info-valor">${dados.attire}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="servico-coluna">
+                <h4 class="servico-coluna-titulo">Descrição</h4>
+                <p class="description">${dados.description}</p>
+            </div>
+        </article>
+    `;
+
+    banner.classList.add('expandido');
+
+  } catch (erro) {
+    console.error(erro);
+    areaServico.innerHTML = `<p style="color: #ff4d4d; margin: 0;">Erro ao carregar o serviço. Tente novamente!</p>`;
+    banner.classList.add('expandido');
+  }
 });
