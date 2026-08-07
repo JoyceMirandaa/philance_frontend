@@ -30,8 +30,30 @@ button {
         radial-gradient(560px circle at 92% 120%, rgba(15,30,20,.4), transparent 60%),
         radial-gradient(rgba(255,255,255,.12) 1px, transparent 1.6px) 0 0/26px 26px,
         linear-gradient(120deg, #35603F 0%, #4E8B5A 45%, #82BB80 100%);
-    padding: 64px 40px 108px;
+    padding: 70px 50px 130px;
     text-align: center;
+
+    transition: padding-bottom 0.5s ease; 
+}
+
+.banner.expandido {
+    padding-bottom: 200px; /* Aumente este valor se precisar de mais espaço */
+}
+
+.area-servico {
+    margin-top: 30px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    color: #fff;
+}
+
+/* NOVO: Quando o banner expandir, mostra o texto com efeito fade-in */
+.banner.expandido .area-servico {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .banner-wave { /* ondinha do banner */
@@ -46,7 +68,7 @@ button {
 }
 
 .banner-interior { /* organização do banner por dentro */
-  max-width: 720px;
+  max-width: 900px;
   margin: 0 auto;
   text-align: center;
 }
@@ -71,6 +93,10 @@ button {
     align-items: center;
     justify-content: center;
     gap: 12px;
+}
+
+.description{
+    color: #4E5A50;
 }
 
 /* ---------- Botões ---------- */
@@ -492,3 +518,16 @@ button {
     line-height: 1.6;
     color: #4E5A50;
 }
+
+.servicoAleatorio-card{
+    background: #fff;
+    border: 1px solid #ECEAE0;
+    border-radius: 18px;
+    outline: 1px solid #34562e71;
+    padding: 34px 38px;
+    display: grid;
+    grid-template-columns: 4fr 4.2fr 4fr;
+    box-shadow: 0 12px 28px rgba(20, 40, 25, .06);
+    gap: 24px;
+}
+
