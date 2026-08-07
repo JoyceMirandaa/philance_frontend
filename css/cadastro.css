@@ -105,6 +105,7 @@ body {
     flex-direction: column;
     gap: 6px;
     margin-bottom: 18px;
+    position: relative;
 }
 
 /* Sobre */
@@ -120,7 +121,7 @@ body {
 
     padding: 14px 16px;
     line-height: 1.5;
-    resize: vertical;
+    resize: none
 }
 
 .inputs label,
@@ -196,7 +197,6 @@ a{
     font-size: 14px;
     font-weight: 700;
     transition: transform .12s ease, opacity .12s ease, background .12s ease;
-    background: #FFFFFF;
 }
 
 .btn:hover { 
@@ -225,8 +225,6 @@ a{
   opacity: .9; 
 }
 
-
-
 .login-link {
     margin-top: 5px;
     text-align: center;
@@ -254,3 +252,47 @@ a{
 .step.active {
     display: block; /* Mostra apenas a etapa ativa */
 }
+
+/* ------------------------ Estilo do botão radio ------------------------ */
+/* Grupo que junta os botões lado a lado */
+.tags-buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Esconde a bolinha padrão do Radio Button */
+.inputs .tags-buttons input[type="radio"] {
+    display: none;
+}
+
+/* Estilo padrão do botão (Desmarcado) */
+.tags-buttons label {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 6px 16px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    margin-top: 0px;
+}
+
+.tags-buttons label:hover{
+    border-color: #588e55;
+    box-shadow: 0 4px 12px rgba(88, 142, 85, 0.2);
+}
+
+/* Estilo do botão quando estiver selecionado (Marcado) */
+.tags-buttons input[type="radio"]:checked + label {
+    background-color: #588E55; /* Cor verde aproximada da imagem */
+    color: white;
+    border-color: #163310;
+} 
+
+/* ------------------------ ------------------------ */

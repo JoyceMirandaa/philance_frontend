@@ -83,10 +83,14 @@
                     <input id="confirm-password" type="password" placeholder="••••••••" required>
                 </div>
 
-                <!-- pensar melhor no placeholder -->
-                <div class="inputs">
-                    <label for="sobre">Sobre:</label>
-                    <textarea id="sobre" placeholder="Sobre mim"></textarea>
+                <div id="campo-sobre-freelancer-cadastro" class="secao-cadastro inputs">
+                    <label for="sobre">Sobre Você:</label>
+                    <textarea id="sobre" placeholder="Fale sobre você"></textarea>
+                </div>
+
+                <div id="campo-sobre-empresa-cadastro" class="secao-cadastro escondido inputs">
+                    <label for="sobre">Sobre a Empresa:</label>
+                    <textarea id="sobre" placeholder="Fale sobre a empresa"></textarea>
                 </div>
 
                 <div class="buttons">
@@ -164,9 +168,52 @@
             <section class="step" id="step3">
                 <h3>Tags</h3>
 
+                <div class="inputs">
+                    <div class="tags-buttons">
+                        <input type="radio" id="garcom" name="tags" value="garcom">
+                        <label for="garcom">Garçom</label>
+
+                        <input type="radio" id="atendente" name="tags" value="atendente">
+                        <label for="atendente">Atendente</label>
+                
+                        <input type="radio" id="barista" name="tags" value="barista">
+                        <label for="barista">Barista</label>
+                
+                        <input type="radio" id="seguranca" name="tags" value="seguranca">
+                        <label for="seguranca">Segurança</label>
+                
+                        <input type="radio" id="bombeiroCivil" name="tags" value="bombeiroCivil">
+                        <label for="bombeiroCivil">Bombeiro Civil</label>
+                
+                        <input type="radio" id="cozinheiro" name="tags" value="cozinheiro">
+                        <label for="cozinheiro">Cozinheiro</label>
+
+                        <input type="radio" id="auxiliarDeCozinha" name="tags" value="auxiliarDeCozinha">
+                        <label for="auxiliarDeCozinha">Auxiliar De Cozinha</label>
+
+                        <input type="radio" id="organizadorDeEventos" name="tags" value="organizadorDeEventos">
+                        <label for="organizadorDeEventos">Organizador De Eventos</label>
+                
+                        <input type="radio" id="maridoDeAluguel" name="tags" value="maridoDeAluguel">
+                        <label for="maridoDeAluguel">Marido de Aluguel</label>
+                
+                        <input type="radio" id="ServiçoDeEntregas" name="tags" value="sevicoDeEntregas">
+                        <label for="servicoDeEntregas">Serviço de Entregas</label>
+                
+                        <input type="radio" id="faxineiro" name="tags" value="faxineiro">
+                        <label for="faxineiro">Faxineiro</label>
+                
+                        <input type="radio" id="pedreiro" name="tags" value="pedreiro">
+                        <label for="pedreiro">Pedreiro</label>
+                        
+                        <input type="radio" id="jardineiro" name="tags" value="jardineiro">
+                        <label for="jardineiro">Jardineiro</label>
+                    </div>
+                </div>
+
                 <div class="buttons">
                     <button type="button" class="btn btn-light" onclick="nextStep(2)">Voltar</button>
-                    <button class="btn btn-dark" id="btnCadastro" type="submit">Cadastre-se</button>
+                    <button class="btn btn-dark" id="btnCadastro" type="submit">Cadastrar</button>
                 </div>
             </section>
 

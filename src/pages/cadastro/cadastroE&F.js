@@ -25,6 +25,9 @@ document.addEventListener('click', (event) => {
     const secaoFreelancercpf = document.getElementById('campo-cpf-freelancer-cadastro');
     const secaoEmpresacnpj = document.getElementById('campo-cnpj-empresa-cadastro');
 
+    const secaoFreelancerSobre = document.getElementById('campo-sobre-freelancer-cadastro');
+    const secaoEmpresaSobre = document.getElementById('campo-sobre-empresa-cadastro');
+
     const botoesSwitch = document.querySelectorAll('.switch-btn');
     botoesSwitch.forEach(b => b.classList.remove('ativo'));
     
@@ -39,12 +42,16 @@ document.addEventListener('click', (event) => {
         secaoEmpresa?.classList.add('escondido');
         secaoFreelancercpf?.classList.remove('escondido');
         secaoEmpresacnpj?.classList.add('escondido');
+        secaoFreelancerSobre?.classList.remove('escondido');
+        secaoEmpresaSobre?.classList.add('escondido')
         
     } else if (tipoSelecionado === 'E') {
         secaoEmpresa?.classList.remove('escondido');
         secaoFreelancer?.classList.add('escondido');
         secaoEmpresacnpj?.classList.remove('escondido');
         secaoFreelancercpf?.classList.add('escondido');
+        secaoEmpresaSobre?.classList.remove('escondido');
+        secaoFreelancerSobre?.classList.add('escondido')
     }
 });
 

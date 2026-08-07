@@ -43,65 +43,7 @@ body {
 }
 
 /* ------------------------ Estilo do botão radio ------------------------ */
-/* Esconde a bolinha padrão do Radio Button */
-.type-buttons input[type="radio"] {
-    display: none;
-}
-
-/* Estilo padrão do botão (Desmarcado) */
-.type-buttons label {
-    display: inline-block;
-    padding: 6px 16px;
-    border: 1px solid #888;
-    border-radius: 20px;
-    font-size: 14px;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
-    margin-top: -10px;
-}
-
-/* Estilo do botão quando estiver selecionado (Marcado) */
-.type-buttons input[type="radio"]:checked + label {
-    background-color: #588E55; /* Cor verde aproximada da imagem */
-    color: white;
-    border-color: #163310;
-}
-
-/* Esconde a bolinha padrão do Radio Button */
-.tags-buttons input[type="radio"] {
-    display: none;
-}
-
-/* Estilo padrão do botão (Desmarcado) */
-.tags-buttons label {
-    display: inline-block;
-    padding: 6px 16px;
-    border: 1px solid #888;
-    border-radius: 20px;
-    font-size: 14px;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
-    margin-top: -10px;
-}
-
-.tags-buttons label:hover{
-    border-color: #588e55;
-    box-shadow: 0 4px 12px rgba(88, 142, 85, 0.2);
-}
-
-/* Estilo do botão quando estiver selecionado (Marcado) */
-.tags-buttons input[type="radio"]:checked + label {
-    background-color: #588E55; /* Cor verde aproximada da imagem */
-    color: white;
-    border-color: #163310;
-}
-
 /* Grupo que junta os botões lado a lado */
-.tags-buttons,
 .vestimenta-buttons {
     margin-top: 10px;
     display: flex;
@@ -181,7 +123,7 @@ body {
 
     padding: 14px 16px;
     line-height: 1.5;
-    resize: vertical;
+    resize: none
 }
 
 .inputs select{

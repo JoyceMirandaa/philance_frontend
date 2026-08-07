@@ -95,7 +95,7 @@ body {
 
 /* Cards */
 .personal,
-.address {
+.address{
     background: #FFFFFF;
     border: 1px solid #ECEAE0;
     border-radius: 22px;
@@ -104,6 +104,17 @@ body {
     margin-bottom: 24px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 0 28px;
+}
+
+.tags{
+    background: #FFFFFF;
+    border: 1px solid #ECEAE0;
+    border-radius: 22px;
+    box-shadow: 0 16px 40px rgba(37, 73, 46, 0.116);
+    padding: 36px 40px 40px;
+    margin-bottom: 24px;
+    display: grid;
     gap: 0 28px;
 }
 
@@ -130,6 +141,7 @@ body {
 
     border: solid 1px;
     border-radius: 12px;
+    resize: none
 }
 
 .inputs input,
@@ -216,3 +228,47 @@ body {
 .btn-light:hover { 
   opacity: .9; 
 }
+
+/* ------------------------ Estilo do botão radio ------------------------ */
+/* Grupo que junta os botões lado a lado */
+.tags-buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Esconde a bolinha padrão do Radio Button */
+.inputs .tags-buttons input[type="radio"] {
+    display: none;
+}
+
+/* Estilo padrão do botão (Desmarcado) */
+.tags-buttons label {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 6px 16px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    margin-top: 0px;
+}
+
+.tags-buttons label:hover{
+    border-color: #588e55;
+    box-shadow: 0 4px 12px rgba(88, 142, 85, 0.2);
+}
+
+/* Estilo do botão quando estiver selecionado (Marcado) */
+.tags-buttons input[type="radio"]:checked + label {
+    background-color: #588E55; /* Cor verde aproximada da imagem */
+    color: white;
+    border-color: #163310;
+} 
+
+/* ------------------------ ------------------------ */
