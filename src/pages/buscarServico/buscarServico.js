@@ -8,6 +8,19 @@ botaoFiltro.addEventListener('click', function(event) {
     menuSuspenso.classList.toggle('escondido');
 });
 
+document.querySelectorAll('.tags-buttons input[type="radio"]').forEach(radio => {
+    radio.addEventListener('click', function() {
+        if (this.wasChecked) {
+            this.checked = false;
+            this.wasChecked = false;
+        } else {
+            // Remove o estado antigo dos outros do mesmo grupo
+            document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => r.wasChecked = false);
+            this.wasChecked = true;
+        }
+    });
+});
+
 
 async function buscarServicos() {
   try {
@@ -35,7 +48,7 @@ async function buscarServicos() {
           card.setAttribute('data-id', servico.id);
           
           card.innerHTML = `
-            <div>
+            <div >
                 <p>${servico.company}</p>
                 <span>R$ ${servico.payment}</span>
                 <h3>${servico.title}</h3>
@@ -72,7 +85,7 @@ function exibirDetalhesDoServico(servico, container) {
             <article class="card-principal">
                 <p class="detalhe-empresa"><strong>Empresa/Contratante:</strong> ${servico.company}</p>
                 <h2>${servico.title}</h2>
-                <button class="btn-aceitar" data-id="${servico.id}">Aceitar</button>
+                <button class="btn btn-aceitar" data-id="${servico.id}">Aceitar</button>
             </article>
 
             <article class="detalhes-info-grid">

@@ -66,20 +66,6 @@
 
         </div>
     </div>
-    <script>
-        document.querySelectorAll('.tags-buttons input[type="radio"]').forEach(radio => {
-            radio.addEventListener('click', function() {
-                if (this.wasChecked) {
-                    this.checked = false;
-                    this.wasChecked = false;
-                } else {
-                    // Remove o estado antigo dos outros do mesmo grupo
-                    document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => r.wasChecked = false);
-                    this.wasChecked = true;
-                }
-            });
-        });
-    </script>
     <script src="/src/pages/buscarServico/buscarServico.js"></script>
 </body>
 <script src="/src/componentes/navbar/navbar.js"></script>
