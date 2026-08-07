@@ -1,7 +1,52 @@
 console.log("Arquivo empresaCadastro.js carregado isoladamente de sua pasta!");
 
 document.addEventListener("DOMContentLoaded", () => {
+    const nomeInput = document.getElementById("username");
+    const nascimentoInput = document.getElementById("date-nascimento");
+    const criacaoInput = document.getElementById("date-criacao");
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+    const cpfInput = document.getElementById("cpf");
+    const cnpjInput = document.getElementById("cnpj");
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("confirm-password");
+
     inicializarEventosDoCadastro();
+
+    if(nomeInput){
+    verificarNome();
+    }
+    if(nascimentoInput){
+    nascimentoInput.max = new Date().toISOString().split("T")[0];
+    verificarIdade();
+    }
+    if(criacaoInput){
+    criacaoInput.max = new Date().toISOString().split("T")[0];
+    verificarDataEmpresa();
+    }
+    if(emailInput){
+        emailInput.addEventListener('blur', verificarEmail);
+        }
+
+    if(phoneInput){
+        phoneInput.addEventListener("input", formatarPhone);
+        phoneInput.addEventListener("blur", verificarPhone);
+    }
+
+    if(cpfInput){
+        verificarCPF();
+    }
+    
+    if(cnpjInput){
+        verificarCNPJ();        
+    }
+
+    if (passwordInput && confirmPasswordInput) {
+        passwordInput.addEventListener("input", verificarPassword);
+        confirmPasswordInput.addEventListener("input", verificarPassword);
+    }
+    
+    
 });
 
 function inicializarEventosDoCadastro() {
@@ -206,16 +251,572 @@ async function enviarDadosParaOBackend(event) {
     }
 }
 
-// Força a função a ficar pública no navegador
 window.nextStep = function(stepNumber) {
-    // Esconde todas as seções de etapas
-    document.querySelectorAll('.step').forEach(step => {
-        step.classList.remove('active');
-    });
-    
-    // Mostra apenas a etapa que você quer ver agora
-    const targetStep = document.getElementById('step' + stepNumber);
-    if (targetStep) {
-        targetStep.classList.add('active');
+
+    if(stepNumber === 2){
+
+        let valido = true;
+
+        const nome = document.getElementById("username");
+        const email = document.getElementById("email");
+        const phone = document.getElementById("phone");
+        const senha = document.getElementById("password");
+        const confirmar = document.getElementById("confirm-password");
+
+
+        // Limpa mensagem anterior
+        const mensagemAntiga = document.getElementById("mensagem-avancar");
+
+        if(mensagemAntiga){
+            mensagemAntiga.remove();
+        }
+
+
+        // Nome
+        if(nome.value.trim() === ""){
+
+            document.getElementById("mensagem-nome").textContent =
+            "Digite seu nome completo.";
+
+            nome.setAttribute("data-valido","false");
+            valido = false;
+
+        }else{
+
+            document.getElementById("mensagem-nome").textContent = "";
+            nome.setAttribute("data-valido","true");
+
+        }
+
+
+        // Data freelancer / empresa
+        if(tipoUsuarioAtual === "F"){
+
+            const nascimento = document.getElementById("date-nascimento");
+
+            if(nascimento.getAttribute("data-valido") !== "true"){
+                valido = false;
+            }
+
+        }else{
+
+            const criacao = document.getElementById("date-criacao");
+
+            if(criacao.getAttribute("data-valido") !== "true"){
+                valido = false;
+            }
+
+        }
+
+
+        // Email
+        verificarEmail();
+
+        if(email.getAttribute("data-valido") !== "true"){
+            valido = false;
+        }
+
+
+        // Telefone
+        verificarPhone();
+
+        if(phone.getAttribute("data-valido") !== "true"){
+            valido = false;
+        }
+
+
+        // CPF
+        if(tipoUsuarioAtual === "F"){
+
+            const cpf = document.getElementById("cpf");
+
+            if(cpf.getAttribute("data-valido") !== "true"){
+                valido = false;
+            }
+
+        }
+
+
+        // CNPJ
+        if(tipoUsuarioAtual === "E"){
+
+            const cnpj = document.getElementById("cnpj");
+
+            if(cnpj.getAttribute("data-valido") !== "true"){
+                valido = false;
+            }
+
+        }
+
+
+        // Senha
+        verificarPassword();
+
+        if(
+            senha.getAttribute("data-valido") !== "true" ||
+            confirmar.getAttribute("data-valido") !== "true"
+        ){
+
+            valido = false;
+
+        }
+
+
+        // Mensagem acima do botão
+        if(!valido){
+
+            const mensagem = document.createElement("div");
+
+            mensagem.id = "mensagem-avancar";
+            mensagem.textContent =
+            "Preencha todos os campos corretamente antes de avançar.";
+
+
+            const botoes = document.querySelector("#step1 .buttons");
+
+            botoes.parentNode.insertBefore(
+                mensagem,
+                botoes
+            );
+
+
+            return;
+
+        }
+
     }
+
+
+    // Continua para próxima etapa
+    document.querySelectorAll('.step').forEach(step => {
+
+        step.classList.remove('active');
+
+    });
+
+
+    const targetStep = document.getElementById("step" + stepNumber);
+
+
+    if(targetStep){
+
+        targetStep.classList.add("active");
+
+    }
+
 };
+
+function verificarNome(){
+
+    const nomeInput = document.getElementById("username");
+    const mensagem = document.getElementById("mensagem-nome");
+
+    if(!nomeInput || !mensagem) return;
+
+    nomeInput.addEventListener("blur", () => {
+
+        const nome = nomeInput.value.trim();
+
+        if(nome === ""){
+
+            mensagem.textContent = "Digite seu nome completo.";
+            nomeInput.setAttribute("data-valido","false");
+
+        }else{
+
+            mensagem.textContent = "";
+            nomeInput.setAttribute("data-valido","true");
+
+        }
+
+    });
+}
+function verificarIdade(){
+    const nascimentoInput = document.getElementById("date-nascimento");
+    const mensagem = document.getElementById("mensagem-birthday");
+
+    if(!nascimentoInput || !mensagem) return;
+
+    nascimentoInput.addEventListener("change", () => {
+
+        const valor = nascimentoInput.value;
+
+        if(!valor){
+            mensagem.textContent = "";
+            nascimentoInput.removeAttribute("data-valido");
+            return;
+        }
+
+        const dataNascimento = new Date(valor);
+        const hoje = new Date();
+
+        // Impede datas inválidas
+        if(isNaN(dataNascimento.getTime())){
+            mensagem.textContent = "Data inválida.";
+            nascimentoInput.setAttribute("data-valido","false");
+            return;
+        }
+
+        // Remove horas para comparar somente datas
+        dataNascimento.setHours(0,0,0,0);
+        hoje.setHours(0,0,0,0);
+
+        // Não permite hoje nem datas futuras
+        if(dataNascimento >= hoje){
+
+            mensagem.textContent = "Insira uma data válida.";
+            nascimentoInput.setAttribute("data-valido","false");
+            return;
+        }
+
+
+        let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+
+        const mes = hoje.getMonth() - dataNascimento.getMonth();
+
+        if(mes < 0 || (mes === 0 && hoje.getDate() < dataNascimento.getDate())){
+            idade--;
+        }
+
+
+        if(idade < 16){
+
+            mensagem.textContent = "Você precisa ter no mínimo 16 anos.";
+            nascimentoInput.setAttribute("data-valido","false");
+
+        }else{
+
+            mensagem.textContent = "";
+            nascimentoInput.setAttribute("data-valido","true");
+
+        }
+
+    });
+}
+function verificarDataEmpresa(){
+
+    const criacaoInput = document.getElementById("date-criacao");
+    const mensagem = document.getElementById("mensagem-criacao");
+
+    if(!criacaoInput || !mensagem) return;
+
+    criacaoInput.addEventListener("change", () => {
+
+        const dataCriacao = new Date(criacaoInput.value + "T00:00:00");
+        const hoje = new Date();
+
+        hoje.setHours(0,0,0,0);
+
+        if(dataCriacao >= hoje){
+
+            mensagem.textContent = "Insira uma data válida.";
+            criacaoInput.setAttribute("data-valido","false");
+            return;
+
+        } else {
+
+            mensagem.textContent = "";
+            criacaoInput.setAttribute("data-valido","true");
+
+        }
+
+    });
+}
+function verificarEmail(){
+    const emailInput = document.getElementById("email");
+    const mensagem = document.getElementById("mensagem-email");
+
+    if(!emailInput) return;
+
+    if(emailInput.value.trim() === ""){
+        emailInput.removeAttribute("data-valido");
+        document.getElementById("mensagem-email").textContent = "";
+        return;
+    }
+
+    const padrao = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+     if (padrao.test(emailInput.value)) {
+        mensagem.textContent = "";
+        emailInput.setAttribute("data-valido", "true");
+        return true;
+    } else {
+        
+        mensagem.textContent = "Email Inválido";
+        return false;
+    }
+    
+}
+function formatarPhone() {
+    const phoneInput = document.getElementById("phone");
+    const mensagem = document.getElementById("mensagem-phone");
+    if (!phoneInput) return;
+
+    let phone = phoneInput.value.replace(/\D/g, "");
+
+    phone = phone.substring(0, 11);
+    if (phone.length === 0) {
+        mensagem.textContent = "";
+        phoneInput.value = "";
+        return;
+    }
+    if (phone.length <= 2) {
+        phone = phone.replace(/^(\d{0,2})/, "($1");
+    } 
+    else if (phone.length <= 7) {
+        phone = phone.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+    } 
+    else {
+        phone = phone.replace(/^(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
+    }
+
+    phoneInput.value = phone;
+}
+
+function verificarPhone(){
+    const phoneInput = document.getElementById("phone");
+    const mensagem = document.getElementById("mensagem-phone");
+
+
+    const phone = phoneInput.value.replace(/\D/g, "");
+    if (phone.length === 0) {
+        mensagem.textContent = "";
+        phoneInput.value = "";
+        return;
+    }
+    if(phone.length !== 11){
+        mensagem.textContent = "Número de celular inválido.";
+        phoneInput.removeAttribute("data-valido");
+        return false;
+    }
+
+    if(phone.charAt(2) !== "9"){
+        mensagem.textContent = "Número de celular inválido.";
+        phoneInput.removeAttribute("data-valido");
+        return false;
+    }
+
+        mensagem.textContent = "";
+        phoneInput.setAttribute("data-valido", "true");
+
+        return true;
+    
+    if(phoneInput === 0){
+        mensagem.textContent = "";
+    }
+}
+
+
+function verificarCPF() {
+    const mensagem = document.getElementById("mensagem-cpf");
+    const cpfInput = document.getElementById('cpf');
+    if (!cpfInput) return;
+
+    
+    cpfInput.addEventListener('input', (event) => {
+        let valor = event.target.value.replace(/\D/g, "");
+        if (valor.length <= 11) {
+            cpfInput.maxLength = 14; 
+            valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+            valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+            valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+            event.target.value = valor;
+        }
+    const cpf = valor.replace(/\D/g, "");
+
+    if (cpf.length === 11) {
+            if (/^(\d)\1{10}$/.test(cpf)) {
+                marcarCpfInvalido(cpfInput);
+                return;
+            }
+
+            let s = 0, r;
+            for (let i = 1; i <= 9; i++) {
+                s += parseInt(cpf[i - 1]) * (11 - i);
+            }
+            r = (s * 10) % 11;
+            if (r === 10 || r === 11) r = 0;
+            if (r !== parseInt(cpf[9])) {
+                marcarCpfInvalido(cpfInput);
+                return;
+            }
+
+            s = 0;
+            for (let i = 1; i <= 10; i++) {
+                s += parseInt(cpf[i - 1]) * (12 - i);
+            }
+            r = (s * 10) % 11;
+            if (r === 10 || r === 11) r = 0;
+            if (r !== parseInt(cpf[10])) {
+                marcarCpfInvalido(cpfInput);
+                return;
+            }
+
+            marcarCpfValido(cpfInput);
+        } else {
+            cpfInput.removeAttribute('data-valido');
+        }
+        if(cpf.length < 0 && cpf.length < 11){
+            
+            cpfInput.setAttribute("data-valido", "false");
+            mensagem.textContent = "CPF incompleto.";
+            return;
+        }
+
+        if(cpf.length === 0){
+        cpfInput.removeAttribute("data-valido");
+        document.getElementById("mensagem-cpf").textContent = "";
+        return;
+         }
+
+        if(cpf.length !== 11){
+            
+            cpfInput.removeAttribute("data-valido");
+            mensagem.textContent = "CPF incompleto.";
+            return;
+    }
+        
+    });
+}
+
+function marcarCpfValido(input) {
+    input.setAttribute("data-valido", "true");
+
+    const mensagem = document.getElementById("mensagem-cpf");
+
+    mensagem.textContent = "";
+    
+}
+
+function marcarCpfInvalido(input) {
+    input.setAttribute("data-valido", "false");
+
+    const mensagem = document.getElementById("mensagem-cpf");
+    mensagem.textContent = "CPF Inválido.";
+}
+
+function verificarCNPJ(){
+
+    const cnpjInput = document.getElementById("cnpj");
+    const mensagem = document.getElementById("mensagem-cnpj");
+
+    if(!cnpjInput || !mensagem) return;
+
+
+    cnpjInput.addEventListener("input", (event)=>{
+
+        let cnpj = event.target.value.replace(/\D/g,"");
+
+
+        if(cnpj.length > 14){
+            cnpj = cnpj.substring(0,14);
+        }
+
+
+        let valor = cnpj;
+
+        valor = valor.replace(/^(\d{2})(\d)/,"$1.$2");
+        valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3");
+        valor = valor.replace(/\.(\d{3})(\d)/,".$1/$2");
+        valor = valor.replace(/(\d{4})(\d)/,"$1-$2");
+
+        event.target.value = valor;
+
+
+        if(cnpj.length === 0){
+            mensagem.textContent = "";
+            return;
+        }
+
+
+        if(cnpj.length < 14){
+            mensagem.textContent = "CNPJ incompleto.";
+            return;
+        }
+
+
+        if(validarCNPJ(cnpj)){
+            mensagem.textContent = "";
+            cnpjInput.setAttribute("data-valido","true");
+
+        }else{
+            mensagem.textContent = "CNPJ Inválido.";
+            cnpjInput.setAttribute("data-valido","false");
+        }
+
+    });
+
+}
+function validarCNPJ(cnpj){
+
+    if(cnpj.length !== 14) return false;
+
+    if(/^(\d)\1+$/.test(cnpj)) return false;
+
+
+    let tamanho = 12;
+    let numeros = cnpj.substring(0,tamanho);
+    let digitos = cnpj.substring(tamanho);
+
+
+    let soma = 0;
+    let pos = tamanho - 7;
+
+    for(let i = tamanho; i >= 1; i--){
+        soma += numeros.charAt(tamanho-i) * pos--;
+        if(pos < 2) pos = 9;
+    }
+
+    let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+
+    if(resultado != digitos.charAt(0)){
+        return false;
+    }
+
+
+    tamanho = tamanho + 1;
+    numeros = cnpj.substring(0,tamanho);
+
+    soma = 0;
+    pos = tamanho - 7;
+
+    for(let i = tamanho; i >= 1; i--){
+        soma += numeros.charAt(tamanho-i) * pos--;
+        if(pos < 2) pos = 9;
+    }
+
+    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+
+
+    return resultado == digitos.charAt(1);
+}
+function verificarPassword() {
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("confirm-password");
+
+    const mensagemSenha = document.getElementById("mensagem-password");
+    const mensagemConfirm = document.getElementById("mensagem-confirm-password");
+
+    const senha = passwordInput.value;
+    const confirmar = confirmPasswordInput.value;
+
+    // Verifica tamanho da senha
+    if (senha.length < 6 && senha.length > 0) {
+        mensagemSenha.textContent = "Sua senha deve conter no mínimo 6 dígitos.";
+        passwordInput.setAttribute("data-valido", "false");
+        return;
+    } else {
+        mensagemSenha.textContent = "";
+        passwordInput.setAttribute("data-valido", "true");
+    }
+
+    // Verifica confirmação
+    if (confirmar !== "" && senha !== confirmar) {
+        mensagemConfirm.textContent = "A confirmação de senha não confere.";
+        confirmPasswordInput.setAttribute("data-valido", "false");
+        return;
+    } else {
+        mensagemConfirm.textContent = "";
+        confirmPasswordInput.setAttribute("data-valido", "true");
+    }
+}
