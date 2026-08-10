@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philance | Home</title>
+    <link rel="stylesheet" href="/css/homeFreelancer.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div id="space-navbar"></div>
+    <!-- Banner -->
+    <section class="banner" id="banner">
+        <div class="banner-interior">
+            <div class="banner-text">
+                <h1>O que você vai trabalhar<br>em seguida?</h1>
+                <p>Serviços recomendados para o seu perfil</p>
+                <div class="banner-actions">
+                    <button class="btn btn-outline-light" id="btn-sortear">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Encontrar serviço
+                    </button>
+                    <button class="btn-icone">
+                        <i class="fa-solid fa-filter"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="area-servico">
+                <p id="texto-servico"></p>
+            </div>
+        </div>
+        <div class="banner-wave" aria-hidden="true"></div>
+    </section>
+
+    <!-- Estatísticas -->
+    <section class="estatisticas">
+
+        <!-- Avaliações -->
+        <article class="estatistica-card">
+            <div class="estatistica-head card-head">
+                <div class="avalia">
+                    <h3>Avaliações</h3>
+                    <span class="backg">1.460</span>
+                </div>
+                    <div class="avaliacao-valor">
+                        <i class="fa-solid fa-star"></i>
+                        <span class="avaliacao-numero">4.8</span>
+                    </div>
+            </div>
+        </article>
+
+        <!-- Relatório Financeiro -->
+        <article class="estatistica-card ">
+            <div class="estatistica-head">
+                <h3>Relatório<br>Financeiro</h3>
+                <div class="totais">
+                    <div class="totais-linha">
+                        <span class="totais-label">Total da Semana:</span>
+                        <span class="backg">R$ 700</span>
+                    </div>
+                    <div class="totais-linha">
+                        <span class="totais-label">Total do Mês:</span>
+                        <span class="backg">R$ 1.000</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="progresso-linha">
+                <div class="progresso-trilha">
+                    <div class="progresso-preenchido" style="width: 50%;">
+                        <span class="progresso-label">R$ 1.000</span>
+                    </div>
+                </div>
+                <div class="progresso-meta">
+                    <span class="progresso-meta-label">Meta</span>
+                    <span class="progresso-meta-valor">R$ 2.000</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Relatório de Serviços -->
+        <article class="estatistica-card ">
+            <h3 class="grafico-titulo">Relatório de Serviços</h3>
+            <div class="grafico-barras">
+                <canvas class="grafico" id="meuGrafico"></canvas>
+            </div>
+        </article>
+
+    </section>
+
+    <!-- Serviços aceitos -->
+    <section class="servicos-aceitos">
+        <div class="servicos-aceitos-head">
+            <h2>Serviços Aceitos</h2>
+            <span class="contador-badge">4</span>
+        </div>
+
+        <div class="servico-lista">
+
+            <article class="servico-card">
+                <div class="servico-coluna linha-vertical">
+                    <div class="servico-avatar"></div>
+                    <div class="servico-empresa">
+                        <h4 id="title"><span class="servico-avaliacao"><i class="fa-solid fa-star"></i> 4.5</span></h4>
+                        <span class="servico-local">Curitiba, PR</span>
+                    </div>
+                    <span class="servico-contagem" id="dia">
+                        <span class="dot"></span> Faltam 2h até o serviço
+                    </span>
+                    <div class="servico-preco">
+                        <span class="servico-valor-hora" id="pagamento">R$ </span>
+                    </div>
+                </div>
+
+                <div class="servico-coluna linha-vertical">
+                    <h4 class="servico-coluna-titulo">Informações</h4>
+                    <div class="info-grade">
+                        <div class="info-item">
+                            <span class="info-label">Horário</span>
+                            <span class="info-valor" id="horario"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Duração</span>
+                            <span class="info-valor" id="duracao"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Idade mínima</span>
+                            <span class="info-valor" id="idade"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Vestimenta</span>
+                            <span class="info-valor" id="vestimenta"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="servico-coluna">
+                    <h4 class="servico-coluna-titulo" id="descricao">Descrição</h4>
+                    <p>Buscamos barista experiente para turno da tarde no Italy Café. Responsável pelo preparo de espresso, cappuccino e drinks especiais. Ambiente descontraído e equipe acolhedora.</p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+    <script src="/src/pages/home/freelancer/homefreelancer.js"></script>
+    <script src="/src/componentes/navbar/navbar.js"></script>
+    <script>
+        carregarNavbarHomeFreelancer();
+    </script>
+</body>
+</html>

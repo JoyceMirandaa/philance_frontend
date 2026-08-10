@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philance | Buscar Serviço</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/buscarServico.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+<body>
+    <div id="space-navbar"></div>
+    <div class="fundos">
+        <div class="white">
+            <section class="title-filtro"> 
+                <button id="botao-filtro" class="foto-filtro-btn">
+                    <img class="filter" src="/assets/imagens/filter.png" alt="filter">
+                </button>
+
+                <h2>Recomendados para você</h2>
+                <div id="menu-suspenso" class="suspenso-menu escondido">
+        
+                    <div class="filtro-preco-container">
+                        <h3>Preço Mínimo:</h3>
+                        <div class="valores-exibicao">
+                            <!-- O 'A partir de' indica que o filtro mostra desse valor para cima -->
+                            <span>A partir de: <strong>R$ <span id="valor-atual">0</span>+</strong></span>
+                        </div>
+                        
+                        <div class="slider-wrapper-simples">
+                            <input type="range" id="input-preco-unico" min="0" max="1000" value="0" step="50">
+                        </div>
+                    </div>
+
+                    <div class="horario-dia">
+                        <div class="horario">
+                            <h3 class="title-horario" >Horário do Início</h3>
+                            <input type="datetime-local" id="inicio" class="input-horario">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tags">Categoria / Tag do Serviço:</label>
+                        <select id="tags" name="tags" required>
+                            <option value="">Carregando tags...</option>
+                        </select>
+                    </div>
+                    
+
+
+                </div>
+
+            </section>
+
+
+            <div class="card-servico" id="card-servico"></div>
+        </div>
+
+        <div class="green">
+         
+
+        </div>
+    </div>
+    <script src="/src/pages/buscarServico/buscarServico.js"></script>
+</body>
+<script src="/src/componentes/navbar/navbar.js"></script>
+<script>
+    carregarNavbarHomeFreelancer();
+
+</script>
+</html>
