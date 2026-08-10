@@ -22,6 +22,8 @@ if (!dadosSalvosFormulario) {
           document.getElementById("email").textContent = dadosFormulario.email;
         }
 
+
+
     } catch (erro) {
         console.error("Erro ao converter os dados do LocalStorage para JSON:", erro);
     }
@@ -155,9 +157,11 @@ botao.addEventListener('click', async () => {
     `;
 
     banner.classList.add('expandido');
+    console.log(dados)
 
   } catch (erro) {
     console.error(erro);
+    console.log(dados)
     areaServico.innerHTML = `<p style="color: #ff4d4d; margin: 0;">Erro ao carregar o serviço. Tente novamente!</p>`;
     banner.classList.add('expandido');
   }
