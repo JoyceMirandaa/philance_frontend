@@ -186,10 +186,10 @@ async function enviarDadosParaOBackend(event) {
     let dateValue = "";
 
     if (tipoUsuarioAtual === 'F' && cpfInput && nascimentoInput) {
-        documentoValue = String(cpfInput.value).trim();
+        documentoValue = String(cpfInput.value).trim().replace(/\D/g,"");
         dateValue = String(nascimentoInput.value).trim();
     } else if (tipoUsuarioAtual === 'E' && cnpjInput && criacaoInput) {
-        documentoValue = String(cnpjInput.value).trim();
+        documentoValue = String(cnpjInput.value).trim().replace(/\D/g,"");
         dateValue = String(criacaoInput.value).trim();
     }
 

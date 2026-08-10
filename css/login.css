@@ -135,7 +135,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 50px;
+    padding: 12px 45px;
     border-radius: 999px;
     font-size: 14px;
     font-weight: 700;
@@ -178,4 +178,12 @@ body {
 .cadastrar-link a.Cadastre-se:hover {
     color: #1F3D2B;
     text-decoration: underline;
+}
+
+.icon-arrowR{
+    margin-left: 8px;
+}
+
+.icon-arrowL{
+    margin-right: 8px;
 }

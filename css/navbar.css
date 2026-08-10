@@ -81,22 +81,23 @@ img{
   opacity: .9; 
 }
 
-.button-solicitar-servico{
+.button-solicitar-buscar{
     background-color: #ffffff;
-    border-style: none;
     padding: 14px 20px;
     width: 250px;
     cursor:pointer;
+    border-style: none;
     font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 .icon-nav{
-    width: 25px;
-    height: 30px;
-}
-
-.icon-servico{
     width: 30px;
     height: 30px;
+    color: #1F3D2B;
+    margin-bottom: -7px;
 }
 
 .nav-home-empresa{

@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Philance | Login</title>
-
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/login.css">
+    <!-- Fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/css/Login.css">
+    <!-- Icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
 
@@ -48,7 +50,14 @@
 
         <script type="module" src="/src/pages/login/loginE&F.js"></script>
         <div class="buttons">
-            <button class="btn btn-dark" id="btnLogin" type="submit">Entrar</button>
+            <a href="/src/index.html">
+                <button type="button" class="btn btn-light">
+                    <i class="fa-solid fa-arrow-left icon-arrow-L"></i>Voltar
+                </button>
+            </a>
+            <button class="btn btn-dark" id="btnLogin" type="submit">
+                Entrar<i class="fa-solid fa-arrow-right icon-arrowR"></i>
+            </button>
         </div>
 
         <p class="cadastrar-link">

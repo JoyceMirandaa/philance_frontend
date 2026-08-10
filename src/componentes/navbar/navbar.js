@@ -21,10 +21,10 @@ function carregarNavbarHomeEmpresa(){
 
             <div class="menu-central">
                 <button class="button-home" onclick="window.location.href='/src/pages/Home/empresa/home.html'">
-                <img src="/assets/imagens/IconeHome.png" class="icon-nav">
+                <i class="fa-solid fa-house icon-nav"></i>
                 Home</button>
-                <button class="button-solicitar-servico" onclick="window.location.href='/src/pages/solicitarServico/solicitarServico.html'">
-                <img src="/assets/imagens/IconeSolicitarServico.png" class="icon-servico">
+                <button class="button-solicitar-buscar" onclick="window.location.href='/src/pages/solicitarServico/solicitarServico.html'">
+                <i class="fa-solid fa-briefcase icon-nav"></i>
                 Solicitar Serviço</button>
             </div>
             <div class="perfil-container">
@@ -101,10 +101,10 @@ function carregarNavbarHomeFreelancer(){
 
             <div class="menu-central">
                 <button class="button-home" onclick="window.location.href='/src/pages/Home/freelancer/homefreelancer.html'">
-                <img src="/assets/imagens/IconeHome.png" class="icon-nav">
+                <i class="fa-solid fa-house icon-nav icon-home"></i>
                 Home</button>
-                <button class="button-solicitar-servico" onclick="window.location.href='/src/pages/buscarServico/buscarServico.html'">
-                <img src="/assets/imagens/IconBuscarServico.png" class="icon-servico">
+                <button class="button-solicitar-buscar" onclick="window.location.href='/src/pages/buscarServico/buscarServico.html'">
+                <i class="fa-solid fa-magnifying-glass icon-nav"></i>
                 Buscar Serviços</button>
             </div>
             <div class="perfil-container">
