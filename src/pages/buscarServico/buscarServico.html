@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Philance | Buscar Serviço</title>
+    <!-- CSS -->
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/buscarServico.css">
-
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Icone -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 <body>
     <div id="space-navbar"></div>
     <div class="fundos">
-        <div class="white">
+        <div class="side">
             <section class="title-filtro"> 
                 <button id="botao-filtro" class="foto-filtro-btn">
                     <img class="filter" src="/assets/imagens/filter.png" alt="filter">
@@ -26,7 +28,7 @@
                 <div id="menu-suspenso" class="suspenso-menu escondido">
         
                     <div class="filtro-preco-container">
-                        <h3>Preço Mínimo:</h3>
+                        <span class="title-menu">Preço Mínimo:</span>
                         <div class="valores-exibicao">
                             <!-- O 'A partir de' indica que o filtro mostra desse valor para cima -->
                             <span>A partir de: <strong>R$ <span id="valor-atual">0</span>+</strong></span>
@@ -39,30 +41,24 @@
 
                     <div class="horario-dia">
                         <div class="horario">
-                            <h3 class="title-horario" >Horário do Início</h3>
+                            <span class="title-menu" >Horário do Início:</span>
                             <input type="datetime-local" id="inicio" class="input-horario">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="tags">Categoria / Tag do Serviço:</label>
+                        <span class="title-menu">Categoria / Tag do Serviço:</span>
                         <select id="tags" name="tags" required>
                             <option value="">Carregando tags...</option>
                         </select>
                     </div>
-                    
-
-
                 </div>
-
             </section>
-
 
             <div class="card-servico" id="card-servico"></div>
         </div>
 
-        <div class="green">
-         
+        <div class="background">
 
         </div>
     </div>
