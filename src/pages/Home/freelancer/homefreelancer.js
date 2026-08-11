@@ -46,7 +46,7 @@ async function carregarServicosSolicitados() {
             document.getElementById("title").textContent = "Nenhum serviço disponível";
         }
 
-return servicosSolicitados;;
+        return servicosSolicitados;;
 
     } catch (erro) {
         console.error("Não foi possível carregar os serviços da API:", erro);
@@ -111,47 +111,50 @@ botao.addEventListener('click', async () => {
 
    
     areaServico.innerHTML = `
-        <article class="servicoAleatorio-card">
-            <div class="servico-coluna linha-vertical">
-                <div class="servico-avatar"></div>
-                <div class="title-empresa">
-                    <h4> ${dados.company} <span class="servico-avaliacao"><i class="fa-solid fa-star"></i> 4.5</span></h4>
-                    <span class="servico-local">Curitiba, PR</span>
+        <article class="painel-detalhe-vaga">
+            <!-- Coluna 1: Perfil do Ofertante e Cargo -->
+            <div class="detalhe-secao-perfil detalhe-divisoria">
+                <div class="detalhe-foto-contratante"></div>
+                <div class="detalhe-bloco-empresa">
+                    <h4>${dados.company} <span class="detalhe-nota-avaliacao"><i class="fa-solid fa-star"></i> 4.5</span></h4>
+                    <span class="detalhe-cidade-estado">Curitiba, PR</span>
                 </div>
-                <span class="servico-contagem">
-                    <span class="dot"></span> ${diaMes}
+                <span class="detalhe-badge-data">
+                    <span class="detalhe-ponto-indicador"></span> ${diaMes}
                 </span>
-                <h3 class="servico-funcao">${dados.title}</h3>
-                <div class="servico-preco">
-                    <span class="servico-valor-hora">R$ ${dados.payment}</span>
+                <h3 class="detalhe-nome-cargo">${dados.title}</h3>
+                <div class="detalhe-bloco-preco">
+                    <span class="detalhe-valor-monetario">R$ ${dados.payment}</span>
                 </div>
             </div>
 
-            <div class="servico-colunaAleatorio linha-vertical">
-                <h4 class="servico-coluna-titulo">Informações</h4>
-                <div class="info-grade">
-                    <div class="info-item">
-                        <span class="info-label">Horário</span>
-                        <span class="info-valor">${horaInicio} - ${horaFim}</span>
+            <!-- Coluna 2: Dados Técnicos / Grade -->
+            <div class="detalhe-secao-dados detalhe-divisoria">
+                <h4 class="detalhe-titulo-coluna">Informações</h4>
+                <div class="detalhe-grade-tecnica">
+                    <div class="detalhe-bloco-info">
+                        <span class="detalhe-texto-rotulo">Horário</span>
+                        <span class="detalhe-texto-valor">${horaInicio} - ${horaFim}</span>
                     </div>
-                    <div class="info-item">
-                        <span class="info-label">Duração</span>
-                        <span class="info-valor">${duracaoHoras}</span>
+                    <div class="detalhe-bloco-info">
+                        <span class="detalhe-texto-rotulo">Duração</span>
+                        <span class="detalhe-texto-valor">${duracaoHoras}</span>
                     </div>
-                    <div class="info-item">
-                        <span class="info-label">Idade mínima</span>
-                        <span class="info-valor">${dados.min_age}</span>
+                    <div class="detalhe-bloco-info">
+                        <span class="detalhe-texto-rotulo">Idade mínima</span>
+                        <span class="detalhe-texto-valor">${dados.min_age}</span>
                     </div>
-                    <div class="info-item">
-                        <span class="info-label">Vestimenta</span>
-                        <span class="info-valor">${dados.attire}</span>
+                    <div class="detalhe-bloco-info">
+                        <span class="detalhe-texto-rotulo">Vestimenta</span>
+                        <span class="detalhe-texto-valor">${dados.attire}</span>
                     </div>
                 </div>
             </div>
 
-            <div class="servico-coluna">
-                <h4 class="servico-coluna-titulo">Descrição</h4>
-                <p class="description">${dados.description}</p>
+            <!-- Coluna 3: Texto Descritivo -->
+            <div class="detalhe-secao-texto">
+                <h4 class="detalhe-titulo-coluna">Descrição</h4>
+                <p class="detalhe-paragrafo-corpo">${dados.description}</p>
             </div>
         </article>
     `;

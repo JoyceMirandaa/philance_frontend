@@ -519,15 +519,143 @@ button {
     color: #4E5A50;
 }
 
-.servicoAleatorio-card{
+/* ---------- Container Principal ---------- */
+.painel-detalhe-vaga {
     background: #fff;
     border: 1px solid #ECEAE0;
     border-radius: 18px;
     outline: 1px solid #34562e71;
-    padding: 34px 38px;
+    padding: 32px;
     display: grid;
-    grid-template-columns: 4fr 4.2fr 4fr;
+    grid-template-columns: 1.1fr 1.3fr 1.4fr; /* Proporções exatas das colunas do print */
     box-shadow: 0 12px 28px rgba(20, 40, 25, .06);
-    gap: 24px;
+    gap: 32px;
+    align-items: start;
 }
 
+/* ---------- Estrutura Interna das Colunas ---------- */
+.detalhe-secao-perfil,
+.detalhe-secao-dados,
+.detalhe-secao-texto {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.detalhe-divisoria {
+    border-right: 1px solid #ECEAE0;
+    padding-right: 32px; 
+}
+
+/* ---------- Coluna 1: Alinhamentos ---------- */
+.detalhe-topo-perfil {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.detalhe-foto-contratante {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #1F3D2B;
+}
+
+.detalhe-bloco-empresa h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1C2A1E;
+    margin: 0 0 2px 0;
+}
+
+.detalhe-nota-avaliacao {
+    font-size: 13px;
+    color: #1C2A1E;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.detalhe-nota-avaliacao i {
+    color: #1F3D2B;
+}
+
+.detalhe-cidade-estado {
+    font-size: 12px;
+    color: #8C9A8E;
+}
+
+.detalhe-badge-data {
+    font-size: 11px;
+    font-weight: 600;
+    color: #34562E;
+    background: #EAF3EA; /* Tom esverdeado claro do print */
+    padding: 6px 12px;
+    border-radius: 99px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 24px;
+    align-self: flex-start;
+}
+
+.detalhe-ponto-indicador {
+    width: 6px;
+    height: 6px;
+    background-color: #4E8B5A;
+    border-radius: 50%;
+}
+
+.detalhe-nome-cargo {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1F3D2B;
+    margin-bottom: 8px;
+}
+
+.detalhe-valor-monetario {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1C2A1E;
+}
+
+/* ---------- Coluna 2: Informações Técnicas ---------- */
+.detalhe-titulo-coluna {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1F3D2B;
+    margin-bottom: 20px;
+    text-align: left; /* Garante alinhamento à esquerda igual ao modelo */
+}
+
+.detalhe-grade-tecnica {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 16px;
+    text-align: left;
+}
+
+.detalhe-bloco-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detalhe-texto-rotulo {
+    font-size: 11px;
+    color: #8C9A8E;
+    font-weight: 500;
+}
+
+.detalhe-texto-valor {
+    font-size: 14px;
+    color: #1C2A1E;
+    font-weight: 700;
+}
+
+/* ---------- Coluna 3: Descrição ---------- */
+.detalhe-paragrafo-corpo {
+    font-size: 14px;
+    color: #1C2A1E;
+    line-height: 1.6;
+}
