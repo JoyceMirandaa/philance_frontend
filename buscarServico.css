@@ -1,0 +1,296 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    overflow: scroll;
+    height: 100vh;
+}
+
+.fundos{
+    display: flex;
+    flex-direction: row;
+}
+
+.background{
+    background:
+        radial-gradient(680px circle at 20% -15%, rgba(255,255,255,.24), transparent 60%),
+        radial-gradient(560px circle at 92% 120%, rgba(15,30,20,.4), transparent 60%),
+        radial-gradient(rgba(255,255,255,.12) 1px, transparent 1.6px) 0 0/26px 26px,
+        linear-gradient(120deg, #35603F 0%, #4E8B5A 45%, #82BB80 100%);
+    width: 100%;
+    height: auto;
+}
+
+.side{
+    height: 90dvh;
+}
+
+.info-grade{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.info-label {
+    font-size: 14px;
+    color: #8B968C;
+}
+
+.info-valor {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1C2A1E;
+}
+
+.card-servicos {
+    position: relative;    
+    display: flex;
+    flex-direction: column; 
+    width: 500px;           
+    height: 150px;            
+    border: 1px solid #52754B; 
+    border-radius: 24px; 
+    margin: 30px 30px; 
+    box-shadow: none; 
+    padding: 15px;
+}
+
+h3, h2{
+    font-family: 'Lora', serif;
+    color: #1F3D2B;
+}
+
+.card-servicos h3 {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    font-size: 30px;
+}
+
+.card-servicos span{
+    position: absolute;     
+    top: 25px;              
+    right: 25px;           
+    font-size: 22px;
+    font-weight: 700;
+    color: #1F3D2B;
+}
+
+.card-servicos p{
+   margin-left: 23px;
+}
+
+.detalhes-container{
+    margin: 30px;
+    padding: 15px 15px 15px;
+}
+
+.card-titulo{
+    font-family: 'Lora', serif;
+    color: #1F3D2B;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.detalhe-empresa{
+    font-family: 'Lora', serif;
+    color: #1F3D2B;
+    font-size: 20px;
+}
+
+.card-principal{
+    padding: 10px 30px 20px;
+}
+
+.card-meio{
+    padding: 10px 30px 20px;
+}
+
+.card-final{
+    padding: 10px 30px 10px;
+}
+
+/* CORREÇÃO AQUI: Sem espaço entre a tag e a classe */
+img.filter {
+    height: 30px; 
+    width: auto;
+    display: block;
+    margin: 20px;
+    border-radius: 20px;
+    border: 2px solid #134609; /* Define espessura, estilo (solid) e a sua cor */
+    padding: 10px;
+}
+
+
+/* Garante que o botão transparente não mude o tamanho do ícone */
+.foto-filtro-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Adicionado position relative para controlar o menu absoluto */
+.title-filtro {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Alinha o botão e o H2 verticalmente pelo meio */
+    gap: 15px;
+    position: relative; /* Base de posicionamento para o dropdown */
+}
+
+/* O Menu Suspenso */
+.suspenso-menu {
+    position: absolute;
+    top: 100%;      /* Brota logo abaixo do container do título */
+    left: 0;        /* Alinha com o canto esquerdo (perto do botão) */
+    margin-top: 1px; 
+    
+    background-color: #ffffff;
+    padding: 12px 12px 12px;
+    height: 500px;
+    width: 530px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Ajustada para uma sombra mais moderna */
+    z-index: 99;    
+    border: solid 1px #7da07a;
+    border-radius: 10px;
+}
+
+/* Esta classe esconde o menu por padrão */
+.escondido {
+    display: none !important;
+}
+
+/* Estilização rápida dos links de dentro do menu */
+.suspenso-menu a {
+    display: block;
+    color: #313a30;
+    text-decoration: none;
+    padding: 8px 0;
+    text-align: left;
+}
+
+.suspenso-menu a:hover {
+    color: #4caf50; /* Efeito hover para os links */
+}
+
+.title-menu{
+    font-family: 'Lora', serif;
+    color: #1F3D2B;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.valores-exibicao {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 12px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.horario{
+    display: flex;
+    flex-direction: column;
+}
+
+select{
+    width: 200px;
+    height: 30px;
+    padding: 0 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #6B7A6D;
+    border: solid 1px;
+    border-radius: 12px;
+}
+
+input[type="datetime-local" i] {
+    width: 200px;
+    height: 30px;
+    padding: 0 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #6B7A6D;
+    border: solid 1px;
+    border-radius: 12px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 10rem;
+}
+
+
+/* slider  */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #4caf50;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -4px;
+  background-color: #313a30;
+  border-radius: 0.5rem;
+  height: 1rem;
+  width: 0.5rem;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 3px solid #313a30;
+  outline-offset: 0.125rem;
+}
+
+article {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 30px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 40px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform .12s ease, opacity .12s ease, background .12s ease;
+}
+
+.btn:hover { 
+  transform: translateY(-1px); 
+}
+.btn:active { 
+  transform: translateY(0); 
+}
+
+.btn-aceitar {
+  background: #1F3D2B;
+  color: #fff;
+}
+.btn-aceitar:hover { 
+  opacity: .9; 
+}
+
+

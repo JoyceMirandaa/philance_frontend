@@ -1,0 +1,183 @@
+body {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid #41983D; 
+}
+
+.button-login{
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #5C8454ff;
+    border-radius: 30px;
+    padding: 10px;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.button-cadastro{
+    background-color: #5C8454ff;
+    border: 2px solid;
+    border-color: #5C8454ff;
+    border-radius: 30px;
+    padding: 10px;
+    width: 110px;
+    margin-right: 15px;
+}
+
+.titulo-login{
+    color: #5C8454ff;
+    text-decoration: none;
+
+}
+
+.titulo-cadastro{
+    color:#ffffff;
+    text-decoration: none;
+
+}
+
+ul{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+img{
+    height: 80px; 
+    width: auto;
+}
+
+/* Tela Home da Empresa */
+
+.button-home{
+    background-color: #ffffff;
+    padding: 14px 20px;
+    width: 150px;
+    cursor:pointer;
+    border-style: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-light {
+  background: #FFFFFF;
+  color: #1F3D2B;
+  box-shadow: 0 12px 26px rgba(10,25,15,.10);
+  border: 1.5px solid #1F3D2B;
+}
+.btn-light:hover { 
+  opacity: .9; 
+}
+
+.button-solicitar-buscar{
+    background-color: #ffffff;
+    padding: 14px 20px;
+    width: 250px;
+    cursor:pointer;
+    border-style: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.icon-nav{
+    width: 30px;
+    height: 30px;
+    color: #1F3D2B;
+    margin-bottom: -8px;
+}
+
+.nav-home-empresa{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 90px;
+    background-color: white;
+    border-bottom: 1px solid #41983D;
+}
+.menu-central{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    margin-right: 40px;
+}
+
+
+/* A caixinha mãe serve como a "âncora" para o menu saber onde se posicionar */
+.perfil-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo do botão da foto */
+.foto-perfil-btn {
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* O Menu Suspenso*/
+.dropdown-menu {
+    position: absolute;
+    top: 92%;      
+    right: -20px;        
+    margin-top: 8px; 
+    
+    background-color: #ffffff;
+    padding:12px;
+    width: 220px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Sombra suave */
+    z-index: 99;    /* Garante que ele vai flutuar acima de qualquer elemento */
+    border: solid 2px #c0e9bd;
+    border-radius: 10px;
+}
+
+/* Esta classe esconde o menu por padrão */
+.escondido {
+    display: none;
+}
+
+/* Estilização rápida dos links de dentro do menu */
+.dropdown-menu a {
+    display: block;
+    color: #313a30;
+    text-decoration: none;
+    padding: 8px 0;
+    text-align: left;
+}
+
+.dropdown-menu a:hover {
+    transform: scale(1.00);
+    box-shadow: 0 0 10px rgba(47, 111, 31, 0.4);
+    background-color: rgba(153, 211, 138, 0.3);
+    padding: 10px;
+}
+
+.username{
+    color: #313a30d5;
+    font-family: "Idiqlat";
+    font-size: 23px ;
+    margin-bottom: -5px;
+}
+
+.email{
+    color: #727272;
+    font-size: 15px;
+}
