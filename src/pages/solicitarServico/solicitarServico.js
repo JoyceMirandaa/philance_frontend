@@ -5,20 +5,40 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-function configurarEnderecoUsuario() {
+async function configurarEnderecoUsuario() {
     const usuarioLogadoString = localStorage.getItem("dadosFormulario");
-    if (usuarioLogadoString) {
-        const usuarioLogado = JSON.parse(usuarioLogadoString);
-        const selectElement = document.getElementById("rua");
+    const usuarioLogado = JSON.parse(usuarioLogadoString);
 
-        if (selectElement && usuarioLogado.address) {
+    const dadosEndereco = usuarioLogado.address;
+    console.log("aqui", dadosEndereco)
+
+    try {
+        const respostaEndereco = await fetch('http://localhost:8080/info-address', {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain' },
+            body: dadosEndereco
+        });
+
+         const dadosDoServidor = await respostaEndereco.json(); 
+
+        if (respostaEndereco.ok) {
+            const selectElement = document.getElementById("rua");
+
             selectElement.innerHTML = '<option value="">Selecione o endereço...</option>';
             const option = document.createElement("option");
-            option.value = usuarioLogado.address.id; 
-            option.textContent = `${usuarioLogado.address.street}, ${usuarioLogado.address.number}`;
+            option.value = dadosDoServidor.id; 
+            option.textContent = `${dadosDoServidor.street}, ${dadosDoServidor.number}`;
             option.selected = true; 
             selectElement.appendChild(option);
+
+            console.log(dadosDoServidor);
+        
+            
+        } else {
+            console.log(dadosDoServidor);
         }
+    } catch (erro) {
+        console.error('Erro:', erro);
     }
 }
 
@@ -91,8 +111,8 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
 
     // CORREÇÃO 3: Uso das variáveis do objeto correto 'usuarioLogado' e checagem de segurança nas propriedades
     const dadosSolicitar = {
-        id_company: usuarioLogado?.id || "",
-        id_address: usuarioLogado?.address?.id || "", 
+        id_company: usuarioLogado?.id_user || "",
+        id_address: usuarioLogado?.address || "", 
         title: nomeTagSelecionada, // Envia a tag selecionada
         description: campoDescription ? campoDescription.value : "", 
         payment: campoPayment ? campoPayment.value : "",
