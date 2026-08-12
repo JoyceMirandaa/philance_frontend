@@ -49,6 +49,7 @@ ul{
     display: flex;
     gap: 10px;
     align-items: center;
+    margin-right: 20px;
 }
 
 img{
@@ -182,3 +183,7 @@ img{
     font-size: 15px;
 }
 
+.icon-exit{
+    margin-left: 127px;
+    color: rgb(175, 6, 6);
+}

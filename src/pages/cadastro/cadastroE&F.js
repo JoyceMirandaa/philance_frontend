@@ -172,11 +172,6 @@ async function enviarDadosParaOBackend(event) {
     const cidadeInput = document.getElementById('cidade');
     const ufInput = document.getElementById('uf');
 
-    if (!usernameInput?.value || !emailInput?.value || !senhaInput?.value) {
-        alert("Preencha todos os campos obrigatórios (Usuário, E-mail e Senha).");
-        return;
-    }
-
     // Gera o hash da senha de forma assíncrona
     const senhaDigitada = senhaInput.value;
     const passwordHashed = await passwordHash(senhaDigitada);
@@ -202,7 +197,7 @@ async function enviarDadosParaOBackend(event) {
         type: tipoUsuarioAtual,
         password: passwordHashed,
         document: documentoValue,  // Enviado como String
-        zip_code: cepInput.value,
+        zip_code: cepInput.value.replace(/\D/g,""),
         street: ruaInput.value,
         number: numeroInput.value,
         complement: complementoInput.value,
@@ -222,12 +217,6 @@ async function enviarDadosParaOBackend(event) {
 
         if (resposta.ok) {
             const usuarioLogado = conteudoResposta;
-
-            if (usuarioLogado && tipoUsuarioAtual !== usuarioLogado.type) {
-                const perfilCorreto = usuarioLogado.type === 'E' ? 'Empresa' : 'Freelancer';
-                alert(`Atenção: Esta conta está registrada como perfil de ${perfilCorreto}. Selecione o tipo correto na tela.`);
-                return; 
-            }
 
             alert('Cadastro realizado com sucesso!');
             

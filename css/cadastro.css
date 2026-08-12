@@ -173,6 +173,12 @@ body {
     color: red;
 }
 
+#mensagem-avancar{
+    font-size: 13.5px;
+    color: red;
+    margin-bottom: 8px;
+}
+
 /* Botões */
 
 .buttons{
@@ -211,6 +217,7 @@ a{
   background: #1F3D2B;
   color: #fff;
   box-shadow: 0 12px 26px rgba(10,25,15,.10);
+  gap: 2px;
 }
 .btn-dark:hover { 
   opacity: .9; 

@@ -158,6 +158,7 @@ button {
 .estatisticas {
     width: min(100%, 1280px); /* Distância dos cards em relação a margem */
     margin: 0 auto;
+    margin-top: 2px;
     container-type: inline-size;
     padding: 0 16px;
     position: relative;
@@ -174,6 +175,7 @@ button {
     outline: 1px solid #34562e71;
     padding: 20px 22px;
     box-shadow: 0 12px 28px rgba(20, 40, 25, .06);
+    align-content: center;
 }
 
 .avaliacoes-card {
@@ -225,13 +227,11 @@ button {
     color: #1C2A1E;
 }
 
-.card-head { /* Dar um jeito de arrumar automático ao invés de usar margin-top */
+.card-head {
     display: flex;
     align-items: center;
-    margin-top: 30px;
     margin-right: 15px;
     margin-left: 15px;
-    
 }
 
 /* estatística - relatório financeiro */
@@ -317,16 +317,6 @@ button {
     margin-bottom: 18px;
 }
 
-.grafico-barras {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 10px;
-    height: 150px;
-    margin: auto;
-}
-
-
 .barra-coluna {
     flex: 1;
     display: flex;
@@ -350,7 +340,10 @@ button {
     border-radius: 6px 6px 3px 3px;
 }
 
-
+.grafico{
+    display: flex;
+    align-content: center;
+}
 
 .barra-label {
     font-size: 11px;
