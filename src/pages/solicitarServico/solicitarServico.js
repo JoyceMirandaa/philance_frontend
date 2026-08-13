@@ -32,6 +32,7 @@ async function configurarEnderecoUsuario() {
             selectElement.appendChild(option);
 
             console.log(dadosDoServidor);
+            localStorage.setItem("dadosEndereco", JSON.stringify(dadosDoServidor));
         
             
         } else {

@@ -97,6 +97,8 @@ button {
 
 .description{
     color: #4E5A50;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 /* ---------- Botões ---------- */

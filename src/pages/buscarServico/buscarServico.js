@@ -22,6 +22,8 @@ document.querySelectorAll('.tags-buttons input[type="radio"]').forEach(radio => 
 });
 
 
+
+
 async function buscarServicos() {
   try {
     const resposta = await fetch('http://localhost:8080/all-assignments');
@@ -30,22 +32,42 @@ async function buscarServicos() {
     const localAlvo = document.getElementById('card-servico');
 
     const colunaDetalhes = document.querySelector('.background'); 
+    
+
+    localAlvo.innerHTML = '';
+
+    const listaDeServicos = dadosPaginados.content;
+
+    const dadosEndereco = listaDeServicos.address
+
+    try {
+        // OPÇÃO A: Se o backend recebe o ID no corpo (Body) como texto puro
+        const respostaEndereco = await fetch('http://localhost:8080/info-address', {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+            body: dadosEndereco
+        })
+
+        if (respostaEndereco.ok) {
+            dadosDoServidor = await respostaEndereco.json();
+        } else {
+            console.error(`Erro ao buscar endereço ID ${dadosEndereco}: Status ${respostaEndereco.status}`);
+        }
+    } catch (err) {
+        console.error("Falha na requisição de endereço:", err);
+    }
 
     if (!localAlvo) {
         console.error("Contêiner #card-servicos não foi encontrado no HTML.");
         return;
     }
 
-    localAlvo.innerHTML = '';
-
-    const listaDeServicos = dadosPaginados.content;
-
     if (listaDeServicos && Array.isArray(listaDeServicos)) {
         listaDeServicos.forEach(servico => {
           const card = document.createElement('div');
           card.className = 'card-servicos';
 
-          card.setAttribute('data-id', servico.id);
+          card.setAttribute('data-id', servico.id_user);
 
           card.innerHTML = `
             <div class="side-card">
@@ -153,7 +175,7 @@ document.addEventListener('click', async function(event) {
 
     // Monta o JSON perfeitamente com um ID único e sem fazer novos fetches de listagem
     const dadosAceitar = {
-        id_user: usuarioLogado?.id || "",
+        id_user: usuarioLogado?.id_user || "",
         id_assignment: idAssignmentAtivo,
     };
 
