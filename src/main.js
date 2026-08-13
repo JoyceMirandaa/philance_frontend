@@ -26,3 +26,17 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     }
   });
 });
+
+const banner = document.getElementById('cookie-banner');
+const acceptBtn = document.getElementById('accept-cookies');
+
+  if (!localStorage.getItem('cookieConsent')) {
+    banner.style.display = 'flex';
+  } else {
+    banner.style.display = 'none';
+  }
+
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'true');
+    banner.style.display = 'none';
+  });

@@ -3,8 +3,8 @@ const menuSuspenso = document.getElementById('menu-suspenso');
 
 botaoFiltro.addEventListener('click', function(event) {
     event.stopPropagation(); 
-    
-    
+
+
     menuSuspenso.classList.toggle('escondido');
 });
 
@@ -26,11 +26,11 @@ async function buscarServicos() {
   try {
     const resposta = await fetch('http://localhost:8080/all-assignments');
     const dadosPaginados = await resposta.json();
-    
+
     const localAlvo = document.getElementById('card-servico');
 
-    const colunaDetalhes = document.querySelector('.green'); 
-    
+    const colunaDetalhes = document.querySelector('.background'); 
+
     if (!localAlvo) {
         console.error("Contêiner #card-servicos não foi encontrado no HTML.");
         return;
@@ -46,10 +46,10 @@ async function buscarServicos() {
           card.className = 'card-servicos';
 
           card.setAttribute('data-id', servico.id);
-          
+
           card.innerHTML = `
-            <div >
-                <p>${servico.company}</p>
+            <div class="side-card">
+                <p>${servico.companyName}</p>
                 <span>R$ ${servico.payment}</span>
                 <h3>${servico.title}</h3>
             </div>
@@ -83,23 +83,51 @@ function exibirDetalhesDoServico(servico, container) {
     container.innerHTML = `
         <section class="detalhes-container">
             <article class="card-principal">
-                <p class="detalhe-empresa"><strong>Empresa/Contratante:</strong> ${servico.company}</p>
+                <p class="detalhe-empresa"><strong>Empresa/Contratante:</strong> ${servico.companyName}</p>
                 <h2>${servico.title}</h2>
                 <button class="btn btn-aceitar" data-id="${servico.id}">Aceitar</button>
             </article>
 
-            <article class="detalhes-info-grid">
-                <p><strong>Preço:</strong> R$ ${servico.payment}</p>
-                <p><strong>Cidade:</strong> ${servico.address}</p>
-                <p><strong>Idade Mínima:</strong> ${servico.min_age} anos</p>
-                <p><strong>Traje:</strong> ${servico.attire}</p>
-                <p><strong>Início:</strong> ${inicio}</p>
-                <p><strong>Término:</strong> ${fim}</p>
+            <article class="card-meio">
+            <h4 class="card-titulo">Informações</h4>
+                <div class="info-grade">
+                    <div class="info-item">
+                        <span class="info-label">Valor</span>
+                        <span class="info-valor">R$ ${servico.payment}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Cidade</span>
+                        <span class="info-valor">${servico.address}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Idade Mínima</span>
+                        <span class="info-valor">${servico.min_age}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Traje</span>
+                        <span class="info-valor">${servico.attire}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Início</span>
+                        <span class="info-valor">${inicio}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Término</span>
+                        <span class="info-valor">${fim}</span>
+                    </div>
+                    
+                </div>
             </article>
 
 
-            <article class="detalhes-descricao">
-                <p class="detalhe-descricao"><strong>Descrição completa:</strong> ${servico.description}</p>
+            <article class="card-final">
+                <h4 class="card-titulo">Descrição completa</h4>
+                <p class="detalhe-descricao">${servico.description}</p>
             </article>
             
         </section>
@@ -107,17 +135,17 @@ function exibirDetalhesDoServico(servico, container) {
 }
 
 document.addEventListener('click', async function(event) {
-   
+
     const botaoAceitar = event.target.closest('.btn-aceitar');
-    
-    
+
+
     if (!botaoAceitar) return;
 
-   
+
     const usuarioLogadoString = localStorage.getItem("dadosFormulario");
     const usuarioLogado = JSON.parse(usuarioLogadoString);
 
-    
+
      if (!idAssignmentAtivo) {
         alert('Erro: Nenhum serviço ativo selecionado.');
         return;
@@ -139,20 +167,20 @@ document.addEventListener('click', async function(event) {
         if (respostaAceitar.ok) {
             alert('Sucesso! Serviço aceito.');
             console.log(dadosAceitar);
-                    
+
             const respostaDados = await respostaAceitar.json();
             localStorage.setItem("dadosAceitar", JSON.stringify(respostaDados));
-            
+
                 // 1. Procura o card na tela que tem o data-id igual ao ID do serviço aceito
             const cardParaRemover = document.querySelector(`.card-servicos[data-id="${idAssignmentAtivo}"]`);
-            
+
             // 2. Se o card for encontrado, remove ele do HTML
             if (cardParaRemover) {
                 cardParaRemover.remove();
             }
 
             // 3. Limpa a coluna da direita (detalhes), já que o serviço sumiu
-            const colunaDetalhes = document.querySelector('.green');
+            const colunaDetalhes = document.querySelector('.background');
             if (colunaDetalhes) {
                 colunaDetalhes.innerHTML = '';
             }
@@ -173,4 +201,3 @@ if (document.readyState === 'loading') {
 } else {
     buscarServicos();
 }
-

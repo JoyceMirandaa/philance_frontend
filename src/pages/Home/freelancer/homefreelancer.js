@@ -35,6 +35,7 @@ async function carregarServicosSolicitados() {
     //Ai só troca a rota e adciona o que falta para o card do serviço aceitados quando o Antonio mudar o back =)
     try {
         const respostaSolicitados = await fetch("http://localhost:8080/all-assignments");
+        
 
        const servicosSolicitados = await respostaSolicitados.json();
        console.log("Serviços solicitados carregados com sucesso:", servicosSolicitados);
@@ -94,6 +95,7 @@ botao.addEventListener('click', async () => {
   try {
     const resposta = await fetch("http://localhost:8080/random-assignment"); 
     const dados = await resposta.json(); 
+    console.log(dados)
 
      // 1. Trata as datas do back-end
     const dataInicio = new Date(dados.startHour);
@@ -116,7 +118,7 @@ botao.addEventListener('click', async () => {
             <div class="detalhe-secao-perfil detalhe-divisoria">
                 <div class="detalhe-foto-contratante"></div>
                 <div class="detalhe-bloco-empresa">
-                    <h4>${dados.company} <span class="detalhe-nota-avaliacao"><i class="fa-solid fa-star"></i> 4.5</span></h4>
+                    <h4> <span class="detalhe-nota-avaliacao"><i class="fa-solid fa-star"></i> 4.5</span></h4>
                     <span class="detalhe-cidade-estado">Curitiba, PR</span>
                 </div>
                 <span class="detalhe-badge-data">

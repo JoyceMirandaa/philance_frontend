@@ -358,11 +358,6 @@ button {
 
 
 
-
-
-
-
-
 /* ---------- Botões ---------- */
 
 a{
@@ -434,4 +429,35 @@ a{
 
 .icon-arrow{
   margin-left: 8px;
+}
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #222;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  z-index: 9999;
+  font-family: sans-serif;
+}
+
+.cookie-banner p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.cookie-banner button {
+  background: #4E8B5A;
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
 }
