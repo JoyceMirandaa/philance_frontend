@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     carregarTagsDoBackend();
 });
 
+const mensagem = document.getElementById("mensagem-solicitar");
 
 async function configurarEnderecoUsuario() {
     const usuarioLogadoString = localStorage.getItem("dadosFormulario");
@@ -54,8 +55,6 @@ async function carregarTagsDoBackend() {
 
         const listaDeTags = await resposta.json(); // Espera receber uma Array do backend
 
-
-
         // Limpa o "Carregando..." e define a opção padrão
         selectTags.innerHTML = '<option value="">Selecione uma tag...</option>';
 
@@ -80,14 +79,10 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
 
     const dadosLocalStorage = localStorage.getItem("dadosFormulario");
     const camposValidos = verificarCamposSolicitar();
-    
+
     if (!dadosLocalStorage) {
       alert("Usuário não está logado!");
       return;
-    }
-
-    if (!camposValidos) {
-        return; 
     }
 
     // CORREÇÃO 1: Converter a string do localStorage em objeto para poder acessar .id e .address
@@ -100,14 +95,13 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
     const campoTermino = document.getElementById('termino');
     const campoInicio = document.getElementById('inicio');
 
-
     const idTagSelecionada = campoTags ? campoTags.value : "";
 
     const nomeTagSelecionada = campoTags && campoTags.selectedIndex >= 0 ? campoTags.options[campoTags.selectedIndex].text : "";
 
     if (!idTagSelecionada) {
-        alert("Por favor, selecione uma tag válida.");
-        return;
+        mensagem.textContent = "Selecione uma tag válida.";
+        return false;
     }
 
     const radioSelecionado = document.querySelector(`input[name="${nomeDogrupo}"]:checked`);
@@ -161,7 +155,6 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
 }
 
 function verificarCamposSolicitar() {
-    const mensagem = document.getElementById("mensagem-solicitar");
     const campoTags = document.getElementById('tags');
     const campoRua = document.getElementById('rua');
     const campoInicio = document.getElementById('inicio');
