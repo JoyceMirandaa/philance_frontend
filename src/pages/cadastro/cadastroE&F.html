@@ -17,22 +17,22 @@
 
     <main class="cadastro-container">
         
-        <!-- Switch -->
-        <div class="switch-container">
-            <button type="button" class="switch-btn ativo" data-tipo="F">Sou freelancer</button>
-            <button type="button" class="switch-btn" data-tipo="E">Sou empresa</button>
-        </div>
-        
-        <div class="title-description">
-            <h2>Cadastre-se</h2>
-            <p>Preencha as informações para criar a sua conta</p>
-        </div>
-
         <form id="cadastroForm">
             <input type="hidden" id="letra-cadastro" name="tipo_usuario" value="F">
 
             <!-- DADOS PESSOAIS -->
             <section class="step active" id="step1">
+            <!-- Switch -->
+            <div class="switch-container">
+                <button type="button" class="switch-btn ativo" data-tipo="F">Sou freelancer</button>
+                <button type="button" class="switch-btn" data-tipo="E">Sou empresa</button>
+            </div>
+        
+            <div class="title-description">
+                <h2>Cadastre-se</h2>
+                <p>Preencha as informações para criar a sua conta</p>
+            </div>
+
                 <h3>Dados Pessoais</h3>
                 <div class="inputs">
                     <label for="username">Nome Completo:</label>
@@ -90,13 +90,13 @@
                 </div>
 
                 <div id="campo-sobre-freelancer-cadastro" class="secao-cadastro inputs">
-                    <label for="sobre-voce">Sobre Você:</label>
-                    <textarea id="sobre-voce" placeholder="Fale sobre você"></textarea>
+                    <label for="sobre">Sobre Você:</label>
+                    <textarea id="sobre" placeholder="Fale sobre você"></textarea>
                 </div>
 
                 <div id="campo-sobre-empresa-cadastro" class="secao-cadastro escondido inputs">
-                    <label for="sobre-empresa">Sobre a Empresa:</label>
-                    <textarea id="sobre-empresa" placeholder="Fale sobre a empresa"></textarea>
+                    <label for="sobre">Sobre a Empresa:</label>
+                    <textarea id="sobre" placeholder="Fale sobre a empresa"></textarea>
                 </div>
 
                 <div class="buttons">
@@ -113,6 +113,11 @@
 
             <!-- ENDEREÇO -->
             <section class="step" id="step2">
+                <div class="title-description">
+                    <h2>Cadastre-se</h2>
+                    <p>Preencha as informações para criar a sua conta</p>
+                </div>
+
                 <h3>Endereço</h3>
 
                 <div class="inputs">
@@ -160,6 +165,7 @@
                     <button type="button" class="btn btn-dark" onclick="nextStep(3)">
                         Avançar<i class="fa-solid fa-arrow-right icon-arrowR"></i>
                     </button>
+                
                 </div>
             </section>
 
@@ -180,6 +186,11 @@
 
             <!-- Tags -->
             <section class="step" id="step3">
+                <div class="title-description">
+                    <h2>Cadastre-se</h2>
+                    <p>Preencha as informações para criar a sua conta</p>
+                </div>
+
                 <h3>Tags</h3>
 
                 <div class="inputs">
@@ -230,9 +241,10 @@
                         <i class="fa-solid fa-arrow-left icon-arrow-L"></i>Voltar
                     </button>
                     <button class="btn btn-dark" id="btnCadastro" type="submit">
-                        Cadastrar<i class="fa-solid fa-arrow-right icon-arrowR"></i>
+                        Cadastrar<i class="fa-solid fa-paper-plane icon-paper"></i>
                     </button>
                 </div>
+                
             </section>
 
         </form>

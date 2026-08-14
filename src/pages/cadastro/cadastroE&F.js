@@ -73,6 +73,8 @@ document.addEventListener('click', (event) => {
     const secaoFreelancerSobre = document.getElementById('campo-sobre-freelancer-cadastro');
     const secaoEmpresaSobre = document.getElementById('campo-sobre-empresa-cadastro');
 
+    const btnAvancarStep2 = document.querySelector('#step2 .btn-dark');
+
     const botoesSwitch = document.querySelectorAll('.switch-btn');
     botoesSwitch.forEach(b => b.classList.remove('ativo'));
     
@@ -89,6 +91,10 @@ document.addEventListener('click', (event) => {
         secaoEmpresacnpj?.classList.add('escondido');
         secaoFreelancerSobre?.classList.remove('escondido');
         secaoEmpresaSobre?.classList.add('escondido')
+
+        if (btnAvancarStep2) {
+            btnAvancarStep2.innerHTML = 'Avançar <i class="fa-solid icon-arrowR"></i>';
+        }
         
     } else if (tipoSelecionado === 'E') {
         secaoEmpresa?.classList.remove('escondido');
@@ -97,6 +103,10 @@ document.addEventListener('click', (event) => {
         secaoFreelancercpf?.classList.add('escondido');
         secaoEmpresaSobre?.classList.remove('escondido');
         secaoFreelancerSobre?.classList.add('escondido')
+
+        if (btnAvancarStep2) {
+            btnAvancarStep2.innerHTML = 'Cadastrar <i class="fa-solid fa-paper-plane icon-paper"></i></i>';
+        }
     }
 });
 
@@ -213,7 +223,6 @@ async function enviarDadosParaOBackend(event) {
         state: ufInput.value
     };
 
-
     try {
         const resposta = await fetch('http://localhost:8080/register-user', {
             method: 'POST',
@@ -226,7 +235,7 @@ async function enviarDadosParaOBackend(event) {
         if (resposta.ok) {
             const usuarioLogado = conteudoResposta;
 
-        
+            alert('Cadastro realizado com sucesso!');
             
             // Salva os dados no navegador
             localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
@@ -238,7 +247,9 @@ async function enviarDadosParaOBackend(event) {
                 window.location.href = "/src/pages/Home/freelancer/homefreelancer.html"; 
             }
         } else {
-            const mensagemErro = conteudoResposta?.message || 'Falha ao processar a requisição no servidor.'
+            const mensagemErro = conteudoResposta?.message || 'Falha ao processar a requisição no servidor.';
+            alert(`Erro (${resposta.status}): ${mensagemErro}`);
+            console.error('Detalhes do envio:', dadosFormulario);
         }
     } catch (erro) {
         alert('Erro de conexão com o servidor. Verifique se o backend está rodando.');
