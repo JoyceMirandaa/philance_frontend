@@ -171,6 +171,8 @@ async function finalizarServico(idServico, botao) {
             throw new Error(`Erro no servidor: Status ${resposta.status}`);
         }
 
+        localStorage.setItem("idServicoAtual", idServico);
+
         const card = botao.closest(".servico-card");
         card.remove();
         

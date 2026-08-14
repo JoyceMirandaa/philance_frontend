@@ -1,3 +1,13 @@
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("A página carregou! Iniciando as funções...");
+    
+    carregarServicosSolicitados();
+    carregarServicosAceitos();
+    carregarAvaliacao()
+    
+});
+
+
 // 1. Recuperação e Validação do LocalStorage
 const dadosSalvosFormulario = localStorage.getItem("dadosFormulario");
 console.log("Dados brutos do LocalStorage:", dadosSalvosFormulario);
@@ -33,29 +43,31 @@ if (!dadosSalvosFormulario) {
 
 
 async function carregarServicosSolicitados() {
-    //Ai só troca a rota e adciona o que falta para o card do serviço aceitados quando o Antonio mudar o back =)
     try {
         const respostaSolicitados = await fetch("http://localhost:8080/all-assignments");
 
        const servicosSolicitados = await respostaSolicitados.json();
        console.log("Serviços solicitados carregados com sucesso:", servicosSolicitados);
 
-        // CORREÇÃO: Acessa o primeiro item da lista dentro de content
+    
         if (servicosSolicitados.content && servicosSolicitados.content.length > 0) {
             document.getElementById("title").textContent = servicosSolicitados.content[0].title;
         } else {
             document.getElementById("title").textContent = "Nenhum serviço disponível";
         }
 
+     
+        
+
+
         return servicosSolicitados;;
 
     } catch (erro) {
         console.error("Não foi possível carregar os serviços da API:", erro);
-        // Aqui você pode colocar um aviso visual na tela para o usuário saber que falhou
     }
 }
 
-carregarServicosSolicitados();
+
 
 const ctx = document.getElementById('meuGrafico').getContext('2d');
 
@@ -200,6 +212,7 @@ async function carregarServicosAceitos() {
                 } else {
                     console.error(`Erro ao buscar endereço ID ${idEndereco}: Status ${respostaEndereco.status}`);
                 }
+
             } catch (err) {
                 console.error("Falha na requisição de endereço:", err);
             }
@@ -279,9 +292,113 @@ async function carregarServicosAceitos() {
     }
 }
 
-carregarServicosAceitos()
 
 
 async function carregarAvaliacao() {
+    const usuarioLogadoString = localStorage.getItem("dadosFormulario");
+    const usuarioLogado = JSON.parse(usuarioLogadoString);
+    const idUsuario = usuarioLogado.id_user;
+
+    try {
+        const resposta = await fetch(`http://localhost:8080/assingments-finished/${idUsuario}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (!resposta.ok) throw new Error("Erro ao buscar finalizados");
+
+        const servicosFinalizados = await resposta.json(); 
+
+        console.log("CONTEÚDO DO BACKEND:", servicosFinalizados);
+
+        localStorage.setItem("idAtual", JSON.stringify(servicosFinalizados));
+
+         if (servicosFinalizados && servicosFinalizados.length > 0) {
+            const primeiroServico = servicosFinalizados[0];
+
+            document.body.innerHTML += `
+                <div id="modal-avaliacao-dinamico" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 9999;">
+                    <!-- Estilos CSS das estrelas injetados dinamicamente -->
+                    <style>
+                        .rating-group { display: flex; direction: row-reverse; justify-content: flex-end; margin: 15px 0; }
+                        .rating-group input { display: none; }
+                        .rating-group label { cursor: pointer; font-size: 30px; color: #ccc; transition: color 0.2s; }
+                        .rating-group label:before { content: '★'; }
+                        .rating-group input:checked ~ label,
+                        .rating-group label:hover,
+                        .rating-group label:hover ~ label { color: #ffca08; }
+                    </style>
+
+                    <div>
+                        <h2>Avalie o Serviço</h2>
+                        <p>Você finalizou o serviço: <strong>${primeiroServico.title}</strong></p>
+                        
+                        <!-- Grupo de Estrelas (do 5 para o 1 por conta do CSS reverse) -->
+                        <div class="rating-group">
+                            <input type="radio" id="star5" name="nota" value="5"><label for="star5"></label>
+                            <input type="radio" id="star4" name="nota" value="4"><label for="star4"></label>
+                            <input type="radio" id="star3" name="nota" value="3"><label for="star3"></label>
+                            <input type="radio" id="star2" name="nota" value="2"><label for="star2"></label>
+                            <input type="radio" id="star1" name="nota" value="1"><label for="star1"></label>
+                        </div>
+
+                        <textarea placeholder="Deixe seu feedback aqui..." id="texto-avaliacao"></textarea>
+                        
+                        <div>
+                            <button onclick="fecharModalDinamico()">Cancelar</button>
+                            <button onclick="enviarAvaliacao('${primeiroServico.id}')">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        
+    } catch (erro) {
+        console.error('Erro:', erro);
+        
+    }
+
+     
+}
+
+function fecharModalDinamico() {
+    const modal = document.getElementById("modal-avaliacao-dinamico");
+    if (modal) modal.remove();
+}
+
+async function enviarAvaliacao(idServico) {
+    const usuarioLogadoString = localStorage.getItem("dadosFormulario");
+    const usuarioLogado = JSON.parse(usuarioLogadoString);
+   
+    const estrelaSelecionada = document.querySelector('input[name="nota"]:checked');
+    const texto = document.getElementById("texto-avaliacao").value;
+    const notaNumero = parseInt(estrelaSelecionada.value); 
+
+    const company = localStorage.getItem("idAtual");
+    const dadosCompany =  JSON.parse(company)
+    console.log(company)
+
+    const dadosAvaliar = {
+        review: notaNumero,
+        comments: texto,
+        id_assignment: idServico,
+        id_author: usuarioLogado.id_user,
+        id_target: dadosCompany.company
+    }
+
+    console.log(dadosAvaliar)
+
+    try{
+        const avaliar = await fetch(`http://localhost:8080/ratings`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dadosAvaliar)
+        });
+
+    }catch{
+        console.error('Erro:', erro);
+    }
     
 }
+
