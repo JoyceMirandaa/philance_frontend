@@ -152,7 +152,7 @@ body {
   position: absolute;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
-  bottom: 28px; /* Ajusta conforme a altura do input */
+  bottom: 23px; /* Ajusta conforme a altura do input */
   left: 12px;   /* Distância da borda esquerda */
   color: #555;
   font-weight: 300;
@@ -209,4 +209,9 @@ body {
 }
 .btn-light:hover { 
   opacity: .9; 
+}
+
+.mensagem-css{
+    font-size: 13.5px;
+    color: red;
 }
