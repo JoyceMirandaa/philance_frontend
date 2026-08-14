@@ -164,6 +164,9 @@ async function enviarDadosParaOBackend(event) {
     const phoneInput = document.getElementById('phone');
     const nascimentoInput = document.getElementById('date-nascimento');
     const criacaoInput = document.getElementById('date-criacao')
+    const sobreVoce = document.getElementById('sobre-voce');
+    const sobreEmpresa = document.getElementById('sobre-empresa')
+    
 
     const ruaInput = document.getElementById('rua');
     const numeroInput = document.getElementById('numero');
@@ -179,13 +182,16 @@ async function enviarDadosParaOBackend(event) {
     // 1. Obtenção segura e sanitização da String
     let documentoValue = "";
     let dateValue = "";
+    let descricaoValue = "";
 
     if (tipoUsuarioAtual === 'F' && cpfInput && nascimentoInput) {
         documentoValue = String(cpfInput.value).trim().replace(/\D/g,"");
         dateValue = String(nascimentoInput.value).trim();
+        descricaoValue = String(sobreVoce.value).trim()
     } else if (tipoUsuarioAtual === 'E' && cnpjInput && criacaoInput) {
         documentoValue = String(cnpjInput.value).trim().replace(/\D/g,"");
         dateValue = String(criacaoInput.value).trim();
+        descricaoValue = String(sobreEmpresa.value).trim()
     }
 
     // 2. Montagem do objeto JSON que vai para o backend
@@ -195,6 +201,7 @@ async function enviarDadosParaOBackend(event) {
         phone: phoneInput?.value || "",
         birthday: dateValue,
         type: tipoUsuarioAtual,
+        description: descricaoValue,
         password: passwordHashed,
         document: documentoValue,  // Enviado como String
         zip_code: cepInput.value.replace(/\D/g,""),
@@ -205,6 +212,7 @@ async function enviarDadosParaOBackend(event) {
         city: cidadeInput.value,
         state: ufInput.value
     };
+
 
     try {
         const resposta = await fetch('http://localhost:8080/register-user', {
@@ -218,7 +226,7 @@ async function enviarDadosParaOBackend(event) {
         if (resposta.ok) {
             const usuarioLogado = conteudoResposta;
 
-            alert('Cadastro realizado com sucesso!');
+        
             
             // Salva os dados no navegador
             localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
@@ -230,9 +238,7 @@ async function enviarDadosParaOBackend(event) {
                 window.location.href = "/src/pages/Home/freelancer/homefreelancer.html"; 
             }
         } else {
-            const mensagemErro = conteudoResposta?.message || 'Falha ao processar a requisição no servidor.';
-            alert(`Erro (${resposta.status}): ${mensagemErro}`);
-            console.error('Detalhes do envio:', dadosFormulario);
+            const mensagemErro = conteudoResposta?.message || 'Falha ao processar a requisição no servidor.'
         }
     } catch (erro) {
         alert('Erro de conexão com o servidor. Verifique se o backend está rodando.');
@@ -375,20 +381,20 @@ window.nextStep = function(stepNumber) {
 
     }
 
+    // CASO SEJA EMPRESA: Se tentar ir para o passo 3, finaliza o cadastro aqui
+    if (tipoUsuarioAtual === 'E' && stepNumber === 3) {
+        enviarDadosParaOBackend();
+        return; // Para a execução e não muda de step
+    }
 
     // Continua para próxima etapa
     document.querySelectorAll('.step').forEach(step => {
-
         step.classList.remove('active');
-
     });
-
 
     const targetStep = document.getElementById("step" + stepNumber);
 
-
     if(targetStep){
-
         targetStep.classList.add("active");
 
     }

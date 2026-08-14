@@ -54,6 +54,8 @@ async function carregarTagsDoBackend() {
 
         const listaDeTags = await resposta.json(); // Espera receber uma Array do backend
 
+
+
         // Limpa o "Carregando..." e define a opção padrão
         selectTags.innerHTML = '<option value="">Selecione uma tag...</option>';
 
@@ -77,10 +79,15 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
     if (event) event.preventDefault();
 
     const dadosLocalStorage = localStorage.getItem("dadosFormulario");
+    const camposValidos = verificarCamposSolicitar();
     
     if (!dadosLocalStorage) {
       alert("Usuário não está logado!");
       return;
+    }
+
+    if (!camposValidos) {
+        return; 
     }
 
     // CORREÇÃO 1: Converter a string do localStorage em objeto para poder acessar .id e .address
@@ -153,3 +160,55 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
     }
 }
 
+function verificarCamposSolicitar() {
+    const mensagem = document.getElementById("mensagem-solicitar");
+    const campoTags = document.getElementById('tags');
+    const campoRua = document.getElementById('rua');
+    const campoInicio = document.getElementById('inicio');
+    const campoTermino = document.getElementById('termino');
+    const campoMinAge = document.getElementById('min_age');
+    const campoPayment = document.getElementById('payment');
+    const campoDescription = document.getElementById('description');
+
+    const camposPreenchidos =
+        campoTags.value &&
+        campoRua.value &&
+        campoInicio.value &&
+        campoTermino.value &&
+        campoMinAge.value &&
+        campoPayment.value &&
+        campoDescription.value.trim() !== "";
+
+    if (!camposPreenchidos) {
+        mensagem.textContent = "Preencha todos os campos antes de continuar.";
+        return false;
+    }
+
+    // Validação extra para a idade mínima permitida
+    if (Number(campoMinAge.value) < 16) {
+        mensagem.textContent = "A idade mínima permitida é 16 anos.";
+        return false;
+    }
+
+    mensagem.textContent = "";
+    return true;
+}
+function formatarVisual() {
+    var input = document.getElementById("payment");
+    var valorLimpo = input.value.replace(/\D/g, ""); 
+    
+    if (valorLimpo === "") {
+        input.value = "";
+        return;
+    }
+
+
+    var valorNumerico = parseFloat(valorLimpo) / 100;
+
+    var valorFormatado = valorNumerico.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+
+    input.value = valorFormatado;
+}

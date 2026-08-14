@@ -100,7 +100,7 @@ async function pegarDadosParaOBackend(event) {
                 return; 
             }
 
-            alert('Login realizado com sucesso!');
+            
                     
             localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
 

@@ -1,8 +1,47 @@
+document.addEventListener("DOMContentLoaded", () => {
+    configurarEnderecoUsuario();
+});
+
+const usuarioLogadoString = localStorage.getItem("dadosFormulario");
+const usuarioLogado = JSON.parse(usuarioLogadoString);
+document.getElementById("username").textContent = usuarioLogado.username;
+
+
+async function configurarEnderecoUsuario() {
+    const dadosEndereco = usuarioLogado.address;
+    console.log("aqui", dadosEndereco)
+
+    try {
+        const respostaEndereco = await fetch('http://localhost:8080/info-address', {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain' },
+            body: dadosEndereco
+        });
+
+         const dadosDoServidor = await respostaEndereco.json(); 
+
+        if (respostaEndereco.ok) {
+
+            document.getElementById("cidade").textContent = dadosDoServidor.city;
+
+            console.log(dadosDoServidor);
+            localStorage.setItem("dadosEndereco", JSON.stringify(dadosDoServidor));
+        
+            
+        } else {
+            console.log(dadosDoServidor);
+        }
+    } catch (erro) {
+        console.error('Erro:', erro);
+    }
+}
+
+
 async function enviarDadosParaOBackendEditar(event) {
     if (event) event.preventDefault();
 
      // 1. PEGA OS DADOS DO USUÁRIO QUE JÁ ESTÃO GUARDADOS NO LOCALSTORAGE
-    const usuarioLogadoString = localStorage.getItem("dadosFormulario");
+    const usuarioLogadoString = localStorage.getItem("dadosEndereco");
     
     if (!usuarioLogadoString) {
       alert("Usuário não está logado!");
@@ -13,7 +52,8 @@ async function enviarDadosParaOBackendEditar(event) {
     const usuarioLogadoPerfil = JSON.parse(usuarioLogadoString);
     console.log("Dados do usuário logado recuperados:", usuarioLogadoPerfil);
 
-    const cepInput = document.getElementById("cep");
+
+    const cepInput = document.getElementById("cep").textContent;
     const ruaInput = document.getElementById("rua");
     const numeroInput = document.getElementById('numero');
     const complementInput = document.getElementById('complemento');
@@ -35,27 +75,13 @@ async function enviarDadosParaOBackendEditar(event) {
 
 
 
-     try {
+    try {
         const respostalogin = await fetch('http://localhost:8080/add-address', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dadosFormulario)
         });
 
-        if (respostalogin.ok) {
-            alert('Sucesso! Salvo no MySQL.');
-            document.getElementById("modal-container").close();
-
-            console.log(dadosFormulario);
-                    
-            const usuarioLogado = await respostalogin.json();
-            localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
-
-            window.location.href = "/src/pages/Home/empresa/home.html"; 
-        } else {
-            alert('Erro no servidor.');
-            console.log(dadosFormulario);
-        }
     } catch (erro) {
         console.error('Erro:', erro);
     }

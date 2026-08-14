@@ -40,22 +40,22 @@
 
                     <div class="inputs">
                         <label for="title-horario" >Horário do Início</label>
-                        <input type="datetime-local" id="inicio">
+                        <input type="datetime-local" id="inicio" max="9999-12-31T23:59">
                     </div>
 
                     <div class="inputs">
                         <label for="title-horario" >Horário de Término</label>
-                        <input type="datetime-local" id="termino">
+                        <input type="datetime-local" id="termino" max="9999-12-31T23:59">
                     </div>
 
                     <div class="inputs">
                         <label for="title-idade" >Idade Mínima</label>
-                        <input type="number" id="min_age" placeholder="Insira idade mínima">
+                        <input type="number" id="min_age" placeholder="Insira idade mínima" oninput="if(this.value.length > 3) this.value = this.value.slice(0, 3);">
                     </div>
 
                     <div class="inputs">
                         <label for="title-pagamento" >Valor do Pagamento</label>
-                        <input type="number" id="payment">
+                        <input type="number" id="payment" placeholder="0,00">
                     </div>
 
                     <!-- Vestimenta -->
@@ -77,14 +77,16 @@
 
                     <div class="inputs">
                         <label for="title-descricao">Descrição Serviço</label>
-                        <textarea id="description" placeholder="Descreva os detalhes do trabalho..."></textarea>
+                        <textarea id="description" placeholder="Descreva os detalhes do trabalho..." maxlength="255"></textarea>
                     </div>
+
+                    <div id="mensagem-solicitar" class="mensagem-css"></div>
 
                     <div class="buttons">
                         <a href="/src/pages/Home/empresa/home.html">
-                            <button type="button" class="btn btn-light">Voltar</button>
+                            <button type="button" class="btn btn-light"><i class="fa-solid fa-arrow-left"></i>Voltar</button> 
                         </a>
-                        <button class="btn btn-dark" onclick="enviarDadosParaOBackendSolicitar(event, 'vestimenta')">Publicar Serviço</button>
+                        <button class="btn btn-dark" onclick="enviarDadosParaOBackendSolicitar(event, 'vestimenta')">Publicar Serviço<i class="fa-solid fa-paper-plane"></i></button>
                     </div>
                 </section>
             </div>
@@ -111,6 +113,5 @@
 <script src="/src/componentes/navbar/navbar.js"></script>
 <script>
     carregarNavbarHomeEmpresa();
-
 </script>
 </html>

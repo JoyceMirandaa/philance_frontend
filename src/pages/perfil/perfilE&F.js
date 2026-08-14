@@ -1,98 +1,48 @@
-console.log("Arquivo empresaCadastro.js carregado isoladamente de sua pasta!");
-
-// Adicione a palavra 'export' na frente da função
-export function inicializarEventosDoLogin() {
-    const btnLogin = document.getElementById("btnLogin");
-    if (btnLogin) {
-        btnLogin.addEventListener("click", pegarDadosParaOBackend);
-        console.log("Botão de cadastro ativado via Módulo!");
-    }
-}
-
-let tipoUsuarioAtual = 'F';
-const botoesSwitch = document.querySelectorAll('.switch-btn');
-const secaoFreelancer = document.getElementById('campos-freelancer');
-const secaoEmpresa = document.getElementById('campos-empresa');
-
-// 1. Controla a troca visual e atualiza a variável do tipo
-botoesSwitch.forEach(botao => {
-    botao.addEventListener('click', (event) => {
-        botoesSwitch.forEach(b => b.classList.remove('ativo'));
-        event.target.classList.add('ativo');
-
-        const tipoSelecionado = event.currentTarget.dataset.tipo;
-        tipoUsuarioAtual = tipoSelecionado; // Atualiza se é 'F' ou 'E'
-
-        // Alterna a exibição dos campos na tela
-        if (tipoSelecionado === 'F') {
-            secaoFreelancer.classList.remove('escondido');
-            secaoEmpresa.classList.add('escondido');
-        } else if (tipoSelecionado === 'E') {
-            secaoEmpresa.classList.remove('escondido');
-            secaoFreelancer.classList.add('escondido');
-        }
-
-    });
+document.addEventListener("DOMContentLoaded", () => {
+    configurarEnderecoUsuario();
 });
 
-async function passwordHash(senha) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(senha);
+// 1. Recuperação e Validação do LocalStorage
+const dadosSalvosFormulario = localStorage.getItem("dadosFormulario");
+console.log("Dados brutos do LocalStorage:", dadosSalvosFormulario);
+const dadosFormulario = JSON.parse(dadosSalvosFormulario);
 
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
+document.getElementById("sobre-empresa").textContent = dadosFormulario.description;
+document.getElementById("avaliar").textContent = dadosFormulario.average_rating;
+document.getElementById("service-count").textContent = dadosFormulario.services_count;
+document.getElementById("username").textContent = dadosFormulario.username;
 
-    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+const usuarioLogadoString = localStorage.getItem("dadosFormulario");
+const usuarioLogado = JSON.parse(usuarioLogadoString);
+document.getElementById("username").textContent = usuarioLogado.username;
 
-    return hashHex
-}
 
+async function configurarEnderecoUsuario() {
+    const dadosEndereco = usuarioLogado.address;
 
-async function pegarDadosParaOBackend(event) {
-    if (event) event.preventDefault();
-
-    const emailInput = document.getElementById('email');
-    const senhaInput = document.getElementById('password');
-
-    if (!emailInput || !senhaInput) {
-        console.error("Campos obrigatórios (username, email ou password) não foram encontrados no HTML.");
-        return;
-    }
-
-    
-    // Gera o hash da senha de forma assíncrona e segura
-    const senhaDigitada = senhaInput.value;
-    const passwordHashed = await passwordHash(senhaDigitada);
-    
-    const dadosFormulario = {
-        email: emailInput?.value || "",
-        password: passwordHashed,
-    };
-
+    console.log("aqui", dadosEndereco)
 
     try {
-        const respostalogin = await fetch('http://localhost:8080/login-user', {
+        const respostaEndereco = await fetch('http://localhost:8080/info-address', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dadosFormulario)
+            headers: { 'Content-Type': 'text/plain' },
+            body: dadosEndereco
         });
 
-        if (respostalogin.ok) {
-            alert('Sucesso! Salvo no MySQL.');
-            document.getElementById("modal-container").close();
+         const dadosDoServidor = await respostaEndereco.json(); 
 
-            console.log(dadosFormulario);
-                    
-            const usuarioLogado = await respostalogin.json();
-            localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
+        if (respostaEndereco.ok) {
 
-            window.location.href = "/src/pages/Home/empresa/home.html"; 
+            document.getElementById("cidade").textContent = dadosDoServidor.city;
+
+            console.log(dadosDoServidor);
+            localStorage.setItem("dadosEndereco", JSON.stringify(dadosDoServidor));
+        
+            
         } else {
-            alert('Erro no servidor.');
-            console.log(dadosLogin);
+            console.log(dadosDoServidor);
         }
     } catch (erro) {
         console.error('Erro:', erro);
     }
-
 }

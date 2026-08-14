@@ -654,3 +654,79 @@ button {
     color: #1C2A1E;
     line-height: 1.6;
 }
+
+
+/* Container de fundo escuro que cobre a tela toda */
+#modal-avaliacao-dinamico {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* Caixa branca interna do modal */
+#modal-avaliacao-dinamico .modal-conteudo-interno {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 8px;
+    min-width: 320px;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #333333;
+}
+
+/* Caixa de texto do feedback */
+#modal-avaliacao-dinamico textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    box-sizing: border-box;
+}
+
+/* Container dos botões de ação */
+#modal-avaliacao-dinamico .modal-botoes-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Sistema de classificação por estrelas */
+.rating-group {
+    display: flex;
+    direction: row-reverse;
+    justify-content: flex-end;
+    margin: 15px 0;
+}
+
+.rating-group input {
+    display: none;
+}
+
+.rating-group label {
+    cursor: pointer;
+    font-size: 32px;
+    color: #cccccc;
+    transition: color 0.2s ease-in-out;
+}
+
+.rating-group label:before {
+    content: '★';
+}
+
+/* Efeito de hover e seleção das estrelas (efeito reverso do CSS) */
+.rating-group input:checked ~ label,
+.rating-group label:hover,
+.rating-group label:hover ~ label {
+    color: #ffca08;
+}

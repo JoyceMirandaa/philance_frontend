@@ -41,8 +41,6 @@ function carregarNavbarHomeEmpresa(){
                     <hr> <!-- Linha divisória opcional -->
                     
                     <a href="/src/pages/perfil/perfilE&F.html">Meu perfil</a>
-                    <a href="#">Favoritos</a>
-                    <a href="#">Bloqueados</a>
                     <a href="/src/index.html" class="sair">Sair<i class="fa-solid fa-right-from-bracket icon-exit"></i></a>
                 </div>
             </div>
@@ -121,8 +119,6 @@ function carregarNavbarHomeFreelancer(){
                     <hr> <!-- Linha divisória opcional -->
                     
                     <a href="/src/pages/perfil/perfilE&F.html">Meu perfil</a>
-                    <a href="#">Favoritos</a>
-                    <a href="#">Bloqueados</a>
                     <a href="/src/index.html" class="sair">Sair</a>
                 </div>
             </div>
