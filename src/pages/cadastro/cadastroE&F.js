@@ -174,8 +174,8 @@ async function enviarDadosParaOBackend(event) {
     const phoneInput = document.getElementById('phone');
     const nascimentoInput = document.getElementById('date-nascimento');
     const criacaoInput = document.getElementById('date-criacao')
-    const sobreVoce = document.getElementById('sobre-voce');
-    const sobreEmpresa = document.getElementById('sobre-empresa')
+    const sobreVoce = document.getElementById('sobre');
+    const sobreEmpresa = document.getElementById('sobre')
     
 
     const ruaInput = document.getElementById('rua');

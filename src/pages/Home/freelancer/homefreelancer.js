@@ -108,12 +108,12 @@ if (botao && banner && areaServico) {
 
       try {
         const resposta = await fetch("http://localhost:8080/random-assignment"); 
-        
         if (!resposta.ok) throw new Error("Erro na resposta do servidor");
-
         // SOLUÇÃO: Verifica se o back-end enviou conteúdo antes de rodar o .json()
         const textoResposta = await resposta.text();
+        console.log("Antes if")
         if (!textoResposta || textoResposta.trim() === "") {
+            console.log("dentro if")
             throw new Error("Nenhum serviço disponível para sorteio no banco de dados.");
         }
 
