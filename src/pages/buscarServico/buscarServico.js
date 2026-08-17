@@ -187,7 +187,7 @@ document.addEventListener('click', async function(event) {
         });
 
         if (respostaAceitar.ok) {
-            alert('Sucesso! Serviço aceito.');
+            // alert('Sucesso! Serviço aceito.');
             console.log(dadosAceitar);
 
             const respostaDados = await respostaAceitar.json();

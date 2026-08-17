@@ -133,7 +133,7 @@ async function enviarDadosParaOBackendSolicitar(event, nomeDogrupo, nomeTags) {
         });
 
         if (respostalogin.ok) {
-            alert('Sucesso! Salvo no MySQL.');
+            // alert('Sucesso! Salvo no MySQL.');
             
             const modal = document.getElementById("modal-container");
             if (modal && typeof modal.close === "function") modal.close();

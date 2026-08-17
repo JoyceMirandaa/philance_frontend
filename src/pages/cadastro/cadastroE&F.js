@@ -123,14 +123,14 @@ cepInput.addEventListener('input', async (event) => {
             const dados = await resposta.json();
 
             if (dados.erro) {
-                alert("CEP não encontrado!");
+                // alert("CEP não encontrado!");
                 limparFormulario();
             } else {
                 preencherFormulario(dados);
             }
         } catch (erro) {
             console.error("Erro ao buscar o CEP:", erro);
-            alert("Erro de conexão ao buscar o CEP.");
+            // alert("Erro de conexão ao buscar o CEP.");
             console.log(cep)
         }
     }
@@ -203,6 +203,7 @@ async function enviarDadosParaOBackend(event) {
         dateValue = String(criacaoInput.value).trim();
         descricaoValue = String(sobreEmpresa.value).trim()
     }
+    if (descricaoValue == null){descricaoValue = "Sem descrição"}
 
     // 2. Montagem do objeto JSON que vai para o backend
     const dadosFormulario = {
@@ -235,7 +236,7 @@ async function enviarDadosParaOBackend(event) {
         if (resposta.ok) {
             const usuarioLogado = conteudoResposta;
 
-            alert('Cadastro realizado com sucesso!');
+            // alert('Cadastro realizado com sucesso!');
             
             // Salva os dados no navegador
             localStorage.setItem("dadosFormulario", JSON.stringify(usuarioLogado));
