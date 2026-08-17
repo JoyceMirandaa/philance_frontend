@@ -201,8 +201,7 @@ if (botao && banner && areaServico) {
     });
 }
 
-
-async function carregarServicosAceitos(areaFinalizado) {
+async function carregarServicosAceitos() {
     try {
         const id_user = dadosFormulario.id_user;
         const respostaFinalizados = await fetch(`http://localhost:8080/assingments-in-progress-f/${id_user}`);
@@ -210,20 +209,22 @@ async function carregarServicosAceitos(areaFinalizado) {
 
         const lista = Array.isArray(servicosSolicitados) ? servicosSolicitados : [servicosSolicitados];
 
-        const htmlCardsPromises = lista.map(async (dados) => {
+        // >>> FILTRO POR STATUS <<<
+        // Só monta card de quem NÃO está avaliado (ou seja, ainda "finished"/em andamento).
+        const listaVisivel = lista.filter(dados => dados && dados.status !== "EVALUATED");
 
-            
+        const htmlCardsPromises = listaVisivel.map(async (dados) => {
+
             // Pega o ID do endereço de dentro do serviço atual
-            const idEndereco = String(dados.address); 
+            const idEndereco = String(dados.address);
             let dadosDoServidor = { street: "Endereço não encontrado" };
 
             try {
-                // OPÇÃO A: Se o backend recebe o ID no corpo (Body) como texto puro
                 const respostaEndereco = await fetch('http://localhost:8080/info-address', {
                     method: 'POST',
                     headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
                     body: idEndereco
-                })
+                });
 
                 if (respostaEndereco.ok) {
                     dadosDoServidor = await respostaEndereco.json();
@@ -240,8 +241,6 @@ async function carregarServicosAceitos(areaFinalizado) {
             const horaInicio = dataInicio.getHours();
             const horaFim = dataFim.getHours();
             const duracaoHoras = Math.round((dataFim - dataInicio) / (1000 * 60 * 60)) || 0;
-
-            console.log(dados.id)
 
             return `
                 <article class="servico-card" id="servico-lista-${dados.id}">
@@ -292,28 +291,20 @@ async function carregarServicosAceitos(areaFinalizado) {
                     </div>
 
                     <div class="aviso-card" style="color: red; font-weight: bold; margin: 10px 0; display: none;"></div>
-                    
-                </article>            
+
+                </article>
             `;
-            console.log(dados)
         });
 
-
         const cardsArray = await Promise.all(htmlCardsPromises);
-        
+
         const areaFinalizado = document.getElementById("servico-lista");
         areaFinalizado.innerHTML = cardsArray.join("");
-
 
     } catch (erro) {
         console.error("Não foi possível carregar os serviços da API:", erro);
     }
 }
-
-
-
-// 1. Garanta que esta linha está bem no topo do seu script, fora de qualquer função
-let servicosJaAvaliadosNestaSessao = [];
 
 async function carregarAvaliacao() {
     const usuarioLogadoString = localStorage.getItem("dadosFormulario");
@@ -330,29 +321,26 @@ async function carregarAvaliacao() {
 
         if (!resposta.ok) throw new Error("Erro ao buscar finalizados");
 
-        const servicosFinalizados = await resposta.json(); 
+        const servicosFinalizados = await resposta.json();
         console.log("CONTEÚDO DO BACKEND:", servicosFinalizados);
 
         if (servicosFinalizados && servicosFinalizados.length > 0) {
-            
-            // FILTRO SEGURO: Convertendo ambos os lados para String antes de comparar
+
             const listaFiltrada = servicosFinalizados.filter(servico => {
+                if (servico.status === "EVALUATED") return false;
                 const idTexto = servico.id.toString();
                 return !servicosJaAvaliadosNestaSessao.includes(idTexto);
             });
 
-            console.log("Lista após aplicar filtro local:", listaFiltrada);
+            console.log("Lista após aplicar filtro (status + sessão):", listaFiltrada);
 
-            // Se o filtro removeu tudo (porque já foi avaliado nesta sessão), encerra aqui
             if (listaFiltrada.length === 0) {
-                console.log("Nenhum serviço novo pendente nesta sessão.");
+                console.log("Nenhum serviço novo pendente de avaliação.");
                 return;
             }
 
-            // Pega o primeiro serviço válido da lista filtrada
             const primeiroServico = listaFiltrada[0];
 
-            // Garante que não vai acumular modais duplicados escondidos
             fecharModalDinamico();
 
             const htmlModal = `
@@ -360,7 +348,7 @@ async function carregarAvaliacao() {
                     <div class="modal-conteudo-interno">
                         <h2>Avalie o Serviço</h2>
                         <p>Você finalizou o serviço: <strong>${primeiroServico.title}</strong></p>
-                        
+
                         <div class="rating-group">
                             <input type="radio" id="star5" name="nota" value="5"><label for="star5"></label>
                             <input type="radio" id="star4" name="nota" value="4"><label for="star4"></label>
@@ -370,7 +358,7 @@ async function carregarAvaliacao() {
                         </div>
 
                         <textarea placeholder="Deixe seu feedback aqui..." id="texto-avaliacao"></textarea>
-                        
+
                         <div class="modal-botoes-acoes">
                             <button class="btn-cancelar" onclick="fecharModalDinamico()">Cancelar</button>
                             <button class="btn-enviar" onclick="enviarAvaliacao('${primeiroServico.id}', '${primeiroServico.company}')">Enviar</button>
@@ -379,68 +367,9 @@ async function carregarAvaliacao() {
                 </div>
             `;
 
-            // Inserção limpa que mantém o DOM estável e não quebra o Chart.js
             document.body.insertAdjacentHTML('beforeend', htmlModal);
         }
     } catch (erro) {
         console.error('Erro ao carregar avaliações:', erro);
-    }
-}
-
-function fecharModalDinamico() {
-    const modal = document.getElementById("modal-avaliacao-dinamico");
-    if (modal) modal.remove();
-}
-
-async function enviarAvaliacao(idServico, idEmpresa) {
-    const usuarioLogadoString = localStorage.getItem("dadosFormulario");
-    const usuarioLogado = JSON.parse(usuarioLogadoString);
-   
-    const estrelaSelecionada = document.querySelector('input[name="nota"]:checked');
-    
-    if (!estrelaSelecionada) {
-        alert("Por favor, selecione uma estrela antes de enviar.");
-        return;
-    }
-
-    const texto = document.getElementById("texto-avaliacao").value;
-    const notaNumero = parseInt(estrelaSelecionada.value); 
-
-    const dadosAvaliar = {
-        review: notaNumero,
-        comments: texto,
-        id_assignment: idServico,
-        id_author: usuarioLogado.id_user,
-        id_target: idEmpresa
-    };
-
-    try {
-        const avaliar = await fetch(`http://localhost:8080/ratings`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dadosAvaliar)
-        });
-
-        if (avaliar.ok) {
-            alert("Avaliação registrada com sucesso!");
-            
-            // Força a inserção como String para bater com a checagem do filtro
-            servicosJaAvaliadosNestaSessao.push(idServico.toString());
-
-            fecharModalDinamico();
-
-            // Esconde visualmente o card associado da tela
-            const cardParaRemover = document.getElementById(`servico-lista-${idServico}`);
-            if (cardParaRemover) {
-                cardParaRemover.remove();
-            }
-
-            // Roda de novo para abrir o próximo serviço da fila (se houver)
-            carregarAvaliacao(); 
-        } else {
-            console.error("Servidor retornou um erro ao processar avaliação:", avaliar.status);
-        }
-    } catch (erro) {
-        console.error('Erro na requisição POST de avaliação:', erro);
     }
 }
