@@ -10,6 +10,8 @@ if (!dadosSalvosFormulario) {
 } else {
     try {
 
+
+
         const elRating = document.getElementById("average_rating");
         const elUsername = document.getElementById("username");
         const elEmail = document.getElementById("email");
@@ -46,9 +48,12 @@ async function carregarServicosFinalizados() {
         const htmlCardsPromises = listaVisivel.map(async (dados) => {
 
             const idEndereco = String(dados.address);
+
+
             let dadosDoServidor = { street: "Endereço não encontrado" };
 
             try {
+
                 const respostaEndereco = await fetch('http://localhost:8080/info-address', {
                     method: 'POST',
                     headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
@@ -69,6 +74,8 @@ async function carregarServicosFinalizados() {
             const horaInicio = dataInicio.getHours();
             const horaFim = dataFim.getHours();
             const duracaoHoras = Math.round((dataFim - dataInicio) / (1000 * 60 * 60)) || 0;
+
+
 
             return `
                 <article class="servico-card">
@@ -124,21 +131,28 @@ async function carregarServicosFinalizados() {
 
                 </article>
             `;
+
         });
+
 
         const cardsArray = await Promise.all(htmlCardsPromises);
 
         const areaFinalizado = document.getElementById("areaFinalizar");
         areaFinalizado.innerHTML = cardsArray.join("");
 
+
+
         const botaosFinalizados = document.querySelectorAll(".btn-finalizar");
 
         botaosFinalizados.forEach(botao => {
             botao.addEventListener("click", () => {
                 const idServico = botao.dataset.id;
+
+
                 finalizarServico(idServico, botao);
             });
         });
+
 
     } catch (erro) {
         console.error("Não foi possível carregar os serviços da API:", erro);
@@ -148,6 +162,7 @@ async function carregarServicosFinalizados() {
 async function finalizarServico(idServico, botao) {
 
     try {
+
         const resposta = await fetch(`http://localhost:8080/finish-assignment/${idServico}`, {
             method: 'PATCH',
             headers: {
@@ -200,5 +215,7 @@ if (canvasGrafico) {
         }
     });
 }
+
+
 
 carregarServicosFinalizados();

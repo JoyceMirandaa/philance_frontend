@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("A página carregou! Iniciando as funções...");
-    
+
     carregarServicosSolicitados();
     carregarServicosAceitos();
     carregarAvaliacao()
-    
+
 });
+
+
 
 const dadosSalvosFormulario = localStorage.getItem("dadosFormulario");
 console.log("Dados brutos do LocalStorage:", dadosSalvosFormulario);
@@ -16,7 +18,7 @@ if (!dadosSalvosFormulario) {
     window.location.href = '/index.html'; 
 } else {
     try {
-        
+
         // Verifica se a propriedade existe antes de renderizar para evitar "undefined" na tela
         if (dadosFormulario && dadosFormulario.average_rating) {
           document.getElementById("average_rating").textContent = dadosFormulario.average_rating;
@@ -47,15 +49,15 @@ async function carregarServicosSolicitados() {
         const servicosSolicitados = await respostaSolicitados.json();
         console.log("Serviços solicitados carregados com sucesso:", servicosSolicitados);
 
-    
+
         if (servicosSolicitados.content && servicosSolicitados.content.length > 0) {
             document.getElementById("title").textContent = servicosSolicitados.content[0].title;
         } else {
             document.getElementById("title").textContent = "Nenhum serviço disponível";
         }
 
-     
-        
+
+
 
 
         return servicosSolicitados;;
@@ -115,29 +117,35 @@ if (botao && banner && areaServico) {
             throw new Error("Nenhum serviço disponível para sorteio no banco de dados.");
         }
 
-     
+
         const dados = JSON.parse(textoResposta); 
         console.log("Dados recebidos no sorteio:", dados);
 
 
-       
+
         const dataInicio = new Date(dados.startHour);
         const dataFim = new Date(dados.finishHour);
-    
+
+
+
+
+
+
+
         const diaMes = dataInicio.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-        
-       
+
+
         const horaInicio = dataInicio.getHours();
         const horaFim = dataFim.getHours();
 
-     
+
         const duracaoHoras = Math.round((dataFim - dataInicio) / (1000 * 60 * 60));
 
         areaServico.innerHTML = `
             <article class="painel-detalhe-vaga">
                 <!-- Coluna 1: Perfil do Ofertante e Cargo -->
                 <div class="detalhe-secao-perfil detalhe-divisoria">
-                    <div class="detalhe-foto-contratante"></div>
+                    
                     <div class="detalhe-bloco-empresa">
                         <h4>${dados.companyName || 'Empresa'} <span class="detalhe-nota-avaliacao"><i class="fa-solid fa-star"></i> 4.5</span></h4>
                         <span class="detalhe-cidade-estado">Curitiba, PR</span>
@@ -186,7 +194,7 @@ if (botao && banner && areaServico) {
 
       } catch (erro) {
         console.error("Falha no sorteio:", erro.message);
-        
+
         areaServico.innerHTML = `<p style="color: #ff4d4d; margin: 0;">Erro ao carregar o serviço. Tente novamente!</p>`;
         banner.classList.add('expandido');
       }
@@ -202,6 +210,7 @@ async function carregarServicosAceitos() {
         const lista = Array.isArray(servicosSolicitados) ? servicosSolicitados : [servicosSolicitados];
 
      
+
         const listaVisivel = lista.filter(dados => dados && dados.status !== "EVALUATED");
 
         const htmlCardsPromises = listaVisivel.map(async (dados) => {

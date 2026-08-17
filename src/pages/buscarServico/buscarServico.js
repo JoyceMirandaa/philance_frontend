@@ -94,70 +94,67 @@ async function buscarServicos() {
 
 let idAssignmentAtivo = null;
 
-function exibirDetalhesDoServico(servico, container) {
-    if (!container) return;
+async function exibirDetalhesDoServico(servico, container) {
+  if (!container) return;
+  idAssignmentAtivo = servico.id;
 
-    idAssignmentAtivo = servico.id;
+  // 1. Faz o fetch e aguarda a conversão para JSON
+  const resposta = await fetch('http://localhost:8080/info-address', {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+    body: servico.address
+  });
+  const respostaEndereco = await resposta.json();
 
-    const inicio = new Date(servico.startHour).toLocaleString('pt-BR');
-    const fim = new Date(servico.finishHour).toLocaleString('pt-BR');
+  const inicio = new Date(servico.startHour).toLocaleString('pt-BR');
+  const fim = new Date(servico.finishHour).toLocaleString('pt-BR');
 
-    container.innerHTML = `
-        <section class="detalhes-container">
-            <article class="card-principal">
-                <p class="detalhe-empresa"><strong>Empresa/Contratante:</strong> ${servico.companyName}</p>
-                <h2>${servico.title}</h2>
-                <button class="btn btn-aceitar" data-id="${servico.id}">Aceitar</button>
-            </article>
-
-            <article class="card-meio">
-            <h4 class="card-titulo">Informações</h4>
-                <div class="info-grade">
-                    <div class="info-item">
-                        <span class="info-label">Valor</span>
-                        <span class="info-valor">R$ ${servico.payment}</span>
-                    </div>
-
-                    <div class="info-item">
-                        <span class="info-label">Cidade</span>
-                        <span class="info-valor">${servico.address}</span>
-                    </div>
-
-                    <div class="info-item">
-                        <span class="info-label">Idade Mínima</span>
-                        <span class="info-valor">${servico.min_age}</span>
-                    </div>
-
-                    <div class="info-item">
-                        <span class="info-label">Traje</span>
-                        <span class="info-valor">${servico.attire}</span>
-                    </div>
-
-                    <div class="info-item">
-                        <span class="info-label">Início</span>
-                        <span class="info-valor">${inicio}</span>
-                    </div>
-
-                    <div class="info-item">
-                        <span class="info-label">Término</span>
-                        <span class="info-valor">${fim}</span>
-                    </div>
-                    
-                </div>
-            </article>
-
-
-            <article class="card-final">
-                <h4 class="card-titulo">Descrição completa</h4>
-                <p class="detalhe-descricao">${servico.description}</p>
-            </article>
-            
-        </section>
-    `;
+  container.innerHTML = `
+    <section class="detalhes-container">
+      <article class="card-principal">
+        <p class="detalhe-empresa"><strong>Empresa/Contratante:</strong> ${servico.companyName}</p>
+        <h2>${servico.title}</h2>
+        <button class="btn btn-aceitar" data-id="${servico.id}">Aceitar</button>
+      </article>
+      <article class="card-meio">
+        <h4 class="card-titulo">Informações</h4>
+        <div class="info-grade">
+          <div class="info-item">
+            <span class="info-label">Valor</span>
+            <span class="info-valor">R$ ${servico.payment}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Cidade</span>
+            <span class="info-valor">${respostaEndereco.city}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Idade Mínima</span>
+            <span class="info-valor">${servico.min_age}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Traje</span>
+            <span class="info-valor">${servico.attire}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Início</span>
+            <span class="info-valor">${inicio}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Término</span>
+            <span class="info-valor">${fim}</span>
+          </div>
+        </div>
+      </article>
+      <article class="card-final">
+        <h4 class="card-titulo">Descrição completa</h4>
+        <p class="detalhe-descricao">${servico.description}</p>
+      </article>
+    </section>
+  `;
 }
 
 document.addEventListener('click', async function(event) {
-
+    console.log('Evento de clique detectado:', event.target);
     const botaoAceitar = event.target.closest('.btn-aceitar');
 
 
@@ -187,7 +184,7 @@ document.addEventListener('click', async function(event) {
         });
 
         if (respostaAceitar.ok) {
-            // alert('Sucesso! Serviço aceito.');
+            alert('Sucesso! Serviço aceito.');
             console.log(dadosAceitar);
 
             const respostaDados = await respostaAceitar.json();

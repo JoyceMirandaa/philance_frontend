@@ -730,3 +730,9 @@ button {
 .rating-group label:hover ~ label {
     color: #ffca08;
 }
+
+.detalhe-paragrafo-corpo{
+    text-align: left;       /* Garante o alinhamento à esquerda */
+    width: 250px;           /* Limita a largura para forçar a quebra */
+    overflow-wrap: break-word;
+}
