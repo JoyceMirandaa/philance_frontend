@@ -7,8 +7,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
 });
 
-
-// 1. Recuperação e Validação do LocalStorage
 const dadosSalvosFormulario = localStorage.getItem("dadosFormulario");
 console.log("Dados brutos do LocalStorage:", dadosSalvosFormulario);
 const dadosFormulario = JSON.parse(dadosSalvosFormulario);
@@ -98,7 +96,7 @@ const botao = document.getElementById('btn-sortear');
 const banner = document.getElementById('banner');
 const areaServico = document.querySelector('.area-servico'); 
 
-// Correção 1: Evita que o código quebre caso o botão não exista nessa página específica
+
 if (botao && banner && areaServico) {
     botao.addEventListener('click', async () => {
       if (banner.classList.contains('expandido')) {
@@ -109,7 +107,7 @@ if (botao && banner && areaServico) {
       try {
         const resposta = await fetch("http://localhost:8080/random-assignment"); 
         if (!resposta.ok) throw new Error("Erro na resposta do servidor");
-        // SOLUÇÃO: Verifica se o back-end enviou conteúdo antes de rodar o .json()
+
         const textoResposta = await resposta.text();
         console.log("Antes if")
         if (!textoResposta || textoResposta.trim() === "") {
@@ -125,12 +123,6 @@ if (botao && banner && areaServico) {
        
         const dataInicio = new Date(dados.startHour);
         const dataFim = new Date(dados.finishHour);
-
-       
-        if (isNaN(dataInicio.getTime()) || isNaN(dataFim.getTime())) {
-            throw new Error("O formato de data enviado pelo back-end é inválido para o JavaScript.");
-        }
-
     
         const diaMes = dataInicio.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
         
@@ -209,13 +201,12 @@ async function carregarServicosAceitos() {
 
         const lista = Array.isArray(servicosSolicitados) ? servicosSolicitados : [servicosSolicitados];
 
-        // >>> FILTRO POR STATUS <<<
-        // Só monta card de quem NÃO está avaliado (ou seja, ainda "finished"/em andamento).
+     
         const listaVisivel = lista.filter(dados => dados && dados.status !== "EVALUATED");
 
         const htmlCardsPromises = listaVisivel.map(async (dados) => {
 
-            // Pega o ID do endereço de dentro do serviço atual
+          
             const idEndereco = String(dados.address);
             let dadosDoServidor = { street: "Endereço não encontrado" };
 

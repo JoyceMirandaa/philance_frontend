@@ -2,20 +2,19 @@
 const dadosSalvosFormulario = localStorage.getItem("dadosFormulario");
 console.log("Dados brutos do LocalStorage:", dadosSalvosFormulario);
 const dadosFormulario = JSON.parse(dadosSalvosFormulario);
-console.log(dadosFormulario)
+console.log(dadosFormulario);
+
 if (!dadosSalvosFormulario) {
     console.log("Nenhum usuário encontrado no LocalStorage.");
-    window.location.href = '/index.html'; 
+    window.location.href = '/index.html';
 } else {
     try {
-        const dadosFormulario = JSON.parse(dadosSalvosFormulario);
-        
-        // 1. Captura os elementos do HTML
+
         const elRating = document.getElementById("average_rating");
         const elUsername = document.getElementById("username");
         const elEmail = document.getElementById("email");
 
-        // 2. Só atualiza se o elemento existir fisicamente na página atual
+      
         if (elRating && dadosFormulario && dadosFormulario.average_rating) {
             elRating.textContent = dadosFormulario.average_rating;
         }
@@ -41,20 +40,20 @@ async function carregarServicosFinalizados() {
 
         const lista = Array.isArray(servicosSolicitados) ? servicosSolicitados : [servicosSolicitados];
 
-        const htmlCardsPromises = lista.map(async (dados) => {
+        // Só monta card de quem NÃO está avaliado (ainda em andamento / "finished").
+        const listaVisivel = lista.filter(dados => dados && dados.status !== "EVALUATED");
 
-            
-            // Pega o ID do endereço de dentro do serviço atual
-            const idEndereco = String(dados.address); 
+        const htmlCardsPromises = listaVisivel.map(async (dados) => {
+
+            const idEndereco = String(dados.address);
             let dadosDoServidor = { street: "Endereço não encontrado" };
 
             try {
-                // OPÇÃO A: Se o backend recebe o ID no corpo (Body) como texto puro
                 const respostaEndereco = await fetch('http://localhost:8080/info-address', {
                     method: 'POST',
                     headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
                     body: idEndereco
-                })
+                });
 
                 if (respostaEndereco.ok) {
                     dadosDoServidor = await respostaEndereco.json();
@@ -70,8 +69,6 @@ async function carregarServicosFinalizados() {
             const horaInicio = dataInicio.getHours();
             const horaFim = dataFim.getHours();
             const duracaoHoras = Math.round((dataFim - dataInicio) / (1000 * 60 * 60)) || 0;
-
-            console.log(dados.id)
 
             return `
                 <article class="servico-card">
@@ -124,31 +121,24 @@ async function carregarServicosFinalizados() {
                     <div class="aviso-card" style="color: red; font-weight: bold; margin: 10px 0; display: none;"></div>
 
                     <button class="btn btn-dark btn-finalizar" type="button" data-id="${dados.id}">Finalizar Serviço</button>
-                    
-                </article>            
+
+                </article>
             `;
-            
         });
 
-
         const cardsArray = await Promise.all(htmlCardsPromises);
-        
+
         const areaFinalizado = document.getElementById("areaFinalizar");
         areaFinalizado.innerHTML = cardsArray.join("");
-
-        
 
         const botaosFinalizados = document.querySelectorAll(".btn-finalizar");
 
         botaosFinalizados.forEach(botao => {
             botao.addEventListener("click", () => {
                 const idServico = botao.dataset.id;
-                
-                
                 finalizarServico(idServico, botao);
             });
         });
-
 
     } catch (erro) {
         console.error("Não foi possível carregar os serviços da API:", erro);
@@ -156,16 +146,15 @@ async function carregarServicosFinalizados() {
 }
 
 async function finalizarServico(idServico, botao) {
-  
+
     try {
-        // Altere 'PUT' para 'POST' ou 'DELETE' caso o seu backend use outro método
         const resposta = await fetch(`http://localhost:8080/finish-assignment/${idServico}`, {
-            method: 'PATCH', 
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-        console.log(resposta)
+        console.log(resposta);
 
         if (!resposta.ok) {
             throw new Error(`Erro no servidor: Status ${resposta.status}`);
@@ -175,41 +164,41 @@ async function finalizarServico(idServico, botao) {
 
         const card = botao.closest(".servico-card");
         card.remove();
-        
+
         // Recarrega a listagem para sumir com o card finalizado
         carregarServicosFinalizados();
 
-    } catch (error) { // Corrigido de 'erro' para 'error'
+    } catch (error) {
         console.error("Não foi possível finalizar o serviço:", error);
     }
 
 }
 
+const canvasGrafico = document.getElementById('meuGrafico');
+if (canvasGrafico) {
+    const ctx = canvasGrafico.getContext('2d');
 
-
-const ctx = document.getElementById('meuGrafico').getContext('2d');
-
-const meuGrafico = new Chart(ctx, {
-    type: 'bar', // Tipo do gráfico: 'bar', 'line', 'pie', etc.
-    data: {
-        labels: ['Seg', 'Ter', 'Quar', 'Quin', 'Sex', 'Sáb', 'Dom'],
-        datasets: [{
-            label: 'Relatório de Serviços',
-            data: [13, 19, 3, 5],
-            backgroundColor: 'rgba(69, 235, 54, 0.5)',
-            borderColor: 'rgb(54, 235, 54)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
+    const meuGrafico = new Chart(ctx, {
+        type: 'bar', // Tipo do gráfico: 'bar', 'line', 'pie', etc.
+        data: {
+            labels: ['Seg', 'Ter', 'Quar', 'Quin', 'Sex', 'Sáb', 'Dom'],
+            datasets: [{
+                label: 'Relatório de Serviços',
+                data: [13, 19, 3, 5],
+                backgroundColor: 'rgba(69, 235, 54, 0.5)',
+                borderColor: 'rgb(54, 235, 54)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
-    }
-});
+    });
+}
 
 carregarServicosFinalizados();
-
